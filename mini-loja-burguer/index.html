@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Loja – Hamburgueria CursoDoLivro</title>
+
+
+    <!-- Fonte Google mais moderna, estilo app -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- 
+      CABEÇALHO
+      - Branding simples da hamburgueria
+      - Cores quentes (laranja/vermelho)
+    -->
+    <header class="header">
+      <div class="header__brand">
+        <span class="header__logo">🍔</span>
+        <div>
+          <h1 class="header__title">Hamburgueria CursoDoLivro</h1>
+          <p class="header__subtitle">Mini Loja estilo iFood • Curso do Livro</p>
+        </div>
+      </div>
+
+      <div class="header__status">
+        <span class="header__pill header__pill--open">Aberto agora • 18h às 23h</span>
+      </div>
+    </header>
+
+    <!-- CONTAINER PRINCIPAL (MENU + CARRINHO) -->
+    <main class="layout">
+      <!-- 
+        SEÇÃO DE MENU DE PRODUTOS
+        - Aqui listamos os lanches dinamicamente usando JavaScript
+      -->
+      <section class="menu">
+        <div class="menu__header">
+          <h2 class="menu__title">Cardápio</h2>
+          <p class="menu__subtitle">
+            Escolha seus favoritos, monte o pedido e finalize pelo WhatsApp. 
+          </p>
+        </div>
+
+        <!-- FILTRO POR CATEGORIA (opcional, para UX mais real) -->
+        <div class="menu__filters">
+          <button class="filter-button filter-button--active" data-category="all">
+            Tudo
+          </button>
+          <button class="filter-button" data-category="burger">
+            Burgers
+          </button>
+          <button class="filter-button" data-category="combo">
+            Combos
+          </button>
+          <button class="filter-button" data-category="drinks">
+            Bebidas
+          </button>
+          <button class="filter-button" data-category="dessert">
+            Sobremesas
+          </button>
+        </div>
+
+        <!-- LISTA DE PRODUTOS (preenchida via JS) -->
+        <div id="products-list" class="menu__grid">
+          <!-- Os cards dos produtos serão inseridos aqui via JavaScript -->
+        </div>
+
+        <!-- 
+          BLOCO OPCIONAL "MODO PROFESSOR"
+          - Formulário para adicionar novos produtos via JavaScript
+          - Excelente para mostrar arrays e objetos na prática
+        -->
+        <section class="admin">
+          <button id="toggle-admin" class="admin__toggle">
+            ⚙️ Modo Professor: Adicionar novo produto
+          </button>
+
+          <form id="admin-form" class="admin__form">
+            <h3>Adicionar produto (para estudos)</h3>
+
+            <div class="admin__group">
+              <label for="admin-name">Nome do produto</label>
+              <input
+                type="text"
+                id="admin-name"
+                placeholder="Ex: Burger do Livro"
+                required
+              />
+            </div>
+
+            <div class="admin__group">
+              <label for="admin-description">Descrição</label>
+              <textarea
+                id="admin-description"
+                rows="2"
+                placeholder="Ex: Burger artesanal com queijo cheddar e bacon crocante"
+              ></textarea>
+            </div>
+
+            <div class="admin__group admin__group--inline">
+              <div>
+                <label for="admin-price">Preço (R$)</label>
+                <input
+                  type="number"
+                  id="admin-price"
+                  step="0.01"
+                  min="0"
+                  placeholder="29.90"
+                  required
+                />
+              </div>
+
+              <div>
+                <label for="admin-category">Categoria</label>
+                <select id="admin-category">
+                  <option value="burger">Burger</option>
+                  <option value="combo">Combo</option>
+                  <option value="drinks">Bebida</option>
+                  <option value="dessert">Sobremesa</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="admin__submit">
+              Adicionar ao cardápio
+            </button>
+          </form>
+        </section>
+      </section>
+
+      <!-- 
+        CARRINHO LATERAL
+        - Simula o carrinho real de apps de delivery
+      -->
+      <aside class="cart">
+        <h2 class="cart__title">Seu pedido</h2>
+        <p class="cart__subtitle">
+          Revise os itens antes de enviar para o WhatsApp.
+        </p>
+
+        <!-- LISTA DE ITENS DO CARRINHO -->
+        <div id="cart-items" class="cart__items">
+          <!-- Preenchido via JavaScript -->
+        </div>
+
+        <!-- RESUMO DE VALORES -->
+        <div class="cart__summary">
+          <div class="cart__row">
+            <span>Subtotal</span>
+            <span id="cart-subtotal">R$ 0,00</span>
+          </div>
+
+          <div class="cart__row cart__row--coupon">
+            <div>
+              <span>Desconto</span>
+              <small id="cart-coupon-label"></small>
+            </div>
+            <span id="cart-discount">- R$ 0,00</span>
+          </div>
+
+          <div class="cart__row cart__row--total">
+            <span>Total</span>
+            <span id="cart-total">R$ 0,00</span>
+          </div>
+        </div>
+
+        <!-- ÁREA DE CUPOM -->
+        <div class="cart__coupon">
+          <label for="coupon-input">Cupom de desconto</label>
+          <div class="cart__coupon-row">
+            <input
+              type="text"
+              id="coupon-input"
+              placeholder="Ex: JVV10"
+              maxlength="15"
+            />
+            <button id="apply-coupon" class="btn btn--outline">
+              Aplicar
+            </button>
+          </div>
+          <small class="cart__coupon-hint">
+            Exemplo para a aula: use <strong>JVV10</strong> para 10% de desconto.
+          </small>
+          <small id="coupon-message" class="cart__coupon-message"></small>
+        </div>
+
+        <!-- OBSERVAÇÕES DO PEDIDO -->
+        <div class="cart__notes">
+          <label for="order-notes">Observações para o pedido</label>
+          <textarea
+            id="order-notes"
+            rows="3"
+            placeholder="Ex: Tirar a cebola, enviar maionese à parte..."
+          ></textarea>
+        </div>
+
+        <!-- BOTÕES DE AÇÃO -->
+        <div class="cart__actions">
+          <button id="clear-cart" class="btn btn--ghost">
+            Limpar carrinho
+          </button>
+
+          <button id="checkout-whatsapp" class="btn btn--primary">
+            Finalizar pelo WhatsApp
+          </button>
+        </div>
+
+        <!-- Mensagem de aviso quando o carrinho está vazio -->
+        <p id="cart-empty" class="cart__empty">
+          Seu carrinho está vazio. Adicione alguns lanches deliciosos! 😋
+        </p>
+      </aside>
+    </main>
+
+    <!-- JS principal -->
+    <script src="js/script.js"></script>
+  </body>
+</html>
