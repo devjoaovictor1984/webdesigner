@@ -1,0 +1,123 @@
+/* =================== ESTILO GERAL =================== */
+body {
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background-size: 400% 400%;
+    animation: gradiente 12s ease infinite;
+    transition: background 1s ease-in-out;
+}
+
+@keyframes gradiente {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% { background-position: 0% 50%;}
+    
+}
+
+/* =================== PAINEL =================== */
+.painel {
+    text-align: center;
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    background-color: rgba(255,255,255, 0.15) ;
+    padding: 30px 40px;
+    width: 360px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: 0.5s;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+/* =================== INPUT E BOTÃO =================== */
+
+.busca {
+    margin-bottom: 15px;
+}
+
+
+input::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+
+input {
+    padding: 10px;
+    width: 220px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background-color: rgba(255,255,255,0.15);
+    font-size: 1em;
+    text-align: center;
+    color: #fff;
+}
+
+
+button {
+    padding: 10px 16px;
+    margin-left: 4px;
+    background: linear-gradient(135deg, #ffb300, #ff9100);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(255,170,0,0.4);
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #ffc107,#ff6f00);
+}
+
+/* =================== CARD DE RESULTADO =================== */
+
+.card {
+    background: rgba(255,255,255,0.9);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 15px;
+    min-height: 150px;
+    color: #222;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    transition: 0.4s;
+}
+
+.card img {
+    width: 90px;
+    height: 90px;
+    margin: 10px 0;
+}
+
+.temp {
+    font-size: 2.2em;
+    font-weight: bold;
+    color: #111;
+    margin: 5px 0;
+}
+
+.desc {
+    text-transform: capitalize;
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+/* =================== footer =================== */
+
+footer {
+    position: absolute;
+    bottom: 10px;
+    font-size: 0.85em;
+    opacity: 0.7;
+}

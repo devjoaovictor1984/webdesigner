@@ -1,0 +1,1063 @@
+/* =========================================================
+   RV Odontologia — CSS Premium (Refatorado)
+   Objetivo:
+   - Contraste forte (principalmente em seções claras)
+   - Visual mais “premium” (tipografia, sombras, superfícies, microinterações)
+   - Mobile first, leve, sem excesso de efeitos pesados
+
+   Paleta base:
+   Preto:   #151515
+   Cinza:   #3E3E3E
+   Dourado: #E6C343
+   Azul:    #0A264B
+   Azul sky:#007FFF
+========================================================= */
+
+:root{
+  /* Brand */
+  --c-black: #151515;
+  --c-gray:  #3E3E3E;
+  --c-gold:  #E6C343;
+  --c-blue:  #0A264B;
+  --c-sky:   #007FFF;
+
+  /* Dark surfaces */
+  --dark-bg:        #070b12;
+  --dark-bg-2:      #0b1220;
+  --dark-text:      #eaf0f8;
+  --dark-muted:     rgba(234,240,248,.72);
+  --dark-border:    rgba(255,255,255,.10);
+  --dark-card:      rgba(255,255,255,.05);
+  --dark-card-2:    rgba(10,12,18,.55);
+
+  /* Light surfaces (seções claras) */
+  --light-bg:       #f6f8fb;
+  --light-bg-2:     #ffffff;
+  --light-text:     #0b1220;
+  --light-muted:    rgba(11,18,32,.72);
+  --light-border:   rgba(10,38,75,.12);
+  --light-card:     rgba(255,255,255,.86);
+
+  /* Shared */
+  --radius: 18px;
+  --radius2: 24px;
+  --radius3: 28px;
+
+  --shadow-lg: 0 18px 55px rgba(0,0,0,.38);
+  --shadow-md: 0 12px 34px rgba(0,0,0,.28);
+  --shadow-sm: 0 8px 18px rgba(0,0,0,.22);
+
+  --container-pad: 1.25rem;
+
+  /* Default section theme (dark) */
+  --sec-bg:     var(--dark-bg-2);
+  --sec-text:   var(--dark-text);
+  --sec-muted:  var(--dark-muted);
+  --sec-border: var(--dark-border);
+  --card-bg:    var(--dark-card);
+  --card-border:rgba(255,255,255,.10);
+}
+
+html, body { height: 100%; }
+
+body{
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(1200px 650px at 20% 10%, rgba(0,127,255,.14), transparent 55%),
+    radial-gradient(1100px 650px at 70% 0%, rgba(230,195,67,.10), transparent 55%),
+    linear-gradient(180deg, var(--dark-bg), var(--dark-bg-2));
+  color: var(--dark-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Layout safety: evita scroll horizontal “fantasma” (como na sua captura). */
+*, *::before, *::after{ box-sizing: border-box; }
+
+html, body{ overflow-x: hidden; }
+@supports (overflow: clip){
+  html, body{ overflow-x: clip; }
+}
+
+img, video{ max-width: 100%; height: auto; }
+
+.bg-app{ background: transparent; }
+.text-app{ color: var(--dark-text); }
+
+::selection{
+  background: rgba(0,127,255,.28);
+  color: var(--dark-text);
+}
+
+a{ color: inherit; text-decoration: none; }
+a:hover{ opacity: .95; }
+
+/* Bootstrap override helpers */
+.text-muted{ color: var(--dark-muted) !important; }
+
+/* Spacing */
+.section-pad{ padding: 3.6rem 0; }
+
+/* =========================================================
+   HEADER / NAV
+========================================================= */
+.site-header{ position: sticky; top: 0; z-index: 2500; }
+.site-header.sticky-top{ z-index: 2500; }
+
+.nav-glass{
+  backdrop-filter: blur(12px);
+  background: rgba(10,12,18,.56);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.brand-logo{
+  /* height: 100px; */
+  object-fit: contain;
+  /* background: red; */
+  padding: 0;
+  margin: 0;
+  max-height: 80px;
+ 
+  /* background: rgba(255,255,255,.03); */
+  /* border: 1px solid rgba(255,255,255,.10); */
+  /* padding: 6px; */
+}
+.brand-logo img{
+  height: 100px;
+  padding: 0 !important;
+  /* object-fit: contain; */
+ 
+  /* background: rgba(255,255,255,.03); */
+  /* border: 1px solid rgba(255,255,255,.10); */
+  /* padding: 6px; */
+}
+
+.brand-name{ font-weight: 800; letter-spacing: .2px; }
+.brand-sub{ font-size: .82rem; color: rgba(234,240,248,.70); }
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+.btn{
+  border-radius: 14px;
+  transition: transform .16s ease, filter .16s ease, background-color .16s ease, border-color .16s ease;
+}
+
+.btn-cta{
+  background: linear-gradient(135deg, var(--c-sky), rgba(0,127,255,.70));
+  border: 1px solid rgba(0,127,255,.35);
+  color: #07101f;
+  font-weight: 800;
+  box-shadow: 0 14px 40px rgba(0,127,255,.22);
+}
+.btn-cta:hover{
+  filter: brightness(1.03);
+  transform: translateY(-1px);
+  color: #07101f;
+}
+
+.btn-outline-light{
+  border-color: rgba(255,255,255,.18) !important;
+}
+.btn-outline-light:hover{
+  background: rgba(255,255,255,.08) !important;
+  border-color: rgba(255,255,255,.26) !important;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+.hero{
+  position: relative;
+  min-height: calc(100svh - 72px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.hero-media{ position: absolute; inset: 0; z-index: 0;   background: linear-gradient(180deg, #061023, #05070d);
+}
+
+
+.hero-video{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(.95) contrast(1.05);
+}
+
+.hero-overlay{
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1200px 650px at 20% 10%, rgba(0,127,255,.14), transparent 55%),
+    radial-gradient(1000px 650px at 80% 0%, rgba(230,195,67,.14), transparent 55%),
+    linear-gradient(180deg, rgba(7,10,16,.62), rgba(7,10,16,.92));
+}
+
+.hero-grid{
+  position: absolute;
+  inset: 0;
+  background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: .14;
+  mask-image: radial-gradient(600px 420px at 70% 30%, rgba(0,0,0,1), transparent 70%);
+}
+
+.hero-content{
+  position: relative;
+  z-index: 1;
+  padding: 3.25rem var(--container-pad);
+}
+
+.badge-soft{
+  background: rgba(230,195,67,.12);
+  border: 1px solid rgba(230,195,67,.26);
+  color: rgba(230,195,67,.98);
+  padding: .55rem .8rem;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.hero-points .point{
+  display: flex;
+  gap: .85rem;
+  padding: .95rem 1rem;
+  border-radius: var(--radius);
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: var(--shadow-sm);
+}
+
+.point-ic{
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border-radius: 14px;
+  background: rgba(0,127,255,.13);
+  border: 1px solid rgba(0,127,255,.25);
+  color: rgba(0,127,255,.96);
+  flex: 0 0 auto;
+}
+
+.point-title{ font-weight: 800; }
+.point-desc{ color: rgba(234,240,248,.74); font-size: .95rem; }
+
+.hero-trust{ display: flex; flex-wrap: wrap; gap: .6rem; }
+.trust-pill{
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .55rem .75rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.10);
+  color: rgba(234,240,248,.86);
+  font-size: .92rem;
+}
+
+.pill{
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .45rem .65rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.10);
+  color: rgba(234,240,248,.86);
+  font-size: .92rem;
+  font-weight: 700;
+}
+
+
+/* Card do formulário (mantém “glass” sempre dark) */
+.glass-card{
+  background: rgba(10,12,18,.60);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--radius3);
+  box-shadow: var(--shadow-lg);
+}
+
+.chip{
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .2rem .55rem;
+  border-radius: 999px;
+  background: rgba(230,195,67,.12);
+  border: 1px solid rgba(230,195,67,.28);
+  color: rgba(230,195,67,.98);
+  font-size: .8rem;
+  font-weight: 800;
+}
+
+.soft-hr{ border-color: rgba(255,255,255,.10); }
+
+.mini-ic{
+  width: 42px; height: 42px;
+  display: grid; place-items: center;
+  border-radius: 14px;
+  background: rgba(230,195,67,.12);
+  border: 1px solid rgba(230,195,67,.24);
+  color: rgba(230,195,67,.98);
+}
+
+/* Inputs premium */
+.form-control, .form-select{
+  border-radius: 16px !important;
+  border-color: rgba(255,255,255,.16) !important;
+  background: rgba(255,255,255,.045) !important;
+  color: rgba(234,240,248,.96) !important;
+}
+
+.form-control::placeholder{ color: rgba(234,240,248,.55); }
+
+.form-control:focus, .form-select:focus{
+  box-shadow: 0 0 0 .25rem rgba(0,127,255,.16) !important;
+  border-color: rgba(0,127,255,.42) !important;
+}
+
+.form-text{ color: rgba(234,240,248,.58) !important; }
+.form-label{ color: rgba(234,240,248,.90); font-weight: 700; }
+
+/* WhatsApp FAB */
+.wa-fab{
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  z-index: 20;
+  background: linear-gradient(135deg, #24d366, #1fbf5b);
+  color: #06110c;
+  box-shadow: 0 18px 40px rgba(36,211,102,.25);
+  border: 1px solid rgba(255,255,255,.12);
+}
+.wa-fab:hover{ transform: translateY(-2px); }
+
+/* =========================================================
+   SEÇÕES CLARAS (DOBRAS CLARAS) — CONTRASTE RESOLVIDO
+   A classe já existe no HTML: .section-alt
+========================================================= */
+.section-alt{
+  /* override do “tema” dentro da dobra */
+  --sec-bg:     var(--light-bg);
+  --sec-text:   var(--light-text);
+  --sec-muted:  var(--light-muted);
+  --sec-border: var(--light-border);
+  --card-bg:    var(--light-card);
+  --card-border:rgba(10,38,75,.14);
+
+  background:
+    radial-gradient(900px 520px at 18% 0%, rgba(0,127,255,.12), transparent 62%),
+    radial-gradient(900px 520px at 82% 0%, rgba(230,195,67,.14), transparent 62%),
+    linear-gradient(180deg, var(--light-bg-2), var(--light-bg));
+  color: var(--sec-text);
+  border-top: 1px solid rgba(10,38,75,.08);
+  border-bottom: 1px solid rgba(10,38,75,.08);
+}
+
+.section-alt .text-muted{ color: var(--sec-muted) !important; }
+
+/* Bootstrap “outline-light” não funciona em fundo claro: corrigido */
+.section-alt .btn-outline-light{
+  color: var(--sec-text) !important;
+  border-color: rgba(11,18,32,.22) !important;
+}
+.section-alt .btn-outline-light:hover{
+  background: rgba(11,18,32,.06) !important;
+  border-color: rgba(11,18,32,.28) !important;
+}
+
+/* Ícones/indicadores do carousel ficam mais visíveis no fundo claro */
+.section-alt .carousel-control-prev-icon,
+.section-alt .carousel-control-next-icon{
+  filter: invert(1) grayscale(1);
+  opacity: .85;
+}
+.section-alt .carousel-indicators [data-bs-target]{
+  background-color: rgba(11,18,32,.55);
+}
+
+/* Pills no fundo claro */
+.section-alt .pill{
+  background: rgba(255,255,255,.72);
+  border: 1px solid rgba(10,38,75,.14);
+  color: rgba(11,18,32,.82);
+}
+
+
+/* Tipografia e contraste garantidos em dobras claras */
+.section-alt h1,
+.section-alt h2,
+.section-alt h3,
+.section-alt h4,
+.section-alt h5,
+.section-alt h6,
+.section-alt .h1,
+.section-alt .h2,
+.section-alt .h3,
+.section-alt .h4,
+.section-alt .h5,
+.section-alt .h6{
+  color: var(--sec-text) !important;
+}
+
+.section-alt a{ color: inherit; }
+.section-alt .text-muted{ color: var(--sec-muted) !important; }
+
+/* Cards de serviços em dobras claras */
+.section-alt .service-card{
+  background: rgba(255,255,255,.86);
+  border: 1px solid rgba(10,38,75,.14);
+  box-shadow: 0 18px 45px rgba(10,38,75,.10);
+}
+
+.section-alt .service-title{
+  color: rgba(11,18,32,.92);
+}
+
+.section-alt .service-desc{
+  color: rgba(11,18,32,.70);
+}
+
+/* Avaliações em dobra clara (Google-like, mas premium) */
+.section-alt .reviews-track{
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(84vw, 360px);
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+
+  /* remove a barra de rolagem visível (mantém swipe/scroll) */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* Edge legacy */
+
+  padding-bottom: .25rem;       /* sem “espaço de barra” */
+}
+.reviews-track::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+}
+
+
+.section-alt .review-card{
+  background: rgba(255,255,255,.86);
+  border: 1px solid rgba(10,38,75,.14);
+  box-shadow: 0 18px 45px rgba(10,38,75,.10);
+}
+
+.section-alt .avatar{
+  background: rgba(0,127,255,.10);
+  border: 1px solid rgba(0,127,255,.22);
+  color: rgba(10,38,75,.92);
+}
+
+.section-alt .review-sub{
+  color: rgba(11,18,32,.62);
+}
+
+.section-alt .review-text{
+  color: rgba(11,18,32,.78);
+}
+
+/* CTA strip em dobra clara */
+.section-alt .cta-strip{
+  background: linear-gradient(135deg, rgba(0,127,255,.10), rgba(230,195,67,.10));
+  border: 1px solid rgba(10,38,75,.14);
+}
+
+.section-alt .cta-desc{
+  color: rgba(11,18,32,.72);
+}
+
+/* =========================================================
+   SERVICES
+========================================================= */
+.service-card{
+  height: 100%;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: var(--radius2);
+  padding: 1.05rem 1.05rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform .16s ease, border-color .16s ease;
+}
+.service-card:hover{
+  border-color: rgba(0,127,255,.30);
+  transform: translateY(-2px);
+}
+
+.service-ic{
+  width: 50px; height: 50px;
+  display: grid; place-items: center;
+  border-radius: 18px;
+  background: rgba(0,127,255,.12);
+  border: 1px solid rgba(0,127,255,.24);
+  color: rgba(0,127,255,.96);
+  margin-bottom: .75rem;
+  font-size: 1.2rem;
+}
+
+.service-title{ font-weight: 900; letter-spacing: .2px; margin-bottom: .25rem; }
+.service-desc{ color: rgba(234,240,248,.72); font-size: .95rem; margin-bottom: 0; }
+
+.service-card-highlight{
+  background: linear-gradient(180deg, rgba(0,127,255,.11), rgba(255,255,255,.05));
+  border-color: rgba(0,127,255,.30);
+}
+
+.service-link{
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  margin-top: .65rem;
+  font-weight: 900;
+  color: rgba(230,195,67,.98);
+}
+.service-link:hover{ opacity: .95; }
+
+.note-box{
+  display: flex;
+  gap: .85rem;
+  align-items: flex-start;
+  padding: 1rem 1.05rem;
+  border-radius: var(--radius2);
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+}
+.note-ic{
+  width: 38px; height: 38px;
+  display: grid; place-items: center;
+  border-radius: 14px;
+  background: rgba(230,195,67,.12);
+  border: 1px solid rgba(230,195,67,.22);
+  color: rgba(230,195,67,.98);
+}
+
+/* =========================================================
+   BEFORE/AFTER (seção clara)
+========================================================= */
+.ba-wrap{ display: grid; place-items: center; }
+
+.ba-circle{
+  position: relative;
+  width: min(88vw, 420px);
+  aspect-ratio: 1/1;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid rgba(10,38,75,.16);
+  box-shadow: 0 18px 50px rgba(10,38,75,.12);
+  background: rgba(255,255,255,.55);
+  touch-action: none;
+}
+
+.ba-img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ba-after-layer{
+  position: absolute;
+  inset: 0;
+  width: 50%;
+  overflow: hidden;
+}
+
+.ba-handle{
+  position: absolute;
+  inset: 0;
+  left: 50%;
+  width: 2px;
+  background: rgba(230,195,67,.98);
+  box-shadow: 0 0 0 1px rgba(0,0,0,.20);
+}
+
+.ba-handle::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.84);
+  border: 1px solid rgba(10,38,75,.18);
+  box-shadow: 0 14px 28px rgba(10,38,75,.18);
+  background-image: linear-gradient(90deg, rgba(230,195,67,.92) 50%, transparent 50%);
+  opacity: .98;
+}
+
+.ba-range{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.ba-label{
+  position: absolute;
+  top: 12px;
+  padding: .32rem .62rem;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 900;
+  letter-spacing: .6px;
+  background: rgba(255,255,255,.78);
+  border: 1px solid rgba(10,38,75,.14);
+  color: rgba(11,18,32,.86);
+}
+.ba-label-before{ left: 12px; }
+.ba-label-after{ right: 12px; }
+
+.case-card{
+  background: rgba(255,255,255,.82);
+  border: 1px solid rgba(10,38,75,.14);
+  border-radius: var(--radius3);
+  padding: 1.15rem 1.2rem;
+  box-shadow: 0 18px 45px rgba(10,38,75,.10);
+  color: var(--light-text);
+}
+
+.case-kicker{
+  display: inline-flex;
+  align-items: center;
+  padding: .25rem .55rem;
+  border-radius: 999px;
+  background: rgba(0,127,255,.10);
+  border: 1px solid rgba(0,127,255,.20);
+  color: rgba(10,38,75,.95);
+  font-weight: 900;
+  font-size: .8rem;
+  margin-bottom: .75rem;
+}
+
+.case-list{
+  list-style: none;
+  padding: 0;
+  margin: 0 0 .6rem 0;
+  display: grid;
+  gap: .5rem;
+}
+
+.case-list li{
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  color: rgba(11,18,32,.82);
+}
+
+.case-list i{ color: rgba(230,195,67,.98); }
+
+/* =========================================================
+   REVIEWS (dark)
+========================================================= */
+.reviews-track{
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(84vw, 360px);
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: .5rem;
+}
+
+.review-card{
+  scroll-snap-align: start;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: var(--radius3);
+  padding: 1rem 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.review-head{
+  display: flex;
+  gap: .8rem;
+  align-items: center;
+  margin-bottom: .65rem;
+}
+
+.avatar{
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border-radius: 999px;
+  background: rgba(0,127,255,.14);
+  border: 1px solid rgba(0,127,255,.24);
+  color: rgba(234,240,248,.95);
+  font-weight: 900;
+}
+
+.review-name{ font-weight: 900; }
+.review-sub{ font-size: .85rem; color: rgba(234,240,248,.60); }
+
+.stars{ color: rgba(230,195,67,.98); margin-bottom: .55rem; }
+.review-text{ color: rgba(234,240,248,.84); margin: 0; }
+
+.cta-strip{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius3);
+  background: linear-gradient(135deg, rgba(0,127,255,.12), rgba(230,195,67,.10));
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+.cta-title{ font-weight: 900; }
+.cta-desc{ color: rgba(234,240,248,.76); font-size: .95rem; }
+
+/* =========================================================
+   LOCATION (seção clara)
+========================================================= */
+.loc-card{
+  background: rgba(255,255,255,.82);
+  border: 1px solid rgba(10,38,75,.14);
+  border-radius: var(--radius3);
+  padding: 1rem 1rem;
+  box-shadow: 0 18px 45px rgba(10,38,75,.10);
+  color: var(--light-text);
+}
+
+.loc-item{
+  display: flex;
+  gap: .85rem;
+  align-items: flex-start;
+  padding: .75rem 0;
+  border-bottom: 1px solid rgba(10,38,75,.10);
+}
+.loc-item:last-child{ border-bottom: 0; }
+
+.loc-ic{
+  width: 42px; height: 42px;
+  display: grid; place-items: center;
+  border-radius: 14px;
+  background: rgba(230,195,67,.14);
+  border: 1px solid rgba(230,195,67,.22);
+  color: rgba(10,38,75,.95);
+}
+
+.loc-title{ font-weight: 900; }
+.loc-text{ color: rgba(11,18,32,.74); }
+
+.map-card{
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--radius3);
+  border: 1px solid rgba(10,38,75,.14);
+  background: rgba(255,255,255,.78);
+  box-shadow: 0 18px 45px rgba(10,38,75,.10);
+}
+
+.map-card iframe{
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  border: 0;
+  filter: grayscale(.12) contrast(1.02) saturate(.92);
+}
+
+
+/* =========================================================
+   DOBRA: O DENTISTA (Dr. Rodrigo) — seção clara premium
+========================================================= */
+.doc-photo-card{
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius3);
+  border: 1px solid rgba(10,38,75,.14);
+  background: rgba(255,255,255,.78);
+  box-shadow: 0 18px 45px rgba(10,38,75,.10);
+  min-height: 420px;
+}
+
+.doc-photo{
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.01);
+}
+
+.doc-photo-overlay{
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(700px 460px at 30% 25%, rgba(0,127,255,.16), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.00) 35%, rgba(11,18,32,.78) 100%);
+}
+
+.doc-photo-meta{
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  align-items: center;
+}
+
+.doc-badge{
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .42rem .65rem;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: .82rem;
+  letter-spacing: .2px;
+  background: rgba(255,255,255,.86);
+  border: 1px solid rgba(255,255,255,.30);
+  color: rgba(11,18,32,.92);
+  backdrop-filter: blur(6px);
+}
+
+.doc-badge-outline{
+  background: rgba(10,12,18,.18);
+  border-color: rgba(255,255,255,.18);
+  color: rgba(255,255,255,.92);
+}
+
+.doc-card{
+  background: rgba(255,255,255,.82);
+  border: 1px solid rgba(10,38,75,.14);
+  border-radius: var(--radius3);
+  padding: 1.2rem 1.2rem;
+  box-shadow: 0 18px 45px rgba(10,38,75,.10);
+  color: var(--light-text);
+}
+
+.doc-item{
+  display: flex;
+  gap: .85rem;
+  align-items: flex-start;
+  padding: .9rem .95rem;
+  border-radius: var(--radius2);
+  border: 1px solid rgba(10,38,75,.12);
+  background: rgba(255,255,255,.70);
+  transition: transform .16s ease, border-color .16s ease;
+}
+.doc-item:hover{
+  transform: translateY(-1px);
+  border-color: rgba(0,127,255,.22);
+}
+
+.doc-ic{
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: rgba(0,127,255,.10);
+  border: 1px solid rgba(0,127,255,.18);
+  color: rgba(10,38,75,.95);
+  flex: 0 0 auto;
+}
+
+.doc-item-title{
+  font-weight: 900;
+  margin-bottom: .15rem;
+}
+
+.doc-item-text{
+  color: rgba(11,18,32,.74);
+  font-size: .95rem;
+  line-height: 1.35;
+}
+
+.doc-cta{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius3);
+  background:
+    radial-gradient(900px 260px at 18% 0%, rgba(0,127,255,.10), transparent 62%),
+    radial-gradient(900px 260px at 82% 0%, rgba(230,195,67,.12), transparent 62%),
+    linear-gradient(180deg, rgba(255,255,255,.92), rgba(246,248,251,.88));
+  border: 1px solid rgba(10,38,75,.12);
+}
+
+.doc-cta-title{
+  font-weight: 900;
+}
+
+.doc-cta-desc{
+  font-size: .95rem;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+.footer{
+  border-top: 1px solid rgba(255,255,255,.10);
+  background: rgba(10,12,18,.68);
+}
+
+.footer-title{ font-weight: 900; margin-bottom: .65rem; }
+
+.footer-links{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: .45rem;
+}
+
+.footer-links a{ color: rgba(234,240,248,.78); }
+.footer-links a:hover{ color: rgba(234,240,248,.95); text-decoration: underline; }
+
+
+/* =========================================================
+   OFFCANVAS Z-INDEX FIX
+   Garante que o menu fique acima da HERO e de qualquer overlay.
+========================================================= */
+.offcanvas{ z-index: 3000 !important; }
+.offcanvas-backdrop{ z-index: 2990 !important; }
+
+
+.footer-dev{
+  margin-top: .65rem;
+  opacity: .95;
+}
+.footer-dev a{
+  color: rgba(230,195,67,.96);
+  font-weight: 900;
+  text-decoration: none;
+}
+.footer-dev a:hover{
+  text-decoration: underline;
+  color: rgba(230,195,67,1);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (min-width: 992px){
+  .hero-content{ padding-top: 5.4rem; padding-bottom: 5.4rem; }
+  .reviews-track{ grid-auto-columns: 360px; }
+  .wa-fab{ display: none; }
+}
+
+
+/* =========================================================
+   MOBILE REFINEMENTS — HERO (margens e respiro)
+   - devolve gutters laterais
+   - evita header/offcanvas “ficar por baixo”
+========================================================= */
+@media (max-width: 575.98px){
+  /* Header e menu sempre acima de tudo */
+  .site-header{ z-index: 2500; }
+  .nav-glass{ z-index: 1201; }
+  .offcanvas{ z-index: 2000 !important; }
+  .offcanvas-backdrop{ z-index: 1990 !important; }
+
+  /* Evita “centralização estranha” e melhora respiro no topo */
+  .hero{
+    place-items: start center;
+    padding-top: 92px;   /* compensa header sticky */
+    padding-bottom: 24px;
+  }
+
+  /* devolve margem lateral (gutter) na HERO */
+  .hero .container{
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* container já resolve laterais; aqui ajusta só vertical */
+  .hero-content{
+    padding: 1.25rem 0 0;
+  }
+
+  .hero .badge-soft{ margin-top: .15rem; }
+  .hero .lead{ margin-bottom: 1rem !important; }
+
+  /* Cards de pontos com respiro e altura mais “premium” */
+  .hero-points{ margin-top: .25rem; }
+  .hero-points .point{
+    padding: .9rem .95rem;
+    border-radius: 18px;
+  }
+
+  .hero-trust{ margin-top: .85rem; gap: .5rem; }
+  .trust-pill{
+    padding: .5rem .65rem;
+    font-size: .88rem;
+  }
+
+  /* Menu (offcanvas) — evita item “colado” no topo */
+  .offcanvas-body{ padding-top: 1.15rem; }
+
+  /* FAB não encostar demais na borda */
+  .wa-fab{ right: 18px; bottom: 18px; }
+}
+
+
+/* =========================================================
+   FORM (HERO) — SELECT DARK (corrige dropdown branco/ilegível)
+========================================================= */
+
+/* Ajuda o browser a renderizar controles nativos em modo dark */
+.glass-card,
+.glass-card select,
+.offcanvas {
+  color-scheme: dark;
+}
+
+/* Select e inputs dentro do card */
+.glass-card .form-control,
+.glass-card .form-select {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  color: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.glass-card .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.glass-card .form-control:focus,
+.glass-card .form-select:focus {
+  border-color: rgba(0, 153, 255, 0.55) !important;
+  box-shadow: 0 0 0 0.25rem rgba(0, 153, 255, 0.18) !important;
+}
+
+/* Dropdown (opções) — funciona bem em Chrome/Edge/Firefox desktop e Android */
+.glass-card .form-select option {
+  background: #0b1220;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* Placeholder "Selecione" (disabled) mais suave */
+.glass-card .form-select option[disabled] {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Item selecionado (nem todo browser respeita) */
+.glass-card .form-select option:checked {
+  background: #0b5ed7;
+  color: #fff;
+}
+
+

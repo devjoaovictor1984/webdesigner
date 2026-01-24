@@ -1,0 +1,668 @@
+/* ================================
+   DIVISÃO VEÍCULOS – TEMA PREMIUM
+   Fundo branco, clean, ultra minimal
+   ================================ */
+
+:root {
+  /* Paleta baseada na logo */
+  --dv-bg: #f3f4f6;              /* fundo geral */
+  --dv-surface: #ffffff;         /* cartões, navbar, modais */
+  --dv-surface-soft: #f9fafb;    /* seções alternadas */
+  --dv-primary: #18355a;         /* azul marinho */
+  --dv-primary-soft: #d3ddf0;    /* azul clarinho */
+  --dv-accent: #e11d2f;          /* vermelho da faixa */
+  --dv-accent-soft: #fde2e4;
+  --dv-text: #111827;            /* texto principal */
+  --dv-muted: #6b7280;           /* texto secundário */
+  --dv-border: #e5e7eb;          /* bordas sutis */
+  --dv-radius-lg: 1.4rem;
+  --dv-radius-md: 0.9rem;
+  --dv-shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
+  --dv-shadow-subtle: 0 8px 20px rgba(15, 23, 42, 0.04);
+}
+
+/* Reset básico */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  background: var(--dv-bg);
+  color: var(--dv-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ================================
+   Topbar
+   ================================ */
+
+.dv-topbar {
+  background: var(--dv-surface);
+  border-bottom: 1px solid var(--dv-border);
+  font-size: 0.78rem;
+  padding-block: 0.35rem;
+  color: var(--dv-muted);
+}
+
+/* ================================
+   Navbar / Header
+   ================================ */
+
+.dv-navbar {
+  background: var(--dv-surface);
+  border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+  box-shadow: var(--dv-shadow-subtle);
+}
+
+.navbar {
+  padding-block: 0.75rem;
+}
+
+.dv-logo-img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+
+.dv-logo-sub {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--dv-muted);
+}
+
+.navbar .nav-link {
+  font-size: 0.9rem;
+  color: var(--dv-muted);
+  padding-inline: 0.9rem;
+  transition: color 0.2s ease, transform 0.16s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus,
+.navbar .nav-link.active {
+  color: var(--dv-primary);
+  transform: translateY(-1px);
+}
+
+/* Botão principal estilo “boutique” */
+
+.dv-btn-primary {
+  background: linear-gradient(135deg, var(--dv-primary), var(--dv-accent));
+  border: none;
+  color: #f9fafb;
+  font-weight: 600;
+  border-radius: 999px;
+  padding-inline: 1.6rem;
+  padding-block: 0.55rem;
+  font-size: 0.88rem;
+  box-shadow:
+    0 0 0 1px rgba(248, 250, 252, 0.06),
+    0 18px 35px rgba(225, 17, 47, 0.3);
+}
+
+.dv-btn-primary:hover {
+  background: linear-gradient(135deg, #264569, var(--dv-accent));
+  color: #f9fafb;
+}
+
+/* ================================
+   Hero
+   ================================ */
+
+.dv-hero {
+  min-height: 70vh;
+  padding-top: 7rem;
+  padding-bottom: 4rem;
+  background:
+    radial-gradient(circle at top left, rgba(24, 53, 90, 0.08), transparent 60%),
+    radial-gradient(circle at bottom right, rgba(225, 17, 47, 0.05), transparent 55%),
+    var(--dv-surface-soft);
+}
+
+.dv-hero > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.dv-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  background: #eef2ff;
+  color: var(--dv-primary);
+  border: 1px solid rgba(24, 53, 90, 0.2);
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, var(--dv-primary), #3b4f7a, var(--dv-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.dv-hero-title {
+  font-size: clamp(2.4rem, 3vw + 1.8rem, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.dv-hero-text {
+  font-size: 0.98rem;
+  color: var(--dv-muted);
+  max-width: 32rem;
+}
+
+.dv-hero-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 1.5rem 0 0;
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.dv-hero-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--dv-text);
+}
+
+.dv-hero-list i {
+  color: var(--dv-accent);
+}
+
+/* ================================
+   Card de busca
+   ================================ */
+
+.dv-search-card {
+  background: var(--dv-surface);
+  border-radius: var(--dv-radius-lg);
+  border: 1px solid var(--dv-border);
+  padding: 1.7rem 1.6rem 1.4rem;
+  box-shadow: var(--dv-shadow-soft);
+}
+
+.dv-search-card h2 {
+  color: var(--dv-text);
+  font-size: 1.1rem;
+}
+
+.dv-search-form .form-label {
+  font-size: 0.78rem;
+  color: var(--dv-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.dv-search-form .form-control,
+.dv-search-form .form-select {
+  background-color: #595c64 !important;
+  border-color: var(--dv-border);
+  color: var(--dv-text);
+  font-size: 0.9rem;
+  border-radius: 999px;
+  padding-inline: 0.9rem;
+}
+
+.dv-search-form .form-control::placeholder {
+  color: #9ca3af;
+}
+
+.dv-search-form .form-control:focus,
+.dv-search-form .form-select:focus {
+  box-shadow: 0 0 0 1px rgba(24, 53, 90, 0.25);
+  border-color: rgba(24, 53, 90, 0.5);
+}
+
+.dv-search-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+  color: var(--dv-muted);
+  font-size: 0.8rem;
+}
+
+.dv-search-hint i {
+  margin-top: 0.1rem;
+  color: var(--dv-accent);
+}
+
+/* ================================
+   Estoque
+   ================================ */
+
+.dv-section-estoque {
+  padding: 3.8rem 0 4rem;
+  background: var(--dv-bg);
+}
+
+.dv-section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--dv-text);
+}
+
+.dv-pill {
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: #fef2f2;
+  border: 1px solid rgba(225, 17, 47, 0.35);
+  color: var(--dv-accent);
+}
+
+/* Estado de “sem resultados” */
+
+#no-results {
+  font-size: 0.9rem;
+  color: var(--dv-muted);
+}
+
+/* ================================
+   Card de veículo – estilo boutique
+   ================================ */
+
+.car-card {
+  background: var(--dv-surface);
+  border-radius: var(--dv-radius-lg);
+  border: 1px solid var(--dv-border);
+  padding: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.car-card:hover {
+  box-shadow: var(--dv-shadow-soft);
+  transform: translateY(-3px);
+  border-color: rgba(24, 53, 90, 0.22);
+}
+
+.car-card__image-wrapper {
+  position: relative;
+  border-radius: var(--dv-radius-md);
+  overflow: hidden;
+}
+
+.car-card__image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.car-card:hover .car-card__image {
+  transform: scale(1.04);
+}
+
+.car-card__badge {
+  position: absolute;
+  left: 0.85rem;
+  top: 0.85rem;
+  padding: 0.22rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.65);
+  color: var(--dv-primary);
+}
+
+.car-card__badge--premium {
+  background: linear-gradient(135deg, var(--dv-primary), var(--dv-accent));
+  border-color: transparent;
+  color: #fefce8;
+}
+
+.car-card__tag {
+  position: absolute;
+  right: 0.85rem;
+  bottom: 0.85rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  background: rgba(225, 17, 47, 0.06);
+  color: var(--dv-accent);
+  border: 1px solid rgba(225, 17, 47, 0.4);
+}
+
+.car-card__body {
+  padding: 0.9rem 0.3rem 0.2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.car-card__title {
+  font-size: 1.02rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.car-card__subtitle {
+  font-size: 0.8rem;
+  color: var(--dv-muted);
+}
+
+.car-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+.car-chip {
+  border-radius: 999px;
+  border: 1px solid var(--dv-border);
+  padding: 0.18rem 0.6rem;
+  font-size: 0.72rem;
+  color: var(--dv-muted);
+  background: var(--dv-surface-soft);
+}
+
+.car-card__price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 0.9rem;
+}
+
+.car-card__price {
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: var(--dv-primary);
+}
+
+.car-card__price-label {
+  font-size: 0.7rem;
+  color: var(--dv-muted);
+}
+
+.car-card__actions {
+  margin-top: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.btn-compare-active {
+  background: rgba(24, 53, 90, 0.05);
+  border-color: rgba(24, 53, 90, 0.6);
+}
+
+/* ================================
+   Seções extras (confiança, números)
+   ================================ */
+
+.dv-section-alt {
+  padding: 3.5rem 0 3.5rem;
+  background: var(--dv-surface-soft);
+  border-top: 1px solid var(--dv-border);
+}
+
+.dv-feature-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+  display: grid;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+  color: var(--dv-text);
+}
+
+.dv-feature-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.dv-feature-list i {
+  color: var(--dv-accent);
+}
+
+.dv-stats-card {
+  background: var(--dv-surface);
+  border-radius: var(--dv-radius-lg);
+  border: 1px solid var(--dv-border);
+  padding: 1.6rem 1.7rem 1.4rem;
+  box-shadow: var(--dv-shadow-soft);
+}
+
+.dv-stat {
+  background: #f9fafb;
+  border-radius: 1rem;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--dv-border);
+}
+
+.dv-stat-number {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--dv-primary);
+}
+
+.dv-stat-small {
+  font-size: 0.7rem;
+  color: var(--dv-muted);
+}
+
+.dv-stat-label {
+  display: block;
+  font-size: 0.74rem;
+  color: var(--dv-muted);
+}
+
+.dv-stats-footer {
+  font-size: 0.85rem;
+  color: var(--dv-muted);
+  display: flex;
+  align-items: center;
+}
+
+/* ================================
+   Contato / Mapa
+   ================================ */
+
+.dv-section-contact {
+  padding: 3.5rem 0 4rem;
+  background: var(--dv-surface);
+  border-top: 1px solid var(--dv-border);
+}
+
+.dv-contact-card {
+  background: #ffffff;
+  border-radius: var(--dv-radius-lg);
+  border: 1px solid var(--dv-border);
+  padding: 1.7rem;
+  box-shadow: var(--dv-shadow-soft);
+}
+
+.dv-contact-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dv-primary);
+  color: #f9fafb;
+}
+
+.dv-map-placeholder {
+  background: #f9fafb;
+  border-radius: var(--dv-radius-lg);
+  border: 1px solid var(--dv-border);
+  padding: 1.25rem;
+}
+
+/* ================================
+   Modal de detalhes
+   ================================ */
+
+.dv-modal {
+  background: #ffffff;
+  border-radius: 1.5rem;
+  border: 1px solid var(--dv-border);
+  color: var(--dv-text);
+}
+
+.dv-modal .modal-header,
+.dv-modal .modal-footer {
+  border-color: var(--dv-border);
+}
+
+.dv-modal-image-wrapper {
+  position: relative;
+}
+
+.dv-modal-badge {
+  position: absolute;
+  left: 0.9rem;
+  top: 0.9rem;
+  padding: 0.22rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--dv-border);
+  color: var(--dv-primary);
+}
+
+.dv-modal-price {
+  font-weight: 600;
+  color: var(--dv-primary);
+}
+
+.dv-spec-list {
+  list-style: none;
+  padding-left: 0;
+  font-size: 0.9rem;
+}
+
+.dv-spec-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-bottom: 1px dashed var(--dv-border);
+  padding: 0.35rem 0;
+}
+
+.dv-spec-list li span:first-child {
+  color: var(--dv-muted);
+}
+
+.dv-compare-table th,
+.dv-compare-table td {
+  font-size: 0.86rem;
+}
+
+/* ================================
+   Barra de comparação
+   ================================ */
+
+.compare-bar {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 1.4rem;
+  width: min(960px, 100% - 2rem);
+  z-index: 1085;
+}
+
+.compare-bar__content {
+  background: #ffffff;
+  border-radius: 1rem;
+  border: 1px solid var(--dv-border);
+  padding: 0.8rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.18);
+}
+
+.compare-bar__icon {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(24, 53, 90, 0.06);
+  color: var(--dv-primary);
+}
+
+#compare-list .badge {
+  background: #f9fafb;
+  border: 1px solid var(--dv-border);
+  color: var(--dv-text);
+  font-weight: 500;
+}
+
+/* ================================
+   Footer
+   ================================ */
+
+.dv-footer {
+  padding: 1rem 0 1.3rem;
+  background: #ffffff;
+  border-top: 1px solid var(--dv-border);
+  font-size: 0.82rem;
+  color: var(--dv-muted);
+}
+
+/* ================================
+   Responsivo
+   ================================ */
+
+@media (min-width: 768px) {
+  .compare-bar__content {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .dv-hero {
+    padding-top: 6rem;
+    padding-bottom: 2.8rem;
+  }
+
+  .dv-search-card {
+    margin-top: 1rem;
+  }
+
+  .car-card__image {
+    height: 200px;
+  }
+
+  .compare-bar__content {
+    padding: 0.7rem 0.9rem;
+  }
+}

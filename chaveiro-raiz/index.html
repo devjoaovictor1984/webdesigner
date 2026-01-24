@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!--
+      Cabeçalho do documento HTML
+      - Define a codificação, comportamento responsivo e meta tags de SEO
+    -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Título que aparece na aba do navegador -->
+    <title>Chaveiro 24h em Cuiabá - Emergência Imediata</title>
+
+    <!-- Meta description para SEO (resumo que aparece no Google) -->
+    <meta
+      name="description"
+      content="Chaveiro 24 horas em Cuiabá. Abertura de portas, carros, trocas de fechaduras e atendimento de emergência em até 30 minutos. Ligue agora ou chame no WhatsApp!"
+    />
+
+    <!-- Fonte Google (vibe moderna de agência) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Ícones (Font Awesome) para usar em botões e cards -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+
+    <!-- Arquivo principal de estilos CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!--
+      HEADER + NAV
+      - Menu fixo no topo (sticky)
+      - Links que fazem scroll suave até as seções
+    -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="navbar__logo">
+          <!-- Logo simples em texto; você pode trocar por imagem depois -->
+          <span class="logo-mark">🔐</span>
+          <span class="logo-text">Chaveiro Raiz 24h</span>
+        </div>
+
+        <!-- Botão hambúrguer (menu mobile) -->
+        <button class="navbar__toggle" aria-label="Abrir menu">
+          <span class="navbar__toggle-line"></span>
+          <span class="navbar__toggle-line"></span>
+          <span class="navbar__toggle-line"></span>
+        </button>
+
+        <!-- Links de navegação -->
+        <ul class="navbar__links">
+          <!-- Cada link aponta para uma seção via id -->
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#areas">Áreas atendidas</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!--
+      SEÇÃO HERO (INÍCIO)
+      - Dobra principal de impacto
+      - Agora com vídeo de fundo + texto sobreposto
+    -->
+    <main>
+      <section id="inicio" class="hero">
+        <!--
+          Bloco de vídeo de fundo
+          - O vídeo ocupa 100% da área da hero
+          - Fica "por trás" do conteúdo (position: absolute)
+        -->
+        <div class="hero__video-wrapper">
+          <video
+            class="hero__video"
+            autoplay
+            muted
+            loop
+            playsinline
+            poster="images/chaveiro-fundo.jpg"
+          >
+            <!-- Substitua o caminho abaixo pelo vídeo real do chaveiro -->
+            <source src="video.mp4" type="video/mp4" />
+            Seu navegador não suporta vídeo em HTML5.
+          </video>
+
+          <!--
+            Overlay por cima do vídeo
+            - Escurece e aplica um degradê para melhorar a leitura do texto
+          -->
+          <div class="hero__video-overlay"></div>
+        </div>
+
+        <!--
+          Conteúdo da hero
+          - hero__inner limita a largura e centraliza (layout mais premium)
+          - Grid com 2 colunas no desktop (texto + card)
+        -->
+        <div class="hero__inner">
+          <!-- Coluna do texto principal -->
+          <div class="hero__content">
+            <p class="hero__tagline">
+              <i class="fas fa-bolt"></i> Emergência? Não entre em pânico.
+            </p>
+            <h1 class="hero__title">
+              Chaveiro 24 horas em Cuiabá.<br />
+              Atendimento rápido, seguro e sem destruição desnecessária.
+            </h1>
+            <p class="hero__subtitle">
+              Porta trancou? Perdeu a chave do carro? Tranca eletrônica travou?
+              Estamos prontos para te atender em
+              <strong>até 30 minutos*</strong>.
+            </p>
+
+            <!-- Área de botões de chamada para ação (CTA) -->
+            <div class="hero__cta">
+              <!-- Botão para ligação direta (substitua o número pelo do chaveiro) -->
+              <a href="tel:+5565999999999" class="btn btn--primary">
+                <i class="fas fa-phone-alt"></i> Ligar agora
+              </a>
+
+              <!-- Botão âncora que leva até o formulário de contato -->
+              <a href="#contato" class="btn btn--outline">
+                <i class="fab fa-whatsapp"></i> Chamar no WhatsApp
+              </a>
+            </div>
+
+            <!-- Selos de confiança -->
+            <div class="hero__badges">
+              <div class="badge">
+                <i class="fas fa-clock"></i>
+                <span>Atendimento 24h</span>
+              </div>
+              <div class="badge">
+                <i class="fas fa-shield-alt"></i>
+                <span>Serviço garantido</span>
+              </div>
+              <div class="badge">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Cuiabá e região</span>
+              </div>
+            </div>
+
+            <p class="hero__footnote">
+              *Tempo médio estimado dentro da área urbana de Cuiabá, sujeito ao
+              trânsito e localização.
+            </p>
+          </div>
+
+          <!-- Coluna do cartão de emergência -->
+          <div class="hero__card">
+            <p class="hero__card-label">EMERGÊNCIA AGORA</p>
+            <p class="hero__card-text">
+              “Não importa se é madrugada ou feriado, se sua porta não abre,
+              <strong>a nossa equipe abre</strong>.”
+            </p>
+            <ul class="hero__card-list">
+              <li><i class="fas fa-check-circle"></i> Residencial</li>
+              <li><i class="fas fa-check-circle"></i> Automotivo</li>
+              <li><i class="fas fa-check-circle"></i> Comercial</li>
+              <li>
+                <i class="fas fa-check-circle"></i> Cofres e fechaduras digitais
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!--
+        SEÇÃO POR QUE CHAMAR
+        - Argumentos de credibilidade
+      -->
+      <section class="section section--why">
+        <div class="container">
+          <h2 class="section__title">
+            Por que chamar o <span>Chaveiro Raiz 24h</span>?
+          </h2>
+          <p class="section__subtitle">
+            Mais que abrir portas, entregamos <strong>tranquilidade</strong> em
+            momentos de tensão.
+          </p>
+
+          <div class="grid grid--3">
+            <!-- Card 1 -->
+            <article class="feature-card">
+              <div class="feature-card__icon">
+                <i class="fas fa-stopwatch"></i>
+              </div>
+              <h3 class="feature-card__title">Chegada rápida</h3>
+              <p class="feature-card__text">
+                Tempo médio de resposta pensado para emergências. Quanto mais
+                perto do centro de Cuiabá, mais rápido chegamos.
+              </p>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="feature-card">
+              <div class="feature-card__icon">
+                <i class="fas fa-user-shield"></i>
+              </div>
+              <h3 class="feature-card__title">Profissional identificado</h3>
+              <p class="feature-card__text">
+                Atendimento com crachá, identificação e documentação em dia para
+                sua segurança e da sua família.
+              </p>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="feature-card">
+              <div class="feature-card__icon">
+                <i class="fas fa-wallet"></i>
+              </div>
+              <h3 class="feature-card__title">Preço justo e claro</h3>
+              <p class="feature-card__text">
+                Você sabe o valor antes do serviço ser executado. Sem letrinhas
+                miúdas, sem surpresa na hora de pagar.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!--
+        SEÇÃO SERVIÇOS
+        - Lista detalhada com ícones
+      -->
+      <section id="servicos" class="section section--services">
+        <div class="container">
+          <h2 class="section__title">
+            Serviços de <span>emergência</span> e rotina
+          </h2>
+          <p class="section__subtitle">
+            Atendimento completo para casa, comércio e veículos.
+          </p>
+
+          <div class="grid grid--3">
+            <article class="service-card">
+              <i class="fas fa-home service-card__icon"></i>
+              <h3 class="service-card__title">Abertura residencial</h3>
+              <p class="service-card__text">
+                Perdeu a chave, esqueceu por dentro ou a fechadura travou?
+                Abertura não destrutiva sempre que possível.
+              </p>
+            </article>
+
+            <article class="service-card">
+              <i class="fas fa-car-side service-card__icon"></i>
+              <h3 class="service-card__title">Chaveiro automotivo</h3>
+              <p class="service-card__text">
+                Abertura de veículos, perda total da chave, cópia e
+                codificação (consulte modelos disponíveis).
+              </p>
+            </article>
+
+            <article class="service-card">
+              <i class="fas fa-building service-card__icon"></i>
+              <h3 class="service-card__title">Comercial e empresarial</h3>
+              <p class="service-card__text">
+                Troca de segredos, controles de acesso, reforço de segurança e
+                manutenção preventiva.
+              </p>
+            </article>
+
+            <article class="service-card">
+              <i class="fas fa-lock service-card__icon"></i>
+              <h3 class="service-card__title">Troca de fechaduras</h3>
+              <p class="service-card__text">
+                Substituição de fechaduras antigas, danificadas ou inseguras
+                por modelos mais modernos.
+              </p>
+            </article>
+
+            <article class="service-card">
+              <i class="fas fa-fingerprint service-card__icon"></i>
+              <h3 class="service-card__title">Fechaduras digitais</h3>
+              <p class="service-card__text">
+                Instalação, configuração e suporte para fechaduras eletrônicas
+                e biométricas.
+              </p>
+            </article>
+
+            <article class="service-card">
+              <i class="fas fa-vault service-card__icon"></i>
+              <h3 class="service-card__title">Cofres e alta segurança</h3>
+              <p class="service-card__text">
+                Abertura técnica de cofres e sistemas de alta segurança, sem
+                exposição desnecessária.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!--
+        SEÇÃO ÁREAS ATENDIDAS
+        - Lista de bairros / regiões + "mapa" (placeholder)
+      -->
+      <section id="areas" class="section section--areas">
+        <div class="container container--split">
+          <div class="areas__text">
+            <h2 class="section__title">
+              Áreas <span>atendidas</span>
+            </h2>
+            <p class="section__subtitle">
+              Atendemos Cuiabá e região, com foco nas principais áreas
+              residenciais e comerciais.
+            </p>
+
+            <!-- Lista de regiões; você pode adaptar para sua realidade -->
+            <ul class="areas__list">
+              <li>
+                <i class="fas fa-map-marker-alt"></i> Centro e região central
+              </li>
+              <li>
+                <i class="fas fa-map-marker-alt"></i> Araés, Goiabeiras,
+                Duque de Caxias
+              </li>
+              <li><i class="fas fa-map-marker-alt"></i> CPA I, II, III e IV</li>
+              <li><i class="fas fa-map-marker-alt"></i> Coxipó e Univ. UFMT</li>
+              <li><i class="fas fa-map-marker-alt"></i> Porto, Beira Rio</li>
+              <li>
+                <i class="fas fa-map-marker-alt"></i> Demais bairros sob
+                consulta
+              </li>
+            </ul>
+
+            <p class="areas__note">
+              Está em dúvida se atendemos sua região?
+              <strong>Clique em “WhatsApp” e pergunte agora.</strong>
+            </p>
+          </div>
+
+          <!-- Placeholder de mapa estilizado -->
+          <div class="areas__map">
+            <div class="areas__map-header">
+              <span class="dot dot--red"></span>
+              <span class="dot dot--yellow"></span>
+              <span class="dot dot--green"></span>
+            </div>
+            <div class="areas__map-body">
+              <i class="fas fa-map-marked-alt areas__map-icon"></i>
+              <p class="areas__map-text">
+                Aqui você pode inserir um
+                <strong>embed do Google Maps</strong>
+                com a região de atendimento do chaveiro.
+              </p>
+              <!--
+                Exemplo de embed (comentei para não quebrar layout):
+                <iframe
+                  src="https://www.google.com/maps/embed?..."
+                  allowfullscreen=""
+                  loading="lazy">
+                </iframe>
+              -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--
+        SEÇÃO DEPOIMENTOS
+        - Prova social
+      -->
+      <section id="depoimentos" class="section section--testimonials">
+        <div class="container">
+          <h2 class="section__title">
+            Clientes que chamaram na <span>hora certa</span>
+          </h2>
+          <p class="section__subtitle">
+            Depoimentos reais de quem já precisou de ajuda em um momento
+            crítico.
+          </p>
+
+          <div class="grid grid--3">
+            <article class="testimonial-card">
+              <p class="testimonial-card__text">
+                “Chegaram em menos de 20 minutos e conseguiram abrir a porta sem
+                quebrar a fechadura. Salvou minha madrugada!”
+              </p>
+              <p class="testimonial-card__author">Mariana S. – Araés</p>
+            </article>
+
+            <article class="testimonial-card">
+              <p class="testimonial-card__text">
+                “Perdi a chave do carro no shopping. Atendimento super rápido,
+                preço justo e muita educação.”
+              </p>
+              <p class="testimonial-card__author">Carlos R. – Goiabeiras</p>
+            </article>
+
+            <article class="testimonial-card">
+              <p class="testimonial-card__text">
+                “Trocamos todas as fechaduras da loja e instalamos digitais. Me
+                senti muito mais segura.”
+              </p>
+              <p class="testimonial-card__author">Patrícia L. – Centro</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!--
+        SEÇÃO CONTATO
+        - Formulário que envia os dados para o WhatsApp via JavaScript
+      -->
+      <section id="contato" class="section section--contact">
+        <div class="container container--split">
+          <div class="contact__info">
+            <h2 class="section__title">
+              Emergência? <span>Chame agora</span>
+            </h2>
+            <p class="section__subtitle">
+              Preencha os dados e clique em
+              <strong>Enviar para WhatsApp</strong>.
+              Vamos receber sua mensagem com todas as informações da ocorrência.
+            </p>
+
+            <ul class="contact__highlights">
+              <li>
+                <i class="fas fa-exclamation-triangle"></i> Situações de risco
+                têm prioridade máxima.
+              </li>
+              <li>
+                <i class="fas fa-sun"></i> Atendemos dia e noite, feriados e
+                finais de semana.
+              </li>
+              <li>
+                <i class="fas fa-lock-open"></i> Técnicas modernas para reduzir
+                danos ao máximo.
+              </li>
+            </ul>
+          </div>
+
+          <!-- Formulário de contato -->
+          <div class="contact__form-wrapper">
+            <form id="whatsappForm" class="contact-form">
+              <!-- Campo: Nome -->
+              <div class="form-group">
+                <label for="nome">Seu nome *</label>
+                <input
+                  type="text"
+                  id="nome"
+                  name="nome"
+                  required
+                  placeholder="Ex: João, Maria..."
+                />
+              </div>
+
+              <!-- Campo: Telefone -->
+              <div class="form-group">
+                <label for="telefone">Seu telefone *</label>
+                <input
+                  type="tel"
+                  id="telefone"
+                  name="telefone"
+                  required
+                  placeholder="(65) 9 9999-9999"
+                />
+              </div>
+
+              <!-- Campo: Tipo de serviço -->
+              <div class="form-group">
+                <label for="tipo">Qual o tipo de emergência? *</label>
+                <select id="tipo" name="tipo" required>
+                  <!-- Opção padrão de instrução -->
+                  <option value="">Selecione uma opção</option>
+                  <option value="Porta residencial trancada">
+                    Porta residencial trancada
+                  </option>
+                  <option value="Chave de carro perdida">
+                    Chave de carro perdida
+                  </option>
+                  <option value="Troca de fechadura">Troca de fechadura</option>
+                  <option value="Fechadura digital com problema">
+                    Fechadura digital com problema
+                  </option>
+                  <option value="Outros (descrever na mensagem)">
+                    Outros (descrever na mensagem)
+                  </option>
+                </select>
+              </div>
+
+              <!-- Campo: Endereço / localização -->
+              <div class="form-group">
+                <label for="endereco">Onde você está? *</label>
+                <input
+                  type="text"
+                  id="endereco"
+                  name="endereco"
+                  required
+                  placeholder="Bairro, rua, ponto de referência..."
+                />
+              </div>
+
+              <!-- Campo: Mensagem adicional -->
+              <div class="form-group">
+                <label for="mensagem">Detalhes importantes</label>
+                <textarea
+                  id="mensagem"
+                  name="mensagem"
+                  rows="4"
+                  placeholder="Ex: porta blindada, chave quebrou na fechadura, criança trancada, etc."
+                ></textarea>
+              </div>
+
+              <!-- Botão de envio -->
+              <button type="submit" class="btn btn--primary btn--full">
+                <i class="fab fa-whatsapp"></i> Enviar para WhatsApp
+              </button>
+
+              <p class="contact-form__note">
+                *Você será redirecionado para o aplicativo do WhatsApp com a
+                mensagem preenchida automaticamente.
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!--
+      RODAPÉ
+    -->
+    <footer class="footer">
+      <div class="container footer__content">
+        <p class="footer__brand">
+          🔐 Chaveiro Raiz 24h – Emergência em Cuiabá e região
+        </p>
+        <p class="footer__copy">
+          &copy; <span id="anoAtual"></span> Todos os direitos reservados.
+        </p>
+      </div>
+    </footer>
+
+    <!-- jQuery (para facilitar alguns comportamentos do front) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Seu script principal (depois do jQuery) -->
+    <script src="js/script.js"></script>
+  </body>
+</html>

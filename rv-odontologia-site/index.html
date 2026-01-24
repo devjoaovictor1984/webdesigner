@@ -1,0 +1,819 @@
+<!doctype html>
+<html lang="pt-br" data-theme="dark">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0A264B" />
+
+  <title>RV Odontologia | Estética e Reabilitação Oral</title>
+  <meta name="description"
+    content="Atendimento moderno e minimalista: estética, reabilitação oral, implantes, lentes e urgências. Agende direto no WhatsApp em menos de 30 segundos." />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="RV Odontologia | Estética e Reabilitação Oral" />
+  <meta property="og:description"
+    content="Agende no WhatsApp. Clínica moderna com foco em resultado: implantes, lentes, restaurações e prevenção." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/img/hero-poster.jpg" />
+
+  <!-- Performance: preconnect / font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Bootstrap Icons (leve e rápido). -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Flaticon UIcons (opcional). Observação: verifique licenças/atribuição do Flaticon. -->
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-rounded/css/uicons-solid-rounded.css">
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body class="bg-app text-app">
+
+  <!-- NAV -->
+  <header class="site-header sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark nav-glass">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#topo" aria-label="Ir para o topo">
+          <img src="assets/img/logo.png" class="brand-logo" alt="RV Odontologia" />
+
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menu"
+          aria-controls="menu" aria-label="Abrir menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto gap-lg-3 align-items-lg-center">
+            <li class="nav-item"><a class="nav-link" href="#servicos">Serviços</a></li>
+            <li class="nav-item"><a class="nav-link" href="#dr-rodrigo">O Dentista</a></li>
+            <li class="nav-item"><a class="nav-link" href="#antes-depois">Antes &amp; Depois</a></li>
+            <li class="nav-item"><a class="nav-link" href="#avaliacoes">Avaliações</a></li>
+            <li class="nav-item"><a class="nav-link" href="#localizacao">Localização</a></li>
+            <li class="nav-item">
+              <a class="btn btn-cta btn-sm ms-lg-2" href="#agendar">
+                <i class="bi bi-whatsapp me-1"></i> Agendar
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Offcanvas (mobile-first) -->
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="menu" aria-labelledby="menuLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="menuLabel">Menu</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+          aria-label="Fechar"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="d-grid gap-2">
+          <a class="btn btn-outline-light" href="#servicos" data-bs-dismiss="offcanvas">Serviços</a>
+          <a class="btn btn-outline-light" href="#dr-rodrigo" data-bs-dismiss="offcanvas">O Dentista</a>
+          <a class="btn btn-outline-light" href="#antes-depois" data-bs-dismiss="offcanvas">Antes &amp; Depois</a>
+          <a class="btn btn-outline-light" href="#avaliacoes" data-bs-dismiss="offcanvas">Avaliações</a>
+          <a class="btn btn-outline-light" href="#localizacao" data-bs-dismiss="offcanvas">Localização</a>
+          <a class="btn btn-cta" href="#agendar" data-bs-dismiss="offcanvas">
+            <i class="bi bi-whatsapp me-1"></i> Agendar no WhatsApp
+          </a>
+          <div class="small text-muted mt-2">
+            Dica: substitua o número do WhatsApp em <code>assets/js/main.js</code>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="topo">
+    <section class="hero" aria-label="Agendamento rápido">
+      <div class="hero-media" aria-hidden="true">
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata"
+          poster="assets/img/hero-poster.jpg">
+          <!-- Troque o arquivo abaixo por um vídeo real (leve e curto). -->
+          <source src="video.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-grid"></div>
+      </div>
+
+      <div class="container hero-content">
+        <div class="row g-4 align-items-center">
+          <div class="col-12 col-lg-7">
+            <span class="badge badge-soft mb-3">Clínica moderna • Atendimento objetivo • Resultado visível</span>
+            <h1 class="display-6 fw-bold mb-3">
+              Um sorriso alinhado, sem enrolação.
+            </h1>
+            <p class="lead text-muted mb-4">
+              Do incômodo à solução: diagnóstico claro, plano direto, execução precisa. Agende agora e fale com a equipe
+              pelo WhatsApp.
+            </p>
+
+            <div class="hero-points d-grid gap-2">
+              <div class="point">
+                <span class="point-ic"><i class="fi fi-sr-shield-check"></i></span>
+                <div>
+                  <div class="point-title">Atendimento seguro</div>
+                  <div class="point-desc">Protocolos, transparência e foco no que resolve.</div>
+                </div>
+              </div>
+              <div class="point">
+                <span class="point-ic"><i class="fi fi-sr-time-fast"></i></span>
+                <div>
+                  <div class="point-title">Agendamento em 30 segundos</div>
+                  <div class="point-desc">Você envia e já cai no WhatsApp com mensagem pronta.</div>
+                </div>
+              </div>
+              <div class="point">
+                <span class="point-ic"><i class="fi fi-sr-star"></i></span>
+                <div>
+                  <div class="point-title">Estética + função</div>
+                  <div class="point-desc">Nada de “só bonito”: conforto, mastigação e naturalidade.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-trust mt-4">
+              <div class="trust-pill">
+                <i class="bi bi-geo-alt"></i> Cuiabá • MT
+              </div>
+              <div class="trust-pill">
+                <i class="bi bi-clock"></i> Seg–Sex 8h–18h
+              </div>
+              <div class="trust-pill">
+                <i class="bi bi-shield-check"></i> Atendimento humanizado
+              </div>
+            </div>
+          </div>
+
+          <!-- FORM -->
+          <div class="col-12 col-lg-5" id="agendar">
+            <div class="card glass-card p-3 p-sm-4">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <div class="fw-semibold">Agendar pelo WhatsApp</div>
+                <span class="chip"><i class="bi bi-lightning-charge"></i> rápido</span>
+              </div>
+              <p class="text-muted small mb-3">Preencha, toque em enviar e pronto. Sem cadastro, sem ligação, sem
+                espera.</p>
+
+              <form id="waForm" class="needs-validation" novalidate>
+                <div class="row g-3">
+                  <div class="col-12">
+                    <label class="form-label" for="nome">Nome</label>
+                    <input type="text" class="form-control form-control-lg" id="nome" placeholder="Seu nome" required
+                      minlength="2" />
+                    <div class="invalid-feedback">Informe seu nome (mín. 2 letras).</div>
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label" for="whatsapp">WhatsApp</label>
+                    <input type="tel" class="form-control form-control-lg" id="whatsapp" inputmode="numeric"
+                      placeholder="(65) 99999-9999" required />
+                    <div class="form-text">Use DDD. Ex.: 65 99999-9999</div>
+                    <div class="invalid-feedback">Informe um número válido com DDD.</div>
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label" for="assunto">Assunto</label>
+                    <select class="form-select form-select-lg" id="assunto" required>
+                      <option value="" selected disabled>Selecione</option>
+                      <option>Dor de dente (urgência)</option>
+                      <option>Orçamento</option>
+                      <option>Limpeza (profilaxia)</option>
+                      <option>Lentes de contato dental</option>
+                      <option>Implante</option>
+                      <option>Restauração / obturação</option>
+                      <option>Canal / endodontia</option>
+                      <option>Clareamento</option>
+                      <option>Outra dúvida</option>
+                    </select>
+                    <div class="invalid-feedback">Selecione um assunto.</div>
+                  </div>
+
+                  <div class="col-12">
+                    <button class="btn btn-cta btn-lg w-100" type="submit">
+                      <i class="bi bi-whatsapp me-2"></i> Enviar e agendar
+                    </button>
+                    <div class="small text-muted mt-2">
+                      Ao enviar, você será direcionado para o WhatsApp com uma mensagem pré-preenchida.
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <hr class="soft-hr my-4" />
+
+              <div class="d-flex gap-3 align-items-start">
+                <div class="mini-ic"><i class="fi fi-sr-phone-call"></i></div>
+                <div class="small text-muted">
+                  Preferência por WhatsApp para agilizar o atendimento. Se for urgência, escreva “URGENTE” na mensagem.
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /FORM -->
+        </div>
+      </div>
+
+      <!-- Floating WhatsApp CTA -->
+      <a class="wa-fab" href="#agendar" aria-label="Agendar no WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+      </a>
+    </section>
+
+    <!-- =========================
+         DOBRA: O DENTISTA (Premium)
+    ========================== -->
+    <section id="dr-rodrigo" class="section-alt section-pad" aria-label="Sobre o dentista">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-end justify-content-between gap-2 mb-4">
+          <div>
+            <h2 class="mb-2">Quem vai te atender</h2>
+            <p class="text-muted mb-0">
+              Experiência clínica, diagnóstico claro e plano objetivo. Sem promessas mágicas — só execução bem feita.
+            </p>
+          </div>
+          <a class="btn btn-outline-light btn-sm" href="#agendar">
+            <i class="bi bi-whatsapp me-1"></i> Agendar com o Dr. Rodrigo
+          </a>
+        </div>
+
+        <div class="row g-4 align-items-stretch">
+          <div class="col-lg-5">
+            <div class="doc-photo-card h-100">
+              <img src="assets/img/dr-rodrigo.jpg" class="doc-photo" alt="Dr. Rodrigo - RV Odontologia" />
+              <div class="doc-photo-overlay"></div>
+
+              <div class="doc-photo-meta">
+                <span class="doc-badge">
+                  <i class="bi bi-shield-check me-1"></i> Responsável técnico
+                </span>
+                <span class="doc-badge doc-badge-outline">
+                  CRO-MT <span data-edit="cro">00000</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            <div class="doc-card h-100">
+              <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+                <span class="case-kicker">
+                  <i class="bi bi-award me-1"></i> Padrão premium
+                </span>
+                <span class="pill">
+                  <i class="bi bi-clock me-1"></i> <strong data-edit="years">10+</strong> anos de prática
+                </span>
+                <span class="pill">
+                  <i class="bi bi-people me-1"></i> <strong data-edit="patients">8.000+</strong> pacientes atendidos
+                </span>
+              </div>
+
+              <h3 class="mb-2">Dr. Rodrigo</h3>
+              <p class="text-muted mb-4">
+                Odontologia estética e reabilitação oral. Do básico bem feito ao avançado com previsibilidade.
+              </p>
+
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <div class="doc-item">
+                    <div class="doc-ic"><i class="bi bi-mortarboard"></i></div>
+                    <div>
+                      <div class="doc-item-title">Formação e especializações</div>
+                      <div class="doc-item-text" data-edit="edu">
+                        Graduado em Odontologia • Aperfeiçoamento em Estética • Reabilitação Oral
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="doc-item">
+                    <div class="doc-ic"><i class="bi bi-bullseye"></i></div>
+                    <div>
+                      <div class="doc-item-title">Foco clínico</div>
+                      <div class="doc-item-text">
+                        Lentes, clareamento, restaurações estéticas, implantes e reabilitação funcional.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="doc-item">
+                    <div class="doc-ic"><i class="bi bi-clipboard2-check"></i></div>
+                    <div>
+                      <div class="doc-item-title">Protocolo</div>
+                      <div class="doc-item-text">
+                        Avaliação → plano por etapas → execução. Sem “surpresas” no meio do caminho.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="doc-item">
+                    <div class="doc-ic"><i class="bi bi-heart-pulse"></i></div>
+                    <div>
+                      <div class="doc-item-title">Conforto e segurança</div>
+                      <div class="doc-item-text">
+                        Atendimento humanizado e transparente. Você entende o que será feito e por quê.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="doc-cta">
+                <div>
+                  <div class="doc-cta-title">Quer uma avaliação objetiva?</div>
+                  <div class="doc-cta-desc text-muted">
+                    Envie seu caso no WhatsApp e receba orientação inicial ainda hoje.
+                  </div>
+                </div>
+                <a class="btn btn-cta" href="#agendar">
+                  <i class="bi bi-whatsapp me-1"></i> Agendar
+                </a>
+              </div>
+
+              <div class="small text-muted mt-3">
+                Importante: troque <strong>CRO</strong>, <strong>anos</strong> e <strong>pacientes</strong> pelos
+                números reais antes de publicar.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SERVICES -->
+    <section id="servicos" class="section-pad section-alt">
+      <div class="container">
+        <div class="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-3 mb-4">
+          <div>
+            <h2 class="h3 mb-2">Serviços que realmente importam</h2>
+            <p class="text-muted mb-0">Do básico bem feito ao avançado com precisão. Escolha o que você precisa e
+              agende.</p>
+          </div>
+          <a class="btn btn-outline-light" href="#agendar">
+            Agendar agora <i class="bi bi-arrow-right ms-1"></i>
+          </a>
+        </div>
+
+        <div class="row g-3 g-md-4">
+          <!-- Card template -->
+          <div class="col-6 col-md-4">
+            <div class="service-card">
+              <div class="service-ic"><i class="fi fi-sr-tooth"></i></div>
+              <div class="service-title">Obturação</div>
+              <div class="service-desc">Tratamento conservador para recuperar forma, função e conforto.</div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4">
+            <div class="service-card">
+              <div class="service-ic"><i class="fi fi-sr-shield"></i></div>
+              <div class="service-title">Anti-cárie</div>
+              <div class="service-desc">Prevenção e controle: menos dor, menos custo, mais saúde.</div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4">
+            <div class="service-card">
+              <div class="service-ic"><i class="fi fi-sr-sparkles"></i></div>
+              <div class="service-title">Lentes</div>
+              <div class="service-desc">Estética com naturalidade: planejamento e execução sob medida.</div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4">
+            <div class="service-card">
+              <div class="service-ic"><i class="fi fi-sr-broom"></i></div>
+              <div class="service-title">Limpeza</div>
+              <div class="service-desc">Profilaxia e orientação: base para gengiva saudável e hálito ok.</div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4">
+            <div class="service-card">
+              <div class="service-ic"><i class="fi fi-sr-bone"></i></div>
+              <div class="service-title">Implante</div>
+              <div class="service-desc">Reabilitação com estabilidade: mastigação, estética e confiança.</div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4">
+            <div class="service-card">
+              <div class="service-ic"><i class="fi fi-sr-hospital"></i></div>
+              <div class="service-title">Canal</div>
+              <div class="service-desc">Dor aguda? Diagnóstico e tratamento endodôntico com cuidado.</div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4">
+            <div class="service-card">
+              <div class="service-ic"><i class="fi fi-sr-magic-wand"></i></div>
+              <div class="service-title">Clareamento</div>
+              <div class="service-desc">Branqueamento com segurança: protocolo adequado ao seu caso.</div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4">
+            <div class="service-card">
+              <div class="service-ic"><i class="fi fi-sr-band-aid"></i></div>
+              <div class="service-title">Restauração</div>
+              <div class="service-desc">Reparos estéticos e funcionais para um acabamento natural.</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <div class="service-card service-card-highlight">
+              <div class="service-ic"><i class="fi fi-sr-head-side-brain"></i></div>
+              <div class="service-title">Diagnóstico</div>
+              <div class="service-desc">A parte que decide o resultado: avaliação, plano e prioridades claras.</div>
+              <a href="#agendar" class="service-link">Agendar avaliação <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 note-box">
+          <div class="note-ic"><i class="bi bi-info-circle"></i></div>
+          <div class="note-text">
+            Se você não sabe “qual serviço”, selecione <strong>Outra dúvida</strong> no agendamento. A triagem resolve.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BEFORE / AFTER -->
+    <section id="antes-depois" class="section-pad section-alt">
+      <div class="container">
+        <div class="row align-items-end g-3 mb-4">
+          <div class="col-12 col-md-7">
+            <h2 class="h3 mb-2">Antes &amp; Depois (com visual dinâmico)</h2>
+            <p class="text-muted mb-0">
+              Cada caso é único. Aqui são imagens fictícias para layout. Troque pelas reais quando tiver autorização.
+            </p>
+          </div>
+          <div class="col-12 col-md-5 d-flex justify-content-md-end">
+            <div class="pill">
+              <i class="bi bi-mouse me-2"></i> Arraste dentro do círculo
+            </div>
+          </div>
+        </div>
+
+        <div id="baCarousel" class="carousel slide" data-bs-ride="false">
+          <div class="carousel-inner">
+
+            <div class="carousel-item active">
+              <div class="row g-4 align-items-center">
+                <div class="col-12 col-lg-6">
+                  <div class="ba-wrap">
+                    <div class="ba-circle" data-ba>
+                      <img class="ba-img ba-before" src="assets/img/depois1.png" alt="Antes" loading="lazy">
+                      <div class="ba-after-layer">
+                        <img class="ba-img ba-after" src="assets/img/antes1.png" alt="Depois" loading="lazy">
+                      </div>
+                      <div class="ba-handle" aria-hidden="true"></div>
+                      <input class="ba-range" type="range" min="0" max="100" value="50"
+                        aria-label="Controle antes e depois">
+                      <div class="ba-label ba-label-before">ANTES</div>
+                      <div class="ba-label ba-label-after">DEPOIS</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                  <div class="case-card">
+                    <div class="case-kicker">Caso 01</div>
+                    <h3 class="h4 mb-2">Lentes com naturalidade</h3>
+                    <p class="text-muted mb-3">Planejamento, proporção e cor. O objetivo é parecer “seu”, não
+                      artificial.</p>
+                    <ul class="case-list">
+                      <li><i class="bi bi-check2"></i> avaliação objetiva</li>
+                      <li><i class="bi bi-check2"></i> previsibilidade no resultado</li>
+                      <li><i class="bi bi-check2"></i> acabamento e conforto</li>
+                    </ul>
+                    <a class="btn btn-cta mt-2" href="#agendar"><i class="bi bi-whatsapp me-2"></i> Quero avaliação</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="row g-4 align-items-center">
+                <div class="col-12 col-lg-6">
+                  <div class="ba-wrap">
+                    <div class="ba-circle" data-ba>
+                      <img class="ba-img ba-before" src="assets/img/depois1.png" alt="Antes" loading="lazy">
+                      <div class="ba-after-layer">
+                        <img class="ba-img ba-after" src="assets/img/antes1.png" alt="Depois" loading="lazy">
+                      </div>
+                      <div class="ba-handle" aria-hidden="true"></div>
+                      <input class="ba-range" type="range" min="0" max="100" value="50"
+                        aria-label="Controle antes e depois">
+                      <div class="ba-label ba-label-before">ANTES</div>
+                      <div class="ba-label ba-label-after">DEPOIS</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                  <div class="case-card">
+                    <div class="case-kicker">Caso 02</div>
+                    <h3 class="h4 mb-2">Clareamento com segurança</h3>
+                    <p class="text-muted mb-3">Protocolo correto para o seu caso — sem promessas fantasiosas.</p>
+                    <ul class="case-list">
+                      <li><i class="bi bi-check2"></i> sensibilidade sob controle</li>
+                      <li><i class="bi bi-check2"></i> orientação e manutenção</li>
+                      <li><i class="bi bi-check2"></i> resultado progressivo</li>
+                    </ul>
+                    <a class="btn btn-outline-light mt-2" href="#agendar">Agendar triagem</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="row g-4 align-items-center">
+                <div class="col-12 col-lg-6">
+                  <div class="ba-wrap">
+                    <div class="ba-circle" data-ba>
+                      <img class="ba-img ba-before" src="assets/img/depois1.png" alt="Antes" loading="lazy">
+                      <div class="ba-after-layer">
+                        <img class="ba-img ba-after" src="assets/img/antes1.png" alt="Depois" loading="lazy">
+                      </div>
+                      <div class="ba-handle" aria-hidden="true"></div>
+                      <input class="ba-range" type="range" min="0" max="100" value="50"
+                        aria-label="Controle antes e depois">
+                      <div class="ba-label ba-label-before">ANTES</div>
+                      <div class="ba-label ba-label-after">DEPOIS</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                  <div class="case-card">
+                    <div class="case-kicker">Caso 03</div>
+                    <h3 class="h4 mb-2">Restauração estética</h3>
+                    <p class="text-muted mb-3">Reconstrução que combina com seu dente — sem “bola” aparente.</p>
+                    <ul class="case-list">
+                      <li><i class="bi bi-check2"></i> cor e textura</li>
+                      <li><i class="bi bi-check2"></i> ajuste de mordida</li>
+                      <li><i class="bi bi-check2"></i> acabamento polido</li>
+                    </ul>
+                    <a class="btn btn-outline-light mt-2" href="#agendar">Falar no WhatsApp</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#baCarousel" data-bs-slide="prev"
+            aria-label="Anterior">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#baCarousel" data-bs-slide="next"
+            aria-label="Próximo">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel-indicators mt-4 position-static">
+            <button type="button" data-bs-target="#baCarousel" data-bs-slide-to="0" class="active"
+              aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#baCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#baCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="avaliacoes" class="section-pad section-alt">
+      <div class="container">
+        <div class="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-3 mb-4">
+          <div>
+            <h2 class="h3 mb-2">Avaliações no estilo Google</h2>
+            <p class="text-muted mb-0">Prova social funciona — desde que seja real. Aqui são exemplos para layout.</p>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-light btn-sm" type="button" id="revPrev" aria-label="Voltar avaliações">
+              <i class="bi bi-arrow-left"></i>
+            </button>
+            <button class="btn btn-outline-light btn-sm" type="button" id="revNext" aria-label="Avançar avaliações">
+              <i class="bi bi-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="reviews-track" id="reviewsTrack" aria-label="Lista de avaliações">
+          <!-- Review card -->
+          <article class="review-card">
+            <header class="review-head">
+              <div class="avatar">M</div>
+              <div class="review-meta">
+                <div class="review-name">Mariana S.</div>
+                <div class="review-sub">há 2 semanas</div>
+              </div>
+            </header>
+            <div class="stars" aria-label="5 de 5 estrelas">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p class="review-text">“Atendimento direto, explicaram tudo e o resultado ficou natural. Volto sem pensar.”
+            </p>
+          </article>
+
+          <article class="review-card">
+            <header class="review-head">
+              <div class="avatar">R</div>
+              <div class="review-meta">
+                <div class="review-name">Rafael C.</div>
+                <div class="review-sub">há 1 mês</div>
+              </div>
+            </header>
+            <div class="stars" aria-label="5 de 5 estrelas">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p class="review-text">“Cheguei com dor e resolveram com calma e rapidez. Sem empurrar coisa.”</p>
+          </article>
+
+          <article class="review-card">
+            <header class="review-head">
+              <div class="avatar">A</div>
+              <div class="review-meta">
+                <div class="review-name">Ana P.</div>
+                <div class="review-sub">há 3 meses</div>
+              </div>
+            </header>
+            <div class="stars" aria-label="4 de 5 estrelas">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star"></i>
+            </div>
+            <p class="review-text">“Muito organizado. Só tive que remarcar por causa do meu horário, mas deu certo.”</p>
+          </article>
+
+          <article class="review-card">
+            <header class="review-head">
+              <div class="avatar">L</div>
+              <div class="review-meta">
+                <div class="review-name">Lucas T.</div>
+                <div class="review-sub">há 4 meses</div>
+              </div>
+            </header>
+            <div class="stars" aria-label="5 de 5 estrelas">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p class="review-text">“Clareamento com orientação e sem sensibilidade forte. Atendimento impecável.”</p>
+          </article>
+
+          <article class="review-card">
+            <header class="review-head">
+              <div class="avatar">J</div>
+              <div class="review-meta">
+                <div class="review-name">Juliana R.</div>
+                <div class="review-sub">há 6 meses</div>
+              </div>
+            </header>
+            <div class="stars" aria-label="5 de 5 estrelas">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p class="review-text">“Fiz restauração estética. Ninguém percebe. Era exatamente isso que eu queria.”</p>
+          </article>
+        </div>
+
+        <div class="mt-4 cta-strip">
+          <div>
+            <div class="cta-title">Quer um plano claro e preço transparente?</div>
+            <div class="cta-desc">Agende pelo WhatsApp e receba orientação inicial ainda hoje.</div>
+          </div>
+          <a class="btn btn-cta" href="#agendar"><i class="bi bi-whatsapp me-2"></i> Agendar</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATION -->
+    <section id="localizacao" class="section-pad section-alt">
+      <div class="container">
+        <div class="row g-4 align-items-stretch">
+          <div class="col-12 col-lg-5">
+            <h2 class="h3 mb-2">Localização</h2>
+            <p class="text-muted">Troque pelos dados reais da clínica. Aqui é um exemplo para o layout.</p>
+
+            <div class="loc-card">
+              <div class="loc-item">
+                <div class="loc-ic"><i class="bi bi-geo-alt"></i></div>
+                <div>
+                  <div class="loc-title">Endereço</div>
+                  <div class="loc-text">Av. Exemplo, 123 — Bairro Centro, Cuiabá/MT</div>
+                </div>
+              </div>
+
+              <div class="loc-item">
+                <div class="loc-ic"><i class="bi bi-clock"></i></div>
+                <div>
+                  <div class="loc-title">Horários</div>
+                  <div class="loc-text">Seg–Sex: 8h–18h • Sáb: 8h–12h</div>
+                </div>
+              </div>
+
+              <div class="loc-item">
+                <div class="loc-ic"><i class="bi bi-whatsapp"></i></div>
+                <div>
+                  <div class="loc-title">WhatsApp</div>
+                  <div class="loc-text">Agendamento rápido pelo formulário desta página.</div>
+                </div>
+              </div>
+
+              <a class="btn btn-cta w-100 mt-3" href="#agendar">
+                <i class="bi bi-whatsapp me-2"></i> Agendar agora
+              </a>
+            </div>
+
+            <div class="small text-muted mt-3">
+              Observação: se você for usar Google Maps, confirme política de privacidade e cookies (LGPD) conforme seu
+              caso.
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-7">
+            <div class="map-card">
+              <iframe title="Mapa" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=V%C3%A1rzea%20Grande%20MT&output=embed">
+              </iframe>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer section-pad">
+    <div class="container">
+      <div class="row g-4 align-items-start">
+        <div class="col-12 col-lg-5">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <img src="assets/img/logo.png" class="brand-logo" alt="RV Odontologia" />
+           
+          </div>
+          <p class="text-muted mb-3">
+            Odontologia com padrão de execução e comunicação objetiva. Você entende o plano - antes de começar.
+          </p>
+          <a class="btn btn-cta" href="#agendar"><i class="bi bi-whatsapp me-2"></i> Agendar no WhatsApp</a>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <div class="footer-title">Seções</div>
+          <ul class="footer-links">
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#antes-depois">Antes &amp; Depois</a></li>
+            <li><a href="#avaliacoes">Avaliações</a></li>
+            <li><a href="#localizacao">Localização</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-lg-4">
+          <div class="footer-title">Contato</div>
+          <ul class="footer-links">
+            <li><span class="text-muted">Cuiabá/MT</span></li>
+            <li><span class="text-muted">Seg–Sex 8h–18h</span></li>
+            <li><a href="#agendar">Agendar via WhatsApp</a></li>
+          </ul>
+
+          <div class="small text-muted mt-3">
+            © <span id="year"></span> RV Odontologia. Layout demonstrativo.
+            <div class="footer-dev small text-muted">
+              Desenvolvido por <a href="https://www.joaovictorvieira.com.br" target="_blank" rel="noopener">João Victor
+                Vieira</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
