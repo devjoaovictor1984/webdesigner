@@ -7,7 +7,7 @@ document.querySelectorAll('.card').forEach(card => {
     card.style.background = `
       radial-gradient(
         circle at ${x}px ${y}px,
-        rgba(255,122,24,0.15),
+        rgba(255,122,24,0.18),
         #151518 60%
       )
     `;
