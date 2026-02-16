@@ -1,0 +1,41 @@
+body {
+  background: #0f172a;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.game {
+  text-align: center;
+  background: #020617;
+  padding: 40px;
+  border-radius: 10px;
+  width: 300px;
+}
+
+button {
+  padding: 15px 30px;
+  margin: 10px 0;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+}
+
+#btn {
+  background: #ef4444;
+  color: #fff;
+}
+
+#start {
+  background: #22c55e;
+}
+
+.assinatura {
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
