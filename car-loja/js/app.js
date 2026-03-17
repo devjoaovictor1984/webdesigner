@@ -1,611 +1,257 @@
-"use strict";
+import { BODY_TYPES } from "./catalog.js";
+import { seedIfNeeded, getVehicles, getCatalog, getSettings, getVehicleById, normalizeWhatsapp } from "./store.js";
 
-// ===============================
-// DIVISÃO VEÍCULOS - Vitrine front-end
-// - HTML5 + CSS3 + Bootstrap 5 + JS puro
-// - Pronto para ligar em um back-end (API / banco de dados)
-// ===============================
+seedIfNeeded();
 
-// Caminho da imagem local usada em todos os carros
-const DEFAULT_CAR_IMAGE = "images/car.jpeg";
+const priceFormatter = new Intl.NumberFormat("pt-BR", {
+  style: "currency",
+  currency: "BRL"
+});
 
-// 1. "Banco de dados" fake (substitua por API / back-end futuramente)
-const cars = [
-  {
-    id: 1,
-    brand: "BMW",
-    model: "320i Sport GP",
-    year: 2022,
-    price: 239900,
-    km: 22000,
-    transmission: "Automático",
-    fuel: "Gasolina",
-    color: "Branco",
-    segment: "Sedan",
-    image: DEFAULT_CAR_IMAGE,
-    highlight: true,
-    tag: "Mais vendido",
-    description:
-      "BMW 320i Sport GP com pacote esportivo, ótimo equilíbrio entre conforto e performance. Revisões em dia na concessionária."
-  },
-  {
-    id: 2,
-    brand: "Audi",
-    model: "Q3 Prestige",
-    year: 2021,
-    price: 219900,
-    km: 19500,
-    transmission: "Automático",
-    fuel: "Gasolina",
-    color: "Preto",
-    segment: "SUV",
-    image: DEFAULT_CAR_IMAGE,
-    highlight: true,
-    tag: "Blindado",
-    description:
-      "Audi Q3 Prestige com pacote de conforto completo. Versão moderna, acabamento premium e posição de dirigir elevada."
-  },
-  {
-    id: 3,
-    brand: "Toyota",
-    model: "Corolla Altis Hybrid",
-    year: 2023,
-    price: 189900,
-    km: 10800,
-    transmission: "Automático",
-    fuel: "Híbrido",
-    color: "Prata",
-    segment: "Sedan",
-    image: DEFAULT_CAR_IMAGE,
-    highlight: true,
-    tag: "Híbrido",
-    description:
-      "Altis Hybrid com consumo impressionante, perfeito para quem roda muito. Tecnologia híbrida Toyota com extrema confiabilidade."
-  },
-  {
-    id: 4,
-    brand: "Volvo",
-    model: "XC60 R-Design",
-    year: 2020,
-    price: 259900,
-    km: 35000,
-    transmission: "Automático",
-    fuel: "Gasolina",
-    color: "Cinza",
-    segment: "SUV",
-    image: DEFAULT_CAR_IMAGE,
-    highlight: true,
-    tag: "Top de linha",
-    description:
-      "Volvo XC60 R-Design com pacote de segurança completo, piloto automático adaptativo e acabamento escandinavo refinado."
-  },
-  {
-    id: 5,
-    brand: "Jeep",
-    model: "Compass Longitude T270",
-    year: 2022,
-    price: 154900,
-    km: 18000,
-    transmission: "Automático",
-    fuel: "Flex",
-    color: "Branco",
-    segment: "SUV",
-    image: DEFAULT_CAR_IMAGE,
-    highlight: false,
-    tag: "Oportunidade",
-    description:
-      "Compass Longitude T270, motor turbo, central multimídia completa e conjunto muito equilibrado para uso urbano e rodoviário."
-  },
-  {
-    id: 6,
-    brand: "Honda",
-    model: "Civic Touring",
-    year: 2019,
-    price: 129900,
-    km: 48000,
-    transmission: "Automático",
-    fuel: "Gasolina",
-    color: "Prata",
-    segment: "Sedan",
-    image: DEFAULT_CAR_IMAGE,
-    highlight: false,
-    tag: "Turbo",
-    description:
-      "Civic Touring turbo, acabamento interno superior, excelente dirigibilidade e manutenção acessível na rede Honda."
-  },
-  {
-    id: 7,
-    brand: "Chevrolet",
-    model: "Onix Premier 1.0 Turbo",
-    year: 2022,
-    price: 89900,
-    km: 15000,
-    transmission: "Automático",
-    fuel: "Flex",
-    color: "Vermelho",
-    segment: "Hatch",
-    image: DEFAULT_CAR_IMAGE,
-    highlight: false,
-    tag: "Custo-benefício",
-    description:
-      "Onix Premier completaço com câmera de ré, MyLink, 6 airbags e economia de combustível excelente."
-  },
-  {
-    id: 8,
-    brand: "Fiat",
-    model: "Toro Volcano 2.0 4x4",
-    year: 2021,
-    price: 164900,
-    km: 32000,
-    transmission: "Automático",
-    fuel: "Diesel",
-    color: "Preto",
-    segment: "Picape",
-    image: DEFAULT_CAR_IMAGE,
-    highlight: false,
-    tag: "Diesel 4x4",
-    description:
-      "Toro Volcano 4x4 diesel com ótimo torque para estrada e uso misto, cabine confortável e caçamba versátil."
-  },
-  {
-    id: 9,
-    brand: "Porsche",
-    model: "911 Carrera",
-    year: 2018,
-    price: 649900,
-    km: 27000,
-    transmission: "Automático",
-    fuel: "Gasolina",
-    color: "Branco",
-    segment: "Esportivo",
-    image: DEFAULT_CAR_IMAGE,
-    highlight: true,
-    tag: "Exclusivo",
-    description:
-      "Porsche 911 Carrera, ícone mundial dos esportivos. Desempenho absurdo, som maravilhoso e presença única."
-  },
-  {
-    id: 10,
-    brand: "Volkswagen",
-    model: "Nivus Highline",
-    year: 2023,
-    price: 119900,
-    km: 5000,
-    transmission: "Automático",
-    fuel: "Flex",
-    color: "Azul",
-    segment: "SUV",
-    image: DEFAULT_CAR_IMAGE,
-    highlight: false,
-    tag: "Quase zero",
-    description:
-      "Nivus Highline, design moderno, painel digital, conectividade total e excelente consumo no dia a dia."
-  }
-];
+const kmFormatter = new Intl.NumberFormat("pt-BR");
 
-// Estado atual dos filtros e da comparação
-let filteredCars = [...cars];
-let compareSelection = [];
+const els = {
+  brand: document.querySelector("#filter-brand"),
+  model: document.querySelector("#filter-model"),
+  search: document.querySelector("#filter-search"),
+  minPrice: document.querySelector("#filter-min-price"),
+  maxPrice: document.querySelector("#filter-max-price"),
+  bodyType: document.querySelector("#filter-body-type"),
+  results: document.querySelector("#vehicle-results"),
+  count: document.querySelector("#vehicle-count"),
+  clear: document.querySelector("#clear-filters"),
+  featured: document.querySelector("#featured-grid"),
+  detail: document.querySelector("#vehicle-detail"),
+  detailTitle: document.querySelector("#detail-title"),
+  detailSubtitle: document.querySelector("#detail-subtitle"),
+  detailPrice: document.querySelector("#detail-price"),
+  detailDescription: document.querySelector("#detail-description"),
+  detailSpecs: document.querySelector("#detail-specs"),
+  detailOptionals: document.querySelector("#detail-optionals"),
+  detailImage: document.querySelector("#detail-image"),
+  detailWhatsapp: document.querySelector("#detail-whatsapp"),
+  detailClose: document.querySelector("#detail-close")
+};
 
-// Helpers de formatação
 function formatPrice(value) {
-  return new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL"
-  }).format(value);
+  return priceFormatter.format(Number(value || 0));
 }
 
 function formatKm(value) {
-  return `${new Intl.NumberFormat("pt-BR").format(value)} km`;
+  return `${kmFormatter.format(Number(value || 0))} km`;
 }
 
-// 2. Renderização de cards
-
-const carListEl = document.getElementById("car-list");
-const noResultsEl = document.getElementById("no-results");
-
-function renderCars(list) {
-  carListEl.innerHTML = "";
-
-  if (!list.length) {
-    noResultsEl.classList.remove("d-none");
-    return;
-  }
-
-  noResultsEl.classList.add("d-none");
-
-  list.forEach((car) => {
-    const isSelected = compareSelection.some((c) => c.id === car.id);
-    const compareBtnClass = isSelected ? "btn-compare-active" : "";
-    const compareBtnLabel = isSelected
-      ? "Remover da comparação"
-      : "Adicionar à comparação";
-
-    const whatsMessage = encodeURIComponent(
-      `Olá, tenho interesse neste ${car.brand} ${car.model} ${car.year} anunciado na Divisão Veículos. Poderia me enviar mais detalhes?`
-    );
-    const whatsLink = `https://wa.me/?text=${whatsMessage}`;
-
-    const col = document.createElement("div");
-    col.className = "col-12 col-md-6 col-lg-4";
-
-    col.innerHTML = `
-      <article class="car-card h-100" data-id="${car.id}">
-        <div class="car-card__image-wrapper">
-          <img
-            src="${car.image || DEFAULT_CAR_IMAGE}"
-            alt="${car.brand} ${car.model}"
-            class="car-card__image"
-          />
-          <span class="car-card__badge ${
-            car.highlight ? "car-card__badge--premium" : ""
-          }">
-            ${car.highlight ? "Destaque Divisão" : "Seminovo seleto"}
-          </span>
-          ${
-            car.tag
-              ? `<span class="car-card__tag">
-                    <i class="fa-solid fa-bolt me-1"></i>${car.tag}
-                 </span>`
-              : ""
-          }
-        </div>
-        <div class="car-card__body">
-          <div>
-            <h3 class="car-card__title">
-              ${car.brand} ${car.model}
-            </h3>
-            <p class="car-card__subtitle">
-              ${car.year} · ${formatKm(car.km)} · ${car.fuel}
-            </p>
-            <div class="car-card__chips">
-              <span class="car-chip">
-                <i class="fa-solid fa-gauge-high me-1"></i>${car.segment}
-              </span>
-              <span class="car-chip">
-                <i class="fa-solid fa-gear me-1"></i>${car.transmission}
-              </span>
-              <span class="car-chip">
-                <i class="fa-solid fa-droplet me-1"></i>${car.fuel}
-              </span>
-            </div>
-          </div>
-
-          <div class="car-card__price-row">
-            <div>
-              <div class="car-card__price">${formatPrice(car.price)}</div>
-              <div class="car-card__price-label">Avaliação na loja</div>
-            </div>
-            <div class="text-end">
-              <span class="car-card__price-label">Cor</span>
-              <div class="small">${car.color}</div>
-            </div>
-          </div>
-
-          <div class="car-card__actions">
-            <button
-              type="button"
-              class="btn btn-outline-light btn-sm w-100 js-see-details"
-              data-id="${car.id}"
-            >
-              Ver detalhes
-            </button>
-            <button
-              type="button"
-              class="btn btn-outline-warning btn-sm w-100 js-toggle-compare ${compareBtnClass}"
-              data-id="${car.id}"
-            >
-              <i class="fa-solid fa-scale-balanced me-1"></i>${compareBtnLabel}
-            </button>
-            <a
-              href="${whatsLink}"
-              target="_blank"
-              class="btn btn-success btn-sm w-100"
-            >
-              <i class="fa-brands fa-whatsapp me-1"></i>Compartilhar no WhatsApp
-            </a>
-          </div>
-        </div>
-      </article>
-    `;
-
-    carListEl.appendChild(col);
-  });
+function getActiveVehicles() {
+  return getVehicles().filter((vehicle) => vehicle.status === "active");
 }
 
-// 3. Filtros
-
-const filterSearchEl = document.getElementById("filter-search");
-const filterBrandEl = document.getElementById("filter-brand");
-const filterYearEl = document.getElementById("filter-year");
-const filterPriceMinEl = document.getElementById("filter-price-min");
-const filterPriceMaxEl = document.getElementById("filter-price-max");
-const btnApplyFilters = document.getElementById("btn-apply-filters");
-const btnClearFilters = document.getElementById("btn-clear-filters");
-
-function populateBrandFilter() {
-  const brands = Array.from(new Set(cars.map((c) => c.brand))).sort();
-  filterBrandEl.innerHTML = `<option value="">Todas</option>`;
-  brands.forEach((brand) => {
-    const opt = document.createElement("option");
-    opt.value = brand;
-    opt.textContent = brand;
-    filterBrandEl.appendChild(opt);
-  });
+function buildVehicleUrl(vehicleId) {
+  const url = new URL(window.location.href);
+  url.searchParams.set("car", vehicleId);
+  return url.toString();
 }
 
-function applyFilters() {
-  const term = filterSearchEl.value.trim().toLowerCase();
-  const brand = filterBrandEl.value;
-  const yearMin = parseInt(filterYearEl.value, 10) || 0;
-  const priceMin = parseInt(filterPriceMinEl.value.replace(/\D/g, ""), 10) || 0;
-  const priceMaxRaw = parseInt(
-    filterPriceMaxEl.value.replace(/\D/g, ""),
-    10
-  );
-  const priceMax = isNaN(priceMaxRaw) ? Infinity : priceMaxRaw;
+function buildWhatsappLink(vehicle) {
+  const settings = getSettings();
+  const number = normalizeWhatsapp(settings.whatsapp);
+  const link = buildVehicleUrl(vehicle.id);
+  const text = [
+    `Olá, tenho interesse no veículo ${vehicle.brand} ${vehicle.model} ${vehicle.version || ""}.`,
+    `Valor: ${formatPrice(vehicle.priceDiscount || vehicle.price)}.`,
+    `Link: ${link}`
+  ].join(" ");
+  return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+}
 
-  filteredCars = cars.filter((car) => {
-    if (brand && car.brand !== brand) return false;
-    if (yearMin && car.year < yearMin) return false;
+function getFilteredVehicles() {
+  const vehicles = getActiveVehicles();
+  const term = els.search.value.trim().toLowerCase();
+  const brand = els.brand.value;
+  const model = els.model.value;
+  const bodyType = els.bodyType.value;
+  const minPrice = Number(els.minPrice.value || 0);
+  const maxPrice = Number(els.maxPrice.value || 0);
 
-    if (term) {
-      const fullText = `${car.brand} ${car.model} ${car.segment}`.toLowerCase();
-      if (!fullText.includes(term)) return false;
-    }
+  return vehicles.filter((vehicle) => {
+    const haystack = `${vehicle.brand} ${vehicle.model} ${vehicle.version} ${vehicle.color}`.toLowerCase();
+    const vehiclePrice = Number(vehicle.priceDiscount || vehicle.price || 0);
 
-    if (priceMin && car.price < priceMin) return false;
-    if (priceMax !== Infinity && car.price > priceMax) return false;
+    if (term && !haystack.includes(term)) return false;
+    if (brand && vehicle.brand !== brand) return false;
+    if (model && vehicle.model !== model) return false;
+    if (bodyType && vehicle.bodyType !== bodyType) return false;
+    if (minPrice && vehiclePrice < minPrice) return false;
+    if (maxPrice && vehiclePrice > maxPrice) return false;
 
     return true;
   });
-
-  renderCars(filteredCars);
 }
 
-function clearFilters() {
-  filterSearchEl.value = "";
-  filterBrandEl.value = "";
-  filterYearEl.value = "";
-  filterPriceMinEl.value = "";
-  filterPriceMaxEl.value = "";
-  filteredCars = [...cars];
-  renderCars(filteredCars);
+function createCard(vehicle) {
+  const hasDiscount = Number(vehicle.priceDiscount) > 0 && Number(vehicle.priceDiscount) < Number(vehicle.price);
+  return `
+    <article class="vehicle-card">
+      <div class="vehicle-card__media">
+        <img src="${vehicle.image || "images/car.jpeg"}" alt="${vehicle.brand} ${vehicle.model}" loading="lazy" />
+        ${vehicle.featured ? `<span class="badge badge--featured">Destaque</span>` : ""}
+        ${hasDiscount ? `<span class="badge badge--discount">Oferta</span>` : ""}
+      </div>
+
+      <div class="vehicle-card__body">
+        <div class="vehicle-card__top">
+          <div>
+            <h3>${vehicle.brand} ${vehicle.model}</h3>
+            <p>${vehicle.version || "Versão não informada"}</p>
+          </div>
+        </div>
+
+        <div class="vehicle-price">
+          ${hasDiscount ? `<span class="vehicle-price__old">${formatPrice(vehicle.price)}</span>` : ""}
+          <strong>${formatPrice(vehicle.priceDiscount || vehicle.price)}</strong>
+        </div>
+
+        <div class="vehicle-specs">
+          <span>${vehicle.yearModel}</span>
+          <span>${formatKm(vehicle.km)}</span>
+          <span>${vehicle.transmission}</span>
+          <span>${vehicle.fuel}</span>
+        </div>
+
+        <div class="vehicle-actions">
+          <button class="btn btn-outline js-open-detail" data-id="${vehicle.id}">Ver detalhes</button>
+          <a class="btn btn-whatsapp" href="${buildWhatsappLink(vehicle)}" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+    </article>
+  `;
 }
 
-// 4. Comparação de veículos
-
-const compareBarEl = document.getElementById("compare-bar");
-const compareCountEl = document.getElementById("compare-count");
-const compareListEl = document.getElementById("compare-list");
-const btnOpenCompare = document.getElementById("btn-open-compare");
-const btnClearCompare = document.getElementById("btn-clear-compare");
-
-function updateCompareBar() {
-  if (!compareSelection.length) {
-    compareBarEl.classList.add("d-none");
-    compareListEl.innerHTML = "";
-    compareCountEl.textContent = "0";
-    return;
-  }
-
-  compareBarEl.classList.remove("d-none");
-  compareCountEl.textContent = compareSelection.length.toString();
-  compareListEl.innerHTML = compareSelection
-    .map(
-      (car) => `
-      <span class="badge rounded-pill">
-        ${car.brand} ${car.model}
-      </span>
-    `
-    )
-    .join("");
+function renderResults() {
+  const filtered = getFilteredVehicles();
+  els.count.textContent = `${filtered.length} veículo(s) encontrado(s)`;
+  els.results.innerHTML = filtered.length
+    ? filtered.map(createCard).join("")
+    : `<div class="empty-state">Nenhum carro encontrado com esse filtro.</div>`;
 }
 
-function toggleCompare(carId) {
-  const existingIndex = compareSelection.findIndex((c) => c.id === carId);
-
-  if (existingIndex >= 0) {
-    compareSelection.splice(existingIndex, 1);
-  } else {
-    if (compareSelection.length >= 3) {
-      alert("Você só pode comparar até 3 veículos por vez.");
-      return false;
-    }
-    const car = cars.find((c) => c.id === carId);
-    if (car) compareSelection.push(car);
-  }
-
-  updateCompareBar();
-  // Re-render para atualizar o estado dos botões
-  renderCars(filteredCars);
-  return true;
+function renderFeatured() {
+  const featured = getActiveVehicles().filter((vehicle) => vehicle.featured).slice(0, 3);
+  els.featured.innerHTML = featured.map(createCard).join("");
 }
 
-function buildCompareTable() {
-  const headRow = document.getElementById("compare-head-row");
-  const bodyEl = document.getElementById("compare-body");
+function populateBrands() {
+  const catalog = getCatalog();
+  const brands = Object.keys(catalog).sort((a, b) => a.localeCompare(b, "pt-BR"));
+  els.brand.innerHTML = `<option value="">Todas as marcas</option>` + brands.map((brand) => `<option value="${brand}">${brand}</option>`).join("");
+}
 
-  if (!compareSelection.length) {
-    headRow.innerHTML = "";
-    bodyEl.innerHTML =
-      '<tr><td colspan="4" class="text-center text-muted">Nenhum veículo selecionado.</td></tr>';
-    return;
-  }
+function populateModels() {
+  const catalog = getCatalog();
+  const brand = els.brand.value;
+  const models = brand ? (catalog[brand] || []) : [];
+  els.model.innerHTML = `<option value="">Todos os modelos</option>` + models.map((model) => `<option value="${model}">${model}</option>`).join("");
+}
 
-  headRow.innerHTML =
-    "<th>Especificação</th>" +
-    compareSelection
-      .map(
-        (car) => `
-      <th>
-        ${car.brand}<br />
-        <span class="small text-muted">${car.model}</span>
-      </th>
-    `
-      )
-      .join("");
+function populateBodyTypes() {
+  els.bodyType.innerHTML = `<option value="">Todos os tipos</option>` + BODY_TYPES.map((item) => `<option value="${item}">${item}</option>`).join("");
+}
 
-  const rows = [
-    { label: "Ano", key: "year" },
-    { label: "Preço", key: "price", format: formatPrice },
-    { label: "Quilometragem", key: "km", format: formatKm },
-    { label: "Câmbio", key: "transmission" },
-    { label: "Combustível", key: "fuel" },
-    { label: "Cor", key: "color" },
-    { label: "Segmento", key: "segment" }
+function openDetail(id) {
+  const vehicle = getVehicleById(id);
+  if (!vehicle || vehicle.status !== "active") return;
+
+  const specs = [
+    ["Marca", vehicle.brand],
+    ["Modelo", vehicle.model],
+    ["Versão", vehicle.version || "—"],
+    ["Ano modelo", vehicle.yearModel],
+    ["Ano fabricação", vehicle.yearFabrication || "—"],
+    ["Quilometragem", formatKm(vehicle.km)],
+    ["Combustível", vehicle.fuel],
+    ["Câmbio", vehicle.transmission],
+    ["Cor", vehicle.color],
+    ["Tipo", vehicle.bodyType],
+    ["Portas", vehicle.doors],
+    ["Cidade", vehicle.city]
   ];
 
-  bodyEl.innerHTML = rows
-    .map((row) => {
-      const cells = compareSelection
-        .map((car) => {
-          const value = row.format
-            ? row.format(car[row.key])
-            : car[row.key];
-          return `<td>${value}</td>`;
-        })
-        .join("");
+  els.detailTitle.textContent = `${vehicle.brand} ${vehicle.model}`;
+  els.detailSubtitle.textContent = vehicle.version || "Versão não informada";
+  els.detailPrice.textContent = formatPrice(vehicle.priceDiscount || vehicle.price);
+  els.detailDescription.textContent = vehicle.description || "Sem descrição detalhada.";
+  els.detailImage.src = vehicle.image || "images/car.jpeg";
+  els.detailImage.alt = `${vehicle.brand} ${vehicle.model}`;
+  els.detailSpecs.innerHTML = specs.map(([label, value]) => `<li><span>${label}</span><strong>${value}</strong></li>`).join("");
+  els.detailOptionals.innerHTML = (vehicle.optionals || []).length
+    ? vehicle.optionals.map((item) => `<li>${item}</li>`).join("")
+    : "<li>Sem opcionais informados.</li>";
+  els.detailWhatsapp.href = buildWhatsappLink(vehicle);
+  els.detail.classList.add("is-open");
+  document.body.classList.add("no-scroll");
 
-      return `
-        <tr>
-          <th scope="row">${row.label}</th>
-          ${cells}
-        </tr>
-      `;
-    })
-    .join("");
+  const url = new URL(window.location.href);
+  url.searchParams.set("car", vehicle.id);
+  history.replaceState({}, "", url);
 }
 
-// 5. Modal de detalhes
-
-const modalCarTitleEl = document.getElementById("modalCarTitle");
-const modalCarSubtitleEl = document.getElementById("modalCarSubtitle");
-const modalCarPriceEl = document.getElementById("modalCarPrice");
-const modalCarImageEl = document.getElementById("modalCarImage");
-const modalCarBadgeEl = document.getElementById("modalCarBadge");
-const modalCarSpecsEl = document.getElementById("modalCarSpecs");
-const modalCarDescriptionEl = document.getElementById("modalCarDescription");
-const modalCarShareEl = document.getElementById("modalCarShare");
-
-function openCarDetails(carId) {
-  const car = cars.find((c) => c.id === carId);
-  if (!car) return;
-
-  modalCarTitleEl.textContent = `${car.brand} ${car.model}`;
-  modalCarSubtitleEl.textContent = `${car.year} · ${formatKm(
-    car.km
-  )} · ${car.fuel}`;
-  modalCarPriceEl.textContent = formatPrice(car.price);
-  modalCarImageEl.src = car.image || DEFAULT_CAR_IMAGE;
-  modalCarImageEl.alt = `${car.brand} ${car.model}`;
-  modalCarBadgeEl.textContent = car.highlight
-    ? "Destaque Divisão"
-    : "Seminovo selecionado";
-
-  modalCarSpecsEl.innerHTML = `
-    <li>
-      <span>Marca</span><span>${car.brand}</span>
-    </li>
-    <li>
-      <span>Modelo</span><span>${car.model}</span>
-    </li>
-    <li>
-      <span>Ano</span><span>${car.year}</span>
-    </li>
-    <li>
-      <span>Quilometragem</span><span>${formatKm(car.km)}</span>
-    </li>
-    <li>
-      <span>Câmbio</span><span>${car.transmission}</span>
-    </li>
-    <li>
-      <span>Combustível</span><span>${car.fuel}</span>
-    </li>
-    <li>
-      <span>Cor</span><span>${car.color}</span>
-    </li>
-    <li>
-      <span>Segmento</span><span>${car.segment}</span>
-    </li>
-  `;
-
-  modalCarDescriptionEl.textContent =
-    car.description ||
-    "Veículo com procedência garantida e laudo cautelar aprovado pela Divisão Veículos.";
-
-  const msg = encodeURIComponent(
-    `Olá, tenho interesse neste ${car.brand} ${car.model} ${car.year} anunciado na Divisão Veículos. Poderia me enviar mais detalhes?`
-  );
-  modalCarShareEl.href = `https://wa.me/?text=${msg}`;
-
-  const modal = new bootstrap.Modal(
-    document.getElementById("carDetailsModal")
-  );
-  modal.show();
+function closeDetail() {
+  els.detail.classList.remove("is-open");
+  document.body.classList.remove("no-scroll");
+  const url = new URL(window.location.href);
+  url.searchParams.delete("car");
+  history.replaceState({}, "", url);
 }
 
-// 6. Eventos globais
+function bindEvents() {
+  [els.search, els.minPrice, els.maxPrice].forEach((input) => {
+    input.addEventListener("input", renderResults);
+  });
 
-// Delegação de eventos nos cards
-carListEl.addEventListener("click", (event) => {
-  const detailsBtn = event.target.closest(".js-see-details");
-  if (detailsBtn) {
-    const id = Number(detailsBtn.dataset.id);
-    openCarDetails(id);
-    return;
-  }
+  [els.brand, els.bodyType].forEach((input) => {
+    input.addEventListener("change", () => {
+      if (input === els.brand) populateModels();
+      renderResults();
+    });
+  });
 
-  const compareBtn = event.target.closest(".js-toggle-compare");
-  if (compareBtn) {
-    const id = Number(compareBtn.dataset.id);
-    const ok = toggleCompare(id);
-    if (!ok) return;
-  }
-});
+  els.model.addEventListener("change", renderResults);
 
-// Botões de filtros
-btnApplyFilters.addEventListener("click", applyFilters);
-btnClearFilters.addEventListener("click", clearFilters);
+  els.clear.addEventListener("click", () => {
+    els.search.value = "";
+    els.brand.value = "";
+    populateModels();
+    els.model.value = "";
+    els.bodyType.value = "";
+    els.minPrice.value = "";
+    els.maxPrice.value = "";
+    renderResults();
+  });
 
-// Busca em tempo real
-filterSearchEl.addEventListener("input", () => {
-  applyFilters();
-});
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest(".js-open-detail");
+    if (button) openDetail(button.dataset.id);
+    if (event.target.matches("#detail-close") || event.target.matches(".vehicle-detail__backdrop")) closeDetail();
+  });
 
-filterBrandEl.addEventListener("change", applyFilters);
-filterYearEl.addEventListener("change", applyFilters);
-filterPriceMinEl.addEventListener("change", applyFilters);
-filterPriceMaxEl.addEventListener("change", applyFilters);
-
-// Barra de comparação
-btnOpenCompare.addEventListener("click", () => {
-  if (!compareSelection.length) return;
-  buildCompareTable();
-  const modal = new bootstrap.Modal(
-    document.getElementById("compareModal")
-  );
-  modal.show();
-});
-
-btnClearCompare.addEventListener("click", () => {
-  compareSelection = [];
-  updateCompareBar();
-  renderCars(filteredCars);
-});
-
-// Ano no rodapé
-const footerYearEl = document.getElementById("footer-year");
-if (footerYearEl) {
-  footerYearEl.textContent = new Date().getFullYear().toString();
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeDetail();
+  });
 }
 
-// 7. Inicialização
+function openFromQueryString() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("car");
+  if (id) openDetail(id);
+}
 
 function init() {
-  populateBrandFilter();
-  renderCars(filteredCars);
-  updateCompareBar();
+  populateBrands();
+  populateModels();
+  populateBodyTypes();
+  renderFeatured();
+  renderResults();
+  bindEvents();
+  openFromQueryString();
 }
 
-document.addEventListener("DOMContentLoaded", init);
+init();

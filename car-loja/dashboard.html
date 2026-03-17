@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Dashboard — AutoVitrine PWA</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <span class="brand__mark">AV</span>
+        <span>
+          <strong>AutoVitrine</strong>
+          <small>Dashboard</small>
+        </span>
+      </a>
+
+      <nav class="nav__actions">
+        <a class="btn btn-outline" href="index.html">Ver vitrine</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container dashboard-grid">
+      <section class="panel panel--sticky">
+        <div class="panel__header">
+          <span class="section-eyebrow">Cadastro</span>
+          <h1 id="form-title">Cadastrar veículo</h1>
+          <p class="muted">Fluxo curto, pensado para celular. Sem campo inútil.</p>
+        </div>
+
+        <form id="vehicle-form" class="stack">
+          <input id="vehicle-id" type="hidden" />
+
+          <div class="cover-preview">
+            <img id="cover-preview" src="images/car.jpeg" alt="Prévia do carro" />
+          </div>
+
+          <label class="field">
+            <span>Foto de capa</span>
+            <input id="image" type="file" accept="image/*" capture="environment" />
+          </label>
+
+          <div class="form-grid">
+            <label class="field">
+              <span>Marca</span>
+              <select id="brand" required></select>
+            </label>
+
+            <label class="field">
+              <span>Modelo</span>
+              <select id="model" required></select>
+            </label>
+
+            <label class="field field--full">
+              <span>Versão</span>
+              <input id="version" type="text" placeholder="Ex: Highline 200 TSI" required />
+            </label>
+
+            <label class="field">
+              <span>Ano modelo</span>
+              <input id="year-model" type="number" min="1980" max="2035" required />
+            </label>
+
+            <label class="field">
+              <span>Ano fabricação</span>
+              <input id="year-fabrication" type="number" min="1980" max="2035" required />
+            </label>
+
+            <label class="field">
+              <span>Preço atual</span>
+              <input id="price" type="number" min="0" step="0.01" required />
+            </label>
+
+            <label class="field">
+              <span>Preço com desconto</span>
+              <input id="price-discount" type="number" min="0" step="0.01" />
+            </label>
+
+            <label class="field">
+              <span>Quilometragem</span>
+              <input id="km" type="number" min="0" required />
+            </label>
+
+            <label class="field">
+              <span>Combustível</span>
+              <select id="fuel"></select>
+            </label>
+
+            <label class="field">
+              <span>Câmbio</span>
+              <select id="transmission"></select>
+            </label>
+
+            <label class="field">
+              <span>Cor</span>
+              <select id="color"></select>
+            </label>
+
+            <label class="field">
+              <span>Tipo</span>
+              <select id="body-type"></select>
+            </label>
+
+            <label class="field">
+              <span>Portas</span>
+              <input id="doors" type="number" min="2" max="6" value="4" />
+            </label>
+
+            <label class="field">
+              <span>Final da placa</span>
+              <input id="plate-final" type="text" maxlength="1" placeholder="7" />
+            </label>
+
+            <label class="field field--full">
+              <span>Cidade</span>
+              <input id="city" type="text" placeholder="Cuiabá - MT" required />
+            </label>
+
+            <label class="field">
+              <span>Status</span>
+              <select id="status">
+                <option value="active">Ativo</option>
+                <option value="inactive">Inativo</option>
+              </select>
+            </label>
+
+            <label class="field check-line">
+              <input id="featured" type="checkbox" />
+              <span>Destacar na vitrine</span>
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Descrição</span>
+            <textarea id="description" rows="4" placeholder="Escreva o que realmente ajuda a vender."></textarea>
+          </label>
+
+          <div>
+            <span class="field__label">Opcionais</span>
+            <div id="optionals-wrap" class="checks-grid"></div>
+          </div>
+
+          <div class="actions-row">
+            <button class="btn" type="submit">Salvar veículo</button>
+            <button class="btn btn-outline" type="button" id="reset-form">Limpar</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="stack">
+        <section class="panel">
+          <div class="section-heading">
+            <div>
+              <span class="section-eyebrow">Listagem</span>
+              <h2>Veículos no dashboard</h2>
+            </div>
+          </div>
+
+          <div class="toolbar">
+            <input id="dashboard-search" type="text" placeholder="Buscar por marca, modelo, versão ou cidade" />
+            <select id="dashboard-status">
+              <option value="">Todos os status</option>
+              <option value="active">Ativos</option>
+              <option value="inactive">Inativos</option>
+            </select>
+          </div>
+
+          <div id="dashboard-vehicle-list" class="stack"></div>
+          <div id="dashboard-pagination" class="pagination"></div>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <div>
+              <span class="section-eyebrow">Catálogo</span>
+              <h2>Marcas e modelos</h2>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <form id="add-brand-form" class="card-form">
+              <h3>Adicionar marca</h3>
+              <label class="field">
+                <span>Nome da marca</span>
+                <input id="new-brand" type="text" placeholder="Ex: Kia" required />
+              </label>
+              <button class="btn btn-block" type="submit">Salvar marca</button>
+            </form>
+
+            <form id="add-model-form" class="card-form">
+              <h3>Adicionar modelo</h3>
+              <label class="field">
+                <span>Marca</span>
+                <select id="catalog-brand" required></select>
+              </label>
+              <label class="field">
+                <span>Modelo</span>
+                <input id="new-model" type="text" placeholder="Ex: Sportage" required />
+              </label>
+              <button class="btn btn-block" type="submit">Salvar modelo</button>
+            </form>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <div>
+              <span class="section-eyebrow">Loja</span>
+              <h2>Configurações</h2>
+            </div>
+          </div>
+
+          <form id="settings-form" class="form-grid">
+            <label class="field">
+              <span>Nome da loja</span>
+              <input id="store-name" type="text" required />
+            </label>
+
+            <label class="field">
+              <span>WhatsApp da loja</span>
+              <input id="store-whatsapp" type="text" placeholder="5565999999999" required />
+            </label>
+
+            <label class="field field--full">
+              <span>Cidade padrão</span>
+              <input id="store-city" type="text" placeholder="Cuiabá - MT" required />
+            </label>
+
+            <div class="actions-row field--full">
+              <button class="btn" type="submit">Salvar configurações</button>
+              <button id="reset-demo" class="btn btn-outline" type="button">Restaurar demo</button>
+            </div>
+          </form>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="js/sw-register.js"></script>
+  <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>

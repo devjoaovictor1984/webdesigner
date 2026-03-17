@@ -1,668 +1,579 @@
-/* ================================
-   DIVISÃO VEÍCULOS – TEMA PREMIUM
-   Fundo branco, clean, ultra minimal
-   ================================ */
-
 :root {
-  /* Paleta baseada na logo */
-  --dv-bg: #f3f4f6;              /* fundo geral */
-  --dv-surface: #ffffff;         /* cartões, navbar, modais */
-  --dv-surface-soft: #f9fafb;    /* seções alternadas */
-  --dv-primary: #18355a;         /* azul marinho */
-  --dv-primary-soft: #d3ddf0;    /* azul clarinho */
-  --dv-accent: #e11d2f;          /* vermelho da faixa */
-  --dv-accent-soft: #fde2e4;
-  --dv-text: #111827;            /* texto principal */
-  --dv-muted: #6b7280;           /* texto secundário */
-  --dv-border: #e5e7eb;          /* bordas sutis */
-  --dv-radius-lg: 1.4rem;
-  --dv-radius-md: 0.9rem;
-  --dv-shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
-  --dv-shadow-subtle: 0 8px 20px rgba(15, 23, 42, 0.04);
+  --bg: #09111f;
+  --bg-soft: #101b30;
+  --surface: #ffffff;
+  --surface-2: #eef3fb;
+  --text: #0f172a;
+  --muted: #475569;
+  --line: #d8e2f0;
+  --primary: #0f4c81;
+  --primary-dark: #0b3459;
+  --accent: #12b981;
+  --danger: #dc2626;
+  --shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
 }
 
-/* Reset básico */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
-  background: var(--dv-bg);
-  color: var(--dv-text);
-  -webkit-font-smoothing: antialiased;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background: #f6f8fb;
 }
+body.no-scroll { overflow: hidden; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; }
+.container { width: min(1120px, calc(100% - 32px)); margin-inline: auto; }
+.stack { display: grid; gap: 16px; }
 
-img {
-  max-width: 100%;
-  display: block;
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(9, 17, 31, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-
-/* ================================
-   Topbar
-   ================================ */
-
-.dv-topbar {
-  background: var(--dv-surface);
-  border-bottom: 1px solid var(--dv-border);
-  font-size: 0.78rem;
-  padding-block: 0.35rem;
-  color: var(--dv-muted);
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0;
 }
-
-/* ================================
-   Navbar / Header
-   ================================ */
-
-.dv-navbar {
-  background: var(--dv-surface);
-  border-bottom: 1px solid rgba(229, 231, 235, 0.9);
-  box-shadow: var(--dv-shadow-subtle);
-}
-
-.navbar {
-  padding-block: 0.75rem;
-}
-
-.dv-logo-img {
-  height: 48px;
-  width: auto;
-  display: block;
-}
-
-.dv-logo-sub {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--dv-muted);
-}
-
-.navbar .nav-link {
-  font-size: 0.9rem;
-  color: var(--dv-muted);
-  padding-inline: 0.9rem;
-  transition: color 0.2s ease, transform 0.16s ease;
-}
-
-.navbar .nav-link:hover,
-.navbar .nav-link:focus,
-.navbar .nav-link.active {
-  color: var(--dv-primary);
-  transform: translateY(-1px);
-}
-
-/* Botão principal estilo “boutique” */
-
-.dv-btn-primary {
-  background: linear-gradient(135deg, var(--dv-primary), var(--dv-accent));
-  border: none;
-  color: #f9fafb;
-  font-weight: 600;
-  border-radius: 999px;
-  padding-inline: 1.6rem;
-  padding-block: 0.55rem;
-  font-size: 0.88rem;
-  box-shadow:
-    0 0 0 1px rgba(248, 250, 252, 0.06),
-    0 18px 35px rgba(225, 17, 47, 0.3);
-}
-
-.dv-btn-primary:hover {
-  background: linear-gradient(135deg, #264569, var(--dv-accent));
-  color: #f9fafb;
-}
-
-/* ================================
-   Hero
-   ================================ */
-
-.dv-hero {
-  min-height: 70vh;
-  padding-top: 7rem;
-  padding-bottom: 4rem;
-  background:
-    radial-gradient(circle at top left, rgba(24, 53, 90, 0.08), transparent 60%),
-    radial-gradient(circle at bottom right, rgba(225, 17, 47, 0.05), transparent 55%),
-    var(--dv-surface-soft);
-}
-
-.dv-hero > .container {
-  position: relative;
-  z-index: 1;
-}
-
-.dv-chip {
+.brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.3rem 0.9rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  background: #eef2ff;
-  color: var(--dv-primary);
-  border: 1px solid rgba(24, 53, 90, 0.2);
+  gap: 12px;
+  color: #fff;
 }
-
-.text-gradient {
-  background: linear-gradient(120deg, var(--dv-primary), #3b4f7a, var(--dv-accent));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.dv-hero-title {
-  font-size: clamp(2.4rem, 3vw + 1.8rem, 3.4rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  margin-bottom: 1rem;
-}
-
-.dv-hero-text {
-  font-size: 0.98rem;
-  color: var(--dv-muted);
-  max-width: 32rem;
-}
-
-.dv-hero-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 1.5rem 0 0;
+.brand__mark {
+  width: 44px;
+  height: 44px;
   display: grid;
-  gap: 0.4rem;
-  font-size: 0.9rem;
+  place-items: center;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  font-weight: 800;
+}
+.brand small { display: block; color: rgba(255,255,255,0.72); }
+.nav__actions { display: flex; gap: 10px; }
+
+.btn {
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 14px 28px rgba(15, 76, 129, 0.18);
+}
+.btn:hover { filter: brightness(1.04); }
+.btn-outline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: none;
+}
+.btn-whatsapp {
+  background: #16a34a;
+  color: #fff;
+  box-shadow: 0 14px 28px rgba(22, 163, 74, 0.18);
+}
+.btn-danger {
+  background: #fff0f0;
+  color: var(--danger);
+  border: 1px solid #fecaca;
+  box-shadow: none;
+}
+.btn-block { width: 100%; }
+
+.hero {
+  background:
+    radial-gradient(circle at top left, rgba(18, 185, 129, 0.18), transparent 30%),
+    radial-gradient(circle at top right, rgba(15, 76, 129, 0.22), transparent 35%),
+    linear-gradient(180deg, #0b1220 0%, #0f172a 100%);
+  color: #fff;
+  padding: 48px 0 36px;
+}
+.hero__grid {
+  display: grid;
+  gap: 24px;
+}
+.hero__eyebrow, .section-eyebrow {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 32px;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 800;
+  background: rgba(255,255,255,0.08);
+}
+.hero h1 {
+  margin: 14px 0 12px;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.04;
+}
+.hero p {
+  margin: 0;
+  max-width: 58ch;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+}
+.hero__cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+.hero__points {
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.hero__points li {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  font-weight: 600;
 }
 
-.dv-hero-list li {
+.hero-card, .panel {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.hero-card h2, .panel h1, .panel h2, .panel h3 {
+  margin: 0 0 8px;
+}
+.panel--sticky {
+  align-self: start;
+}
+
+.section {
+  padding: 28px 0;
+}
+.section--soft { background: var(--surface-2); }
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.section-heading h2 { margin: 6px 0 0; }
+.muted {
+  color: var(--muted);
+  margin: 0;
+}
+
+.form-grid {
+  display: grid;
+  gap: 14px;
+}
+.field { display: grid; gap: 8px; }
+.field span, .field__label {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 700;
+}
+.field input, .field select, .field textarea, .toolbar input, .toolbar select {
+  width: 100%;
+  min-height: 48px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  padding: 0 14px;
+  background: #fff;
+  color: var(--text);
+}
+.field textarea { padding: 14px; min-height: 120px; resize: vertical; }
+.field--full { grid-column: 1 / -1; }
+.check-line {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
-  color: var(--dv-text);
+  gap: 12px;
+  min-height: 48px;
+  padding-top: 24px;
+}
+.check-line input { width: 18px; height: 18px; }
+
+.vehicle-grid {
+  display: grid;
+  gap: 16px;
 }
 
-.dv-hero-list i {
-  color: var(--dv-accent);
-}
-
-/* ================================
-   Card de busca
-   ================================ */
-
-.dv-search-card {
-  background: var(--dv-surface);
-  border-radius: var(--dv-radius-lg);
-  border: 1px solid var(--dv-border);
-  padding: 1.7rem 1.6rem 1.4rem;
-  box-shadow: var(--dv-shadow-soft);
-}
-
-.dv-search-card h2 {
-  color: var(--dv-text);
-  font-size: 1.1rem;
-}
-
-.dv-search-form .form-label {
-  font-size: 0.78rem;
-  color: var(--dv-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.dv-search-form .form-control,
-.dv-search-form .form-select {
-  background-color: #595c64 !important;
-  border-color: var(--dv-border);
-  color: var(--dv-text);
-  font-size: 0.9rem;
-  border-radius: 999px;
-  padding-inline: 0.9rem;
-}
-
-.dv-search-form .form-control::placeholder {
-  color: #9ca3af;
-}
-
-.dv-search-form .form-control:focus,
-.dv-search-form .form-select:focus {
-  box-shadow: 0 0 0 1px rgba(24, 53, 90, 0.25);
-  border-color: rgba(24, 53, 90, 0.5);
-}
-
-.dv-search-hint {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.35rem;
-  color: var(--dv-muted);
-  font-size: 0.8rem;
-}
-
-.dv-search-hint i {
-  margin-top: 0.1rem;
-  color: var(--dv-accent);
-}
-
-/* ================================
-   Estoque
-   ================================ */
-
-.dv-section-estoque {
-  padding: 3.8rem 0 4rem;
-  background: var(--dv-bg);
-}
-
-.dv-section-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--dv-text);
-}
-
-.dv-pill {
-  padding: 0.35rem 0.9rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  background: #fef2f2;
-  border: 1px solid rgba(225, 17, 47, 0.35);
-  color: var(--dv-accent);
-}
-
-/* Estado de “sem resultados” */
-
-#no-results {
-  font-size: 0.9rem;
-  color: var(--dv-muted);
-}
-
-/* ================================
-   Card de veículo – estilo boutique
-   ================================ */
-
-.car-card {
-  background: var(--dv-surface);
-  border-radius: var(--dv-radius-lg);
-  border: 1px solid var(--dv-border);
-  padding: 0.9rem;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  position: relative;
+.vehicle-card {
   overflow: hidden;
-  transition:
-    box-shadow 0.2s ease,
-    transform 0.18s ease,
-    border-color 0.18s ease;
+  border-radius: var(--radius-lg);
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
 }
-
-.car-card:hover {
-  box-shadow: var(--dv-shadow-soft);
-  transform: translateY(-3px);
-  border-color: rgba(24, 53, 90, 0.22);
-}
-
-.car-card__image-wrapper {
+.vehicle-card__media {
   position: relative;
-  border-radius: var(--dv-radius-md);
-  overflow: hidden;
 }
-
-.car-card__image {
+.vehicle-card__media img {
   width: 100%;
-  height: 220px;
+  aspect-ratio: 16/10;
   object-fit: cover;
-  transition: transform 0.35s ease;
 }
-
-.car-card:hover .car-card__image {
-  transform: scale(1.04);
+.vehicle-card__body {
+  padding: 16px;
+  display: grid;
+  gap: 14px;
 }
-
-.car-card__badge {
-  position: absolute;
-  left: 0.85rem;
-  top: 0.85rem;
-  padding: 0.22rem 0.7rem;
-  border-radius: 999px;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(148, 163, 184, 0.65);
-  color: var(--dv-primary);
+.vehicle-card__top h3 {
+  margin: 0 0 4px;
+  font-size: 1.15rem;
 }
-
-.car-card__badge--premium {
-  background: linear-gradient(135deg, var(--dv-primary), var(--dv-accent));
-  border-color: transparent;
-  color: #fefce8;
+.vehicle-card__top p {
+  margin: 0;
+  color: var(--muted);
 }
-
-.car-card__tag {
-  position: absolute;
-  right: 0.85rem;
-  bottom: 0.85rem;
-  padding: 0.2rem 0.65rem;
-  border-radius: 999px;
-  font-size: 0.7rem;
-  background: rgba(225, 17, 47, 0.06);
-  color: var(--dv-accent);
-  border: 1px solid rgba(225, 17, 47, 0.4);
+.vehicle-price {
+  display: grid;
+  gap: 4px;
 }
-
-.car-card__body {
-  padding: 0.9rem 0.3rem 0.2rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+.vehicle-price strong {
+  font-size: 1.4rem;
+  color: var(--primary-dark);
 }
-
-.car-card__title {
-  font-size: 1.02rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
+.vehicle-price__old {
+  text-decoration: line-through;
+  color: #64748b;
 }
-
-.car-card__subtitle {
-  font-size: 0.8rem;
-  color: var(--dv-muted);
-}
-
-.car-card__chips {
+.vehicle-specs, .dash-card__meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3rem;
-  margin-top: 0.5rem;
+  gap: 8px;
 }
-
-.car-chip {
-  border-radius: 999px;
-  border: 1px solid var(--dv-border);
-  padding: 0.18rem 0.6rem;
-  font-size: 0.72rem;
-  color: var(--dv-muted);
-  background: var(--dv-surface-soft);
-}
-
-.car-card__price-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-top: 0.9rem;
-}
-
-.car-card__price {
-  font-size: 1.12rem;
-  font-weight: 600;
-  color: var(--dv-primary);
-}
-
-.car-card__price-label {
-  font-size: 0.7rem;
-  color: var(--dv-muted);
-}
-
-.car-card__actions {
-  margin-top: 0.9rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.btn-compare-active {
-  background: rgba(24, 53, 90, 0.05);
-  border-color: rgba(24, 53, 90, 0.6);
-}
-
-/* ================================
-   Seções extras (confiança, números)
-   ================================ */
-
-.dv-section-alt {
-  padding: 3.5rem 0 3.5rem;
-  background: var(--dv-surface-soft);
-  border-top: 1px solid var(--dv-border);
-}
-
-.dv-feature-list {
-  list-style: none;
-  padding-left: 0;
-  margin-bottom: 0;
-  display: grid;
-  gap: 0.45rem;
-  font-size: 0.9rem;
-  color: var(--dv-text);
-}
-
-.dv-feature-list li {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-}
-
-.dv-feature-list i {
-  color: var(--dv-accent);
-}
-
-.dv-stats-card {
-  background: var(--dv-surface);
-  border-radius: var(--dv-radius-lg);
-  border: 1px solid var(--dv-border);
-  padding: 1.6rem 1.7rem 1.4rem;
-  box-shadow: var(--dv-shadow-soft);
-}
-
-.dv-stat {
-  background: #f9fafb;
-  border-radius: 1rem;
-  padding: 0.85rem 0.95rem;
-  border: 1px solid var(--dv-border);
-}
-
-.dv-stat-number {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--dv-primary);
-}
-
-.dv-stat-small {
-  font-size: 0.7rem;
-  color: var(--dv-muted);
-}
-
-.dv-stat-label {
-  display: block;
-  font-size: 0.74rem;
-  color: var(--dv-muted);
-}
-
-.dv-stats-footer {
-  font-size: 0.85rem;
-  color: var(--dv-muted);
-  display: flex;
-  align-items: center;
-}
-
-/* ================================
-   Contato / Mapa
-   ================================ */
-
-.dv-section-contact {
-  padding: 3.5rem 0 4rem;
-  background: var(--dv-surface);
-  border-top: 1px solid var(--dv-border);
-}
-
-.dv-contact-card {
-  background: #ffffff;
-  border-radius: var(--dv-radius-lg);
-  border: 1px solid var(--dv-border);
-  padding: 1.7rem;
-  box-shadow: var(--dv-shadow-soft);
-}
-
-.dv-contact-icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 999px;
+.vehicle-specs span, .dash-card__meta span {
+  min-height: 34px;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  background: var(--dv-primary);
-  color: #f9fafb;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: #f8fafc;
+  border: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--muted);
+}
+.vehicle-actions, .dash-card__actions, .actions-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.dv-map-placeholder {
-  background: #f9fafb;
-  border-radius: var(--dv-radius-lg);
-  border: 1px solid var(--dv-border);
-  padding: 1.25rem;
-}
-
-/* ================================
-   Modal de detalhes
-   ================================ */
-
-.dv-modal {
-  background: #ffffff;
-  border-radius: 1.5rem;
-  border: 1px solid var(--dv-border);
-  color: var(--dv-text);
-}
-
-.dv-modal .modal-header,
-.dv-modal .modal-footer {
-  border-color: var(--dv-border);
-}
-
-.dv-modal-image-wrapper {
-  position: relative;
-}
-
-.dv-modal-badge {
+.badge {
   position: absolute;
-  left: 0.9rem;
-  top: 0.9rem;
-  padding: 0.22rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid var(--dv-border);
-  color: var(--dv-primary);
-}
-
-.dv-modal-price {
-  font-weight: 600;
-  color: var(--dv-primary);
-}
-
-.dv-spec-list {
-  list-style: none;
-  padding-left: 0;
-  font-size: 0.9rem;
-}
-
-.dv-spec-list li {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.75rem;
-  border-bottom: 1px dashed var(--dv-border);
-  padding: 0.35rem 0;
-}
-
-.dv-spec-list li span:first-child {
-  color: var(--dv-muted);
-}
-
-.dv-compare-table th,
-.dv-compare-table td {
-  font-size: 0.86rem;
-}
-
-/* ================================
-   Barra de comparação
-   ================================ */
-
-.compare-bar {
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 1.4rem;
-  width: min(960px, 100% - 2rem);
-  z-index: 1085;
-}
-
-.compare-bar__content {
-  background: #ffffff;
-  border-radius: 1rem;
-  border: 1px solid var(--dv-border);
-  padding: 0.8rem 1.1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.18);
-}
-
-.compare-bar__icon {
-  width: 2.1rem;
-  height: 2.1rem;
-  border-radius: 999px;
+  top: 12px;
+  left: 12px;
+  min-height: 34px;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  background: rgba(24, 53, 90, 0.06);
-  color: var(--dv-primary);
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+.badge--featured {
+  background: rgba(15, 76, 129, 0.92);
+  color: #fff;
+}
+.badge--discount {
+  left: auto;
+  right: 12px;
+  background: rgba(22, 163, 74, 0.92);
+  color: #fff;
 }
 
-#compare-list .badge {
-  background: #f9fafb;
-  border: 1px solid var(--dv-border);
-  color: var(--dv-text);
-  font-weight: 500;
+.vehicle-detail {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 80;
+}
+.vehicle-detail.is-open { display: block; }
+.vehicle-detail__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.74);
+}
+.vehicle-detail__panel {
+  position: relative;
+  z-index: 2;
+  width: min(980px, calc(100% - 24px));
+  margin: 12px auto;
+  max-height: calc(100dvh - 24px);
+  overflow: auto;
+  background: #fff;
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+}
+.vehicle-detail__close {
+  position: sticky;
+  top: 12px;
+  float: right;
+  z-index: 4;
+  margin: 12px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 999px;
+  background: #e2e8f0;
+  font-size: 28px;
+  cursor: pointer;
+}
+.vehicle-detail__media img {
+  width: 100%;
+  max-height: 340px;
+  object-fit: cover;
+}
+.vehicle-detail__content {
+  padding: 20px;
+}
+.detail-price {
+  display: block;
+  font-size: 1.7rem;
+  margin: 12px 0;
+  color: var(--primary-dark);
+}
+.detail-description {
+  line-height: 1.7;
+  color: var(--muted);
+}
+.detail-specs {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.detail-specs li {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid var(--line);
+}
+.optionals-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.optionals-list li {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: #ecfeff;
+  border: 1px solid #bae6fd;
+  color: #0c4a6e;
 }
 
-/* ================================
-   Footer
-   ================================ */
-
-.dv-footer {
-  padding: 1rem 0 1.3rem;
-  background: #ffffff;
-  border-top: 1px solid var(--dv-border);
-  font-size: 0.82rem;
-  color: var(--dv-muted);
+.dashboard-grid {
+  display: grid;
+  gap: 18px;
+}
+.toolbar {
+  display: grid;
+  gap: 10px;
+}
+.dash-card {
+  display: grid;
+  gap: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #fff;
+}
+.dash-card img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+.dash-card__body {
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+.dash-card__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.dash-card__header h3 {
+  margin: 0 0 4px;
+}
+.dash-card__header p {
+  margin: 0;
+  color: var(--muted);
+}
+.dash-card__price {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dash-card__price strong {
+  color: var(--primary-dark);
+  font-size: 1.2rem;
+}
+.dash-card__price small {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+.status-chip {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+.status-chip--active {
+  background: #dcfce7;
+  color: #166534;
+}
+.status-chip--inactive {
+  background: #fee2e2;
+  color: #991b1b;
 }
 
-/* ================================
-   Responsivo
-   ================================ */
+.cover-preview {
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: #f8fafc;
+}
+.cover-preview img {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+}
 
-@media (min-width: 768px) {
-  .compare-bar__content {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+.checks-grid {
+  display: grid;
+  gap: 10px;
+}
+.check-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+}
+.check-pill input {
+  width: 18px;
+  height: 18px;
+}
+
+.card-form {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: #f8fafc;
+}
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.page-btn {
+  min-width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  cursor: pointer;
+}
+.page-btn.is-active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.empty-state {
+  padding: 22px;
+  border-radius: 18px;
+  border: 1px dashed var(--line);
+  color: var(--muted);
+  background: #fff;
+}
+
+@media (min-width: 720px) {
+  .hero__grid,
+  .dashboard-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: start;
+  }
+
+  .form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .vehicle-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .toolbar {
+    grid-template-columns: 1fr 220px;
+  }
+
+  .checks-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 767.98px) {
-  .dv-hero {
-    padding-top: 6rem;
-    padding-bottom: 2.8rem;
+@media (min-width: 1040px) {
+  .vehicle-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .dv-search-card {
-    margin-top: 1rem;
+  .vehicle-detail__panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
   }
 
-  .car-card__image {
-    height: 200px;
+  .vehicle-detail__media img {
+    height: 100%;
+    max-height: none;
   }
 
-  .compare-bar__content {
-    padding: 0.7rem 0.9rem;
+  .dash-card {
+    grid-template-columns: 280px 1fr;
   }
 }

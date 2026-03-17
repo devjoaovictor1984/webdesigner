@@ -1,589 +1,149 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Divisão Veículos — A melhor loja de carros do Brasil</title>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Bootstrap 5 -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    />
-
-    <!-- Font Awesome (ícones) -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SVLtTnT5aM4hJpLQYqZKJ+X4ye8t5D0lcHNq+g7u6mKeY5pAl2tZQe0Zz2u5moIc9iN2Fv8o3lZjmVnq5vQauw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-
-    <!-- CSS custom -->
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <!-- TOPBAR -->
-    <div class="dv-topbar d-none d-md-block">
-      <div class="container d-flex justify-content-between align-items-center">
-        <span><i class="fa-solid fa-location-dot me-2"></i>Cuiabá · MT</span>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>AutoVitrine PWA — catálogo de veículos</title>
+  <meta name="description" content="Catálogo mobile first para loja de carros com filtro rápido e botão de WhatsApp por veículo." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="images/icon-192.png" sizes="192x192" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <span class="brand__mark">AV</span>
         <span>
-          <i class="fa-solid fa-phone me-2"></i>(65) 9 9999-9999
-          <span class="ms-3">
-            <i class="fa-brands fa-whatsapp me-1"></i> Atendimento imediato
-          </span>
+          <strong>AutoVitrine</strong>
+          <small>PWA de veículos</small>
         </span>
-      </div>
+      </a>
+
+      <nav class="nav__actions">
+        <a class="btn btn-outline" href="#catalogo">Estoque</a>
+        <a class="btn" href="dashboard.html">Dashboard</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark dv-navbar fixed-top">
-      <div class="container">
-        <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
-          <span class="dv-logo me-2">
-            <i class="fa-solid fa-car-side"></i>
-          </span>
-          <div class="d-flex flex-column lh-1">
-            <span>Divisão Veículos</span>
-            <small class="dv-logo-sub">A melhor loja de carros do Brasil</small>
+  <main>
+    <section class="hero">
+      <div class="container hero__grid">
+        <div>
+          <span class="hero__eyebrow">Mobile first · rápido · direto</span>
+          <h1>Venda veículos com cadastro simples, filtro rápido e WhatsApp já preenchido.</h1>
+          <p>
+            Esta base foi pensada para o cliente anunciar pelo celular, com fluxo curto de cadastro
+            e vitrine fácil de navegar. Sem enfeite inútil.
+          </p>
+
+          <div class="hero__cta">
+            <a class="btn" href="#catalogo">Ver catálogo</a>
+            <a class="btn btn-outline" href="dashboard.html">Ir para dashboard</a>
           </div>
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarMain"
-          aria-controls="navbarMain"
-          aria-expanded="false"
-          aria-label="Alternar navegação"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarMain">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-            <li class="nav-item">
-              <a class="nav-link" href="#estoque">Estoque</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#porque">Por que a Divisão?</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contato">Contato</a>
-            </li>
-            <li class="nav-item ms-lg-3">
-              <a
-                href="https://wa.me/5565999999999?text=Olá%2C+gostaria+de+informações+sobre+os+veículos+da+Divisão+Veículos."
-                target="_blank"
-                class="btn btn-sm dv-btn-primary"
-              >
-                <i class="fa-brands fa-whatsapp me-1"></i> Falar no WhatsApp
-              </a>
-            </li>
+          <ul class="hero__points">
+            <li>Cadastro rápido</li>
+            <li>Ativo e inativo</li>
+            <li>Busca no painel</li>
+            <li>Página pronta para WhatsApp</li>
           </ul>
         </div>
+
+        <div class="hero-card">
+          <h2>Filtro rápido</h2>
+          <div class="form-grid">
+            <label class="field">
+              <span>Marca</span>
+              <select id="filter-brand"></select>
+            </label>
+
+            <label class="field">
+              <span>Modelo</span>
+              <select id="filter-model"></select>
+            </label>
+
+            <label class="field">
+              <span>Busca</span>
+              <input id="filter-search" type="text" placeholder="Marca, modelo ou versão" />
+            </label>
+
+            <label class="field">
+              <span>Tipo</span>
+              <select id="filter-body-type"></select>
+            </label>
+
+            <label class="field">
+              <span>Preço mínimo</span>
+              <input id="filter-min-price" type="number" min="0" placeholder="30000" />
+            </label>
+
+            <label class="field">
+              <span>Preço máximo</span>
+              <input id="filter-max-price" type="number" min="0" placeholder="150000" />
+            </label>
+          </div>
+
+          <button id="clear-filters" class="btn btn-outline btn-block">Limpar filtros</button>
+        </div>
       </div>
-    </nav>
+    </section>
 
-    <main>
-      <!-- HERO + BUSCA -->
-      <section class="dv-hero d-flex align-items-center" id="inicio">
-        <div class="container">
-          <div class="row align-items-center g-4">
-            <div class="col-lg-6">
-              <span class="dv-chip mb-3">
-                <i class="fa-solid fa-star me-1"></i> Estoque premium selecionado
-              </span>
-              <h1 class="dv-hero-title">
-                Seu próximo carro está na
-                <span class="text-gradient">Divisão Veículos</span>
-              </h1>
-              <p class="dv-hero-text">
-                Seminovos com procedência, laudo cautelar aprovado e condições
-                especiais de financiamento. Compare modelos, filtre por marca e
-                compartilhe o anúncio direto no WhatsApp.
-              </p>
-
-              <ul class="dv-hero-list">
-                <li>
-                  <i class="fa-solid fa-shield-check"></i> Veículos inspecionados
-                  e aprovados
-                </li>
-                <li>
-                  <i class="fa-solid fa-gauge-high"></i> Baixa quilometragem e
-                  histórico transparente
-                </li>
-                <li>
-                  <i class="fa-solid fa-file-signature"></i> Negociação simples,
-                  rápida e segura
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-5 ms-auto">
-              <div class="dv-search-card shadow-lg">
-                <h2 class="h5 mb-3">Encontre o carro perfeito</h2>
-                <p class="small text-muted mb-3">
-                  Filtre por marca, ano e faixa de preço para ver os carros que
-                  combinam com você.
-                </p>
-
-                <form id="search-form" class="dv-search-form">
-                  <div class="mb-3">
-                    <label for="filter-search" class="form-label"
-                      >Busca rápida</label
-                    >
-                    <div class="input-group input-group-sm">
-                      <span class="input-group-text">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                      </span>
-                      <input
-                        type="text"
-                        id="filter-search"
-                        class="form-control"
-                        placeholder="Modelo, marca ou versão..."
-                      />
-                    </div>
-                  </div>
-
-                  <div class="row g-2 mb-3">
-                    <div class="col-6">
-                      <label for="filter-brand" class="form-label"
-                        >Marca</label
-                      >
-                      <select
-                        id="filter-brand"
-                        class="form-select form-select-sm"
-                      >
-                        <option value="">Todas</option>
-                        <!-- JS preenche as marcas -->
-                      </select>
-                    </div>
-                    <div class="col-6">
-                      <label for="filter-year" class="form-label">Ano</label>
-                      <select
-                        id="filter-year"
-                        class="form-select form-select-sm"
-                      >
-                        <option value="">Todos</option>
-                        <option value="2023">2023+</option>
-                        <option value="2021">2021+</option>
-                        <option value="2019">2019+</option>
-                        <option value="2016">2016+</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="row g-2 mb-3">
-                    <div class="col-6">
-                      <label for="filter-price-min" class="form-label"
-                        >Preço mín. (R$)</label
-                      >
-                      <input
-                        type="number"
-                        id="filter-price-min"
-                        class="form-control form-control-sm"
-                        placeholder="80.000"
-                        min="0"
-                      />
-                    </div>
-                    <div class="col-6">
-                      <label for="filter-price-max" class="form-label"
-                        >Preço máx. (R$)</label
-                      >
-                      <input
-                        type="number"
-                        id="filter-price-max"
-                        class="form-control form-control-sm"
-                        placeholder="300.000"
-                        min="0"
-                      />
-                    </div>
-                  </div>
-
-                  <div class="d-flex gap-2">
-                    <button type="button" id="btn-apply-filters" class="btn btn-sm dv-btn-primary flex-grow-1">
-                      <i class="fa-solid fa-filter me-1"></i> Aplicar filtros
-                    </button>
-                    <button
-                      type="button"
-                      id="btn-clear-filters"
-                      class="btn btn-sm btn-outline-light"
-                    >
-                      Limpar
-                    </button>
-                  </div>
-
-                  <p class="dv-search-hint small text-muted mt-2 mb-0">
-                    <i class="fa-solid fa-circle-info me-1"></i> Você pode ainda
-                    adicionar até <strong>3 veículos</strong> para comparar.
-                  </p>
-                </form>
-              </div>
-            </div>
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="section-eyebrow">Destaques</span>
+            <h2>Veículos em destaque</h2>
           </div>
         </div>
-      </section>
 
-      <!-- ESTOQUE -->
-      <section id="estoque" class="dv-section-estoque">
-        <div class="container">
-          <div class="d-flex justify-content-between align-items-end mb-4">
-            <div>
-              <h2 class="dv-section-title">Estoque selecionado</h2>
-              <p class="text-muted mb-0">
-                Todos os veículos com documentação em dia, revisados e prontos
-                para entrega.
-              </p>
-            </div>
-            <span class="dv-pill d-none d-md-inline-flex">
-              <i class="fa-solid fa-circle-check me-1"></i> Laudo cautelar
-              aprovado
-            </span>
-          </div>
+        <div id="featured-grid" class="vehicle-grid"></div>
+      </div>
+    </section>
 
-          <div class="row g-4" id="car-list"></div>
-
-          <p
-            id="no-results"
-            class="text-center text-muted mt-4 d-none"
-          >
-            Nenhum veículo encontrado com os filtros selecionados. Tente
-            ajustar sua busca.
-          </p>
-        </div>
-      </section>
-
-      <!-- POR QUE A DIVISÃO -->
-      <section id="porque" class="dv-section-alt">
-        <div class="container">
-          <div class="row g-4 align-items-center">
-            <div class="col-lg-5">
-              <h2 class="dv-section-title mb-3">Por que a Divisão Veículos?</h2>
-              <p class="text-muted mb-3">
-                Somos obsessivos em qualidade, transparência e experiência de
-                compra. Cada carro passa por uma curadoria completa antes de
-                chegar ao showroom.
-              </p>
-              <ul class="dv-feature-list">
-                <li>
-                  <i class="fa-solid fa-list-check"></i> Check-list de mais de
-                  100 itens por veículo
-                </li>
-                <li>
-                  <i class="fa-solid fa-file-shield"></i> Laudo cautelar e
-                  histórico detalhado
-                </li>
-                <li>
-                  <i class="fa-solid fa-handshake"></i> Troca com troco e
-                  avaliação justa do seu usado
-                </li>
-                <li>
-                  <i class="fa-solid fa-sack-dollar"></i> Parcerias com bancos
-                  para as melhores taxas
-                </li>
-              </ul>
-            </div>
-            <div class="col-lg-7">
-              <div class="dv-stats-card">
-                <div class="row g-3">
-                  <div class="col-6 col-md-3">
-                    <div class="dv-stat">
-                      <span class="dv-stat-number">+1.500</span>
-                      <span class="dv-stat-label">Carros vendidos</span>
-                    </div>
-                  </div>
-                  <div class="col-6 col-md-3">
-                    <div class="dv-stat">
-                      <span class="dv-stat-number">4.9<span class="dv-stat-small">/5</span></span>
-                      <span class="dv-stat-label">Avaliação média</span>
-                    </div>
-                  </div>
-                  <div class="col-6 col-md-3">
-                    <div class="dv-stat">
-                      <span class="dv-stat-number">+12</span>
-                      <span class="dv-stat-label">Anos de mercado</span>
-                    </div>
-                  </div>
-                  <div class="col-6 col-md-3">
-                    <div class="dv-stat">
-                      <span class="dv-stat-number">100%</span>
-                      <span class="dv-stat-label">Transparência</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="dv-stats-footer mt-3">
-                  <i class="fa-solid fa-quote-left me-2"></i>
-                  Quem compra na Divisão Veículos, volta e indica.
-                </div>
-              </div>
-            </div>
+    <section class="section section--soft" id="catalogo">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="section-eyebrow">Catálogo</span>
+            <h2>Estoque disponível</h2>
+            <p id="vehicle-count" class="muted"></p>
           </div>
         </div>
-      </section>
 
-      <!-- CONTATO -->
-      <section id="contato" class="dv-section-contact">
-        <div class="container">
-          <div class="row g-4">
-            <div class="col-lg-6">
-              <h2 class="dv-section-title mb-3">Agende uma visita</h2>
-              <p class="text-muted mb-4">
-                Quer ver um carro de perto, fazer um test drive ou simular um
-                financiamento? Envie uma mensagem rápida no WhatsApp.
-              </p>
+        <div id="vehicle-results" class="vehicle-grid"></div>
+      </div>
+    </section>
+  </main>
 
-              <div class="dv-contact-card">
-                <div class="d-flex align-items-center mb-3">
-                  <div class="dv-contact-icon me-3">
-                    <i class="fa-brands fa-whatsapp"></i>
-                  </div>
-                  <div>
-                    <h3 class="h6 mb-1">Atendimento Divisão Veículos</h3>
-                    <p class="small text-muted mb-1">
-                      Segunda a sábado · 8h às 18h
-                    </p>
-                    <a
-                      href="https://wa.me/5565999999999?text=Olá%2C+gostaria+de+agendar+uma+visita+à+Divisão+Veículos."
-                      target="_blank"
-                      class="btn dv-btn-primary btn-sm"
-                    >
-                      <i class="fa-brands fa-whatsapp me-1"></i> Chamar agora
-                    </a>
-                  </div>
-                </div>
+  <div id="vehicle-detail" class="vehicle-detail" aria-hidden="true">
+    <div class="vehicle-detail__backdrop"></div>
+    <div class="vehicle-detail__panel">
+      <button id="detail-close" class="vehicle-detail__close" aria-label="Fechar">×</button>
+      <div class="vehicle-detail__media">
+        <img id="detail-image" src="images/car.jpeg" alt="Veículo" />
+      </div>
+      <div class="vehicle-detail__content">
+        <span class="section-eyebrow">Detalhes do veículo</span>
+        <h3 id="detail-title"></h3>
+        <p id="detail-subtitle" class="muted"></p>
+        <strong id="detail-price" class="detail-price"></strong>
+        <p id="detail-description" class="detail-description"></p>
 
-                <ul class="list-unstyled small mb-0 text-muted">
-                  <li class="mb-1">
-                    <i class="fa-solid fa-location-dot me-2"></i> Endereço da
-                    loja · Bairro nobre · Cuiabá/MT
-                  </li>
-                  <li class="mb-1">
-                    <i class="fa-solid fa-phone me-2"></i> (65) 9 9999-9999
-                  </li>
-                  <li>
-                    <i class="fa-solid fa-envelope me-2"></i>
-                    contato@divisaoveiculos.com.br
-                  </li>
-                </ul>
-              </div>
-            </div>
+        <ul id="detail-specs" class="detail-specs"></ul>
 
-            <div class="col-lg-6">
-              <div class="dv-map-placeholder">
-                <p class="mb-2 fw-semibold">
-                  Localização da Divisão Veículos (exemplo)
-                </p>
-                <div class="ratio ratio-16x9 rounded-4 overflow-hidden">
-                  <!-- Substitua pelo embed real do Google Maps -->
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.970382762134!2d-56.097891!3d-15.601410!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x939db1f1f7d5b6c1%3A0x4fd1a127f1a8a140!2sCentro%20de%20Cuiab%C3%A1%20-%20Cuiab%C3%A1%2C%20MT!5e0!3m2!1spt-BR!2sbr!4v1700000000000"
-                    style="border: 0"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                  ></iframe>
-                </div>
-                <p class="small text-muted mt-2 mb-0">
-                  Troque este mapa pela localização exata da loja quando for
-                  publicar em produção.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
+        <h4>Opcionais</h4>
+        <ul id="detail-optionals" class="optionals-list"></ul>
 
-    <!-- BARRA DE COMPARAÇÃO -->
-    <div id="compare-bar" class="compare-bar d-none">
-      <div class="compare-bar__content">
-        <div class="d-flex flex-column flex-md-row align-items-md-center gap-2">
-          <div class="d-flex align-items-center gap-2">
-            <div class="compare-bar__icon">
-              <i class="fa-solid fa-scale-balanced"></i>
-            </div>
-            <div>
-              <div class="small text-muted mb-0">
-                Comparação de veículos
-              </div>
-              <div class="fw-semibold">
-                <span id="compare-count">0</span> selecionado(s)
-              </div>
-            </div>
-          </div>
-          <div
-            id="compare-list"
-            class="d-flex flex-wrap gap-1 small ms-md-3"
-          ></div>
-        </div>
-
-        <div class="d-flex align-items-center gap-2 mt-3 mt-md-0">
-          <button
-            id="btn-open-compare"
-            type="button"
-            class="btn btn-sm btn-warning"
-          >
-            Comparar agora
-          </button>
-          <button
-            id="btn-clear-compare"
-            type="button"
-            class="btn btn-sm btn-outline-light"
-          >
-            Limpar
-          </button>
-        </div>
+        <a id="detail-whatsapp" class="btn btn-whatsapp btn-block" href="#" target="_blank" rel="noopener">Chamar no WhatsApp</a>
       </div>
     </div>
+  </div>
 
-    <!-- MODAL DETALHES DO CARRO -->
-    <div
-      class="modal fade"
-      id="carDetailsModal"
-      tabindex="-1"
-      aria-labelledby="carDetailsModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content dv-modal">
-          <div class="modal-header">
-            <div>
-              <h5 class="modal-title" id="modalCarTitle"></h5>
-              <p class="small text-muted mb-0" id="modalCarSubtitle"></p>
-            </div>
-            <button
-              type="button"
-              class="btn-close btn-close-white"
-              data-bs-dismiss="modal"
-              aria-label="Fechar"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <div class="row g-4">
-              <div class="col-md-6">
-                <div class="dv-modal-image-wrapper">
-                  <img
-                    id="modalCarImage"
-                    src="images/car.jpeg"
-                    alt=""
-                    class="img-fluid rounded-4"
-                  />
-                  <span class="dv-modal-badge" id="modalCarBadge"></span>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <h4 class="dv-modal-price mb-3" id="modalCarPrice"></h4>
-
-                <ul class="dv-spec-list mb-3" id="modalCarSpecs"></ul>
-
-                <p class="small text-muted mb-3" id="modalCarDescription"></p>
-
-                <div class="d-flex flex-wrap gap-2">
-                  <a
-                    href="#"
-                    id="modalCarShare"
-                    target="_blank"
-                    class="btn btn-success btn-sm"
-                  >
-                    <i class="fa-brands fa-whatsapp me-1"></i> Compartilhar no
-                    WhatsApp
-                  </a>
-                  <button
-                    type="button"
-                    class="btn btn-outline-light btn-sm"
-                    data-bs-dismiss="modal"
-                  >
-                    Fechar
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer small text-muted">
-            Divisão Veículos · Estoque sujeito à alteração sem aviso prévio.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- MODAL COMPARAÇÃO -->
-    <div
-      class="modal fade"
-      id="compareModal"
-      tabindex="-1"
-      aria-labelledby="compareModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content dv-modal">
-          <div class="modal-header">
-            <div>
-              <h5 class="modal-title" id="compareModalLabel">
-                Comparação de veículos
-              </h5>
-              <p class="small text-muted mb-0">
-                Compare lado a lado os principais dados dos modelos
-                selecionados.
-              </p>
-            </div>
-            <button
-              type="button"
-              class="btn-close btn-close-white"
-              data-bs-dismiss="modal"
-              aria-label="Fechar"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <div class="table-responsive">
-              <table class="table table-dark table-borderless align-middle dv-compare-table">
-                <thead>
-                  <tr id="compare-head-row">
-                    <!-- preenchido via JS -->
-                  </tr>
-                </thead>
-                <tbody id="compare-body">
-                  <!-- preenchido via JS -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="modal-footer small text-muted">
-            Dica: use esta comparação ao negociar valor, financiamento e
-            condições com o consultor Divisão Veículos.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FOOTER -->
-    <footer class="dv-footer">
-      <div class="container d-flex flex-column flex-md-row justify-content-between gap-2">
-        <span>
-          © <span id="footer-year"></span> Divisão Veículos. Todos os direitos
-          reservados.
-        </span>
-        <span class="small text-muted">
-          Desenvolvido para escalonar com back-end (API / banco de dados).
-        </span>
-      </div>
-    </footer>
-
-    <!-- Bootstrap JS -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    ></script>
-
-    <!-- App JS -->
-    <script src="js/app.js"></script>
-  </body>
+  <script type="module" src="js/sw-register.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
 </html>
