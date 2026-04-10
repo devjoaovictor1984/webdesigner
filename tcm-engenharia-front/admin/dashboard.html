@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | TCM Engenharia Elétrica</title>
+    <link rel="stylesheet" href="../assets/css/vendor/bootstrap.css">
+    <link rel="stylesheet" href="../assets/css/plugins/fontawesome.css">
+    <link rel="stylesheet" href="../assets/css/tcm-site.css">
+    <link rel="stylesheet" href="../assets/css/tcm-admin.css">
+</head>
+<body class="admin-body">
+    <div class="admin-shell">
+        <aside class="admin-sidebar">
+            <a class="brand-lockup footer-brand" href="../index.html">
+                <span class="brand-mark">TCM</span>
+                <span class="brand-copy">
+                    <strong>Painel administrativo</strong>
+                    <small>Gestão local do portfólio</small>
+                </span>
+            </a>
+            <nav class="admin-nav">
+                <a class="admin-nav-link is-active" href="dashboard.html"><i class="fa-light fa-grid-2"></i><span>Dashboard</span></a>
+                <a class="admin-nav-link" href="portfolio-form.html"><i class="fa-light fa-plus"></i><span>Novo projeto</span></a>
+                <a class="admin-nav-link" href="../index.html" target="_blank" rel="noopener"><i class="fa-light fa-arrow-up-right-from-square"></i><span>Ver site</span></a>
+                <a class="admin-nav-link" href="login.html" data-action="logout"><i class="fa-light fa-right-from-bracket"></i><span>Sair</span></a>
+            </nav>
+        </aside>
+
+        <main class="admin-main">
+            <section class="admin-topbar">
+                <div>
+                    <h1>Painel do portfólio</h1>
+                    <p>Cadastro, publicação e revisão dos trabalhos exibidos na landing page estática da TCM.</p>
+                </div>
+                <a class="btn-site" href="portfolio-form.html">Novo projeto</a>
+            </section>
+
+            <div id="dashboard-feedback" class="alert-inline" hidden></div>
+            <section id="dashboard-stats" class="admin-stats"></section>
+
+            <section class="admin-grid">
+                <div class="admin-stack">
+                    <div class="admin-surface">
+                        <h2>Projetos cadastrados</h2>
+                        <div id="dashboard-projects" class="project-list"></div>
+                    </div>
+                </div>
+
+                <div class="admin-stack">
+                    <div class="admin-surface">
+                        <h2>Leads recentes</h2>
+                        <div id="dashboard-leads" class="lead-list"></div>
+                    </div>
+
+                    <div class="admin-surface">
+                        <h2>Dados locais</h2>
+                        <p class="meta-muted">Como esta versão roda sem backend, os dados ficam neste navegador. Você pode exportar ou importar um JSON para transportar o conteúdo.</p>
+                        <div class="d-grid gap-3 mt-3">
+                            <button id="export-data" class="btn-site btn-site-outline" type="button">Exportar JSON</button>
+                            <label class="btn-site btn-site-outline" for="import-data">Importar JSON</label>
+                            <input id="import-data" type="file" accept=".json" hidden>
+                            <button id="reset-demo" class="btn-action danger" type="button">Restaurar demo</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script defer src="../assets/js/tcm-data.js"></script>
+    <script defer src="../assets/js/tcm-store.js"></script>
+    <script defer src="../assets/js/tcm-admin.js"></script>
+</body>
+</html>

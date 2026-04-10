@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo projeto | TCM Engenharia Elétrica</title>
+    <link rel="stylesheet" href="../assets/css/vendor/bootstrap.css">
+    <link rel="stylesheet" href="../assets/css/plugins/fontawesome.css">
+    <link rel="stylesheet" href="../assets/css/tcm-site.css">
+    <link rel="stylesheet" href="../assets/css/tcm-admin.css">
+</head>
+<body class="admin-body">
+    <div class="admin-shell">
+        <aside class="admin-sidebar">
+            <a class="brand-lockup footer-brand" href="../index.html">
+                <span class="brand-mark">TCM</span>
+                <span class="brand-copy">
+                    <strong>Painel administrativo</strong>
+                    <small>Cadastro de portfólio</small>
+                </span>
+            </a>
+            <nav class="admin-nav">
+                <a class="admin-nav-link" href="dashboard.html"><i class="fa-light fa-grid-2"></i><span>Dashboard</span></a>
+                <a class="admin-nav-link is-active" href="portfolio-form.html"><i class="fa-light fa-plus"></i><span>Novo projeto</span></a>
+                <a class="admin-nav-link" href="../index.html" target="_blank" rel="noopener"><i class="fa-light fa-arrow-up-right-from-square"></i><span>Ver site</span></a>
+                <a class="admin-nav-link" href="login.html" data-action="logout"><i class="fa-light fa-right-from-bracket"></i><span>Sair</span></a>
+            </nav>
+        </aside>
+
+        <main class="admin-main">
+            <section class="admin-topbar">
+                <div>
+                    <h1 id="form-page-title">Novo projeto</h1>
+                    <p id="form-page-subtitle">Preencha os dados do case. Os itens publicados passam a alimentar a landing page e a página de portfólio.</p>
+                </div>
+                <a class="btn-site btn-site-outline" href="dashboard.html">Voltar ao dashboard</a>
+            </section>
+
+            <div id="form-feedback" class="alert-inline" hidden></div>
+
+            <section class="admin-surface">
+                <form id="portfolio-form" enctype="multipart/form-data">
+                    <input type="hidden" name="id">
+                    <div class="admin-form-grid">
+                        <div class="full-span">
+                            <label class="form-label" for="title">Título do projeto</label>
+                            <input class="form-control" type="text" id="title" name="title" placeholder="Ex.: Projeto executivo de subestação abrigada">
+                        </div>
+                        <div>
+                            <label class="form-label" for="category">Categoria</label>
+                            <input class="form-control" type="text" id="category" name="category" placeholder="Ex.: Subestações">
+                        </div>
+                        <div>
+                            <label class="form-label" for="location">Local / segmento</label>
+                            <input class="form-control" type="text" id="location" name="location" placeholder="Ex.: Aplicação industrial">
+                        </div>
+                        <div class="full-span">
+                            <label class="form-label" for="summary">Resumo curto</label>
+                            <textarea class="form-control" id="summary" name="summary" placeholder="Texto curto para os cards da landing page."></textarea>
+                        </div>
+                        <div class="full-span">
+                            <label class="form-label" for="description">Descrição completa</label>
+                            <textarea class="form-control" id="description" name="description" placeholder="Descreva escopo, contexto técnico, entregas e resultados do projeto."></textarea>
+                        </div>
+                        <div>
+                            <label class="form-label" for="publishedAt">Data de publicação</label>
+                            <input class="form-control" type="date" id="publishedAt" name="publishedAt">
+                        </div>
+                        <div>
+                            <label class="form-label" for="image-file">Imagem do projeto</label>
+                            <input class="form-control" type="file" id="image-file" accept=".jpg,.jpeg,.png,.webp,image/*">
+                        </div>
+                        <div class="full-span checkbox-row">
+                            <label class="checkbox-chip"><input type="checkbox" name="published" checked><span>Publicar no site</span></label>
+                            <label class="checkbox-chip"><input type="checkbox" name="featured" checked><span>Marcar como destaque</span></label>
+                        </div>
+                        <div class="full-span image-preview">
+                            <img id="project-preview" src="../assets/images/tcm/placeholder-project.svg" alt="Pré-visualização do projeto">
+                        </div>
+                        <div class="full-span d-flex flex-wrap gap-3">
+                            <button id="form-submit" class="btn-site" type="submit">Criar projeto</button>
+                            <a class="btn-site btn-site-outline" href="dashboard.html">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script defer src="../assets/js/tcm-data.js"></script>
+    <script defer src="../assets/js/tcm-store.js"></script>
+    <script defer src="../assets/js/tcm-admin.js"></script>
+</body>
+</html>

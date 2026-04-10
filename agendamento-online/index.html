@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="description"
+        content="Protótipo inicial de um sistema de agendamento online com seleção de serviço, data e horário."
+    >
+    <title>Agendamento Online</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero panel">
+            <div class="topbar">
+                <a class="brand" href="#">
+                    <span class="brand-mark"></span>
+                    Agenda Pulse
+                </a>
+                <nav class="topnav" aria-label="Seções principais">
+                    <a href="#fluxo">Fluxo</a>
+                    <a href="#servicos">Serviços</a>
+                    <a href="#agendar">Agendar</a>
+                </nav>
+            </div>
+
+            <div class="hero-grid">
+                <section class="hero-copy">
+                    <p class="eyebrow">Sistema de agendamento online</p>
+                    <h1>Uma agenda clara, rápida e pronta para virar produto.</h1>
+                    <p class="hero-text">
+                        Este primeiro front-end já simula a jornada do cliente:
+                        escolha do serviço, seleção de data, horário e envio do
+                        pré-agendamento.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#agendar">Montar reserva</a>
+                        <button class="btn btn-secondary" type="button" data-scroll-target="#fluxo">
+                            Ver estrutura
+                        </button>
+                    </div>
+
+                    <ul class="hero-metrics" aria-label="Indicadores de valor">
+                        <li>
+                            <strong>24h</strong>
+                            <span>Agenda aberta no site</span>
+                        </li>
+                        <li>
+                            <strong>3 etapas</strong>
+                            <span>Fluxo simples para o cliente</span>
+                        </li>
+                        <li>
+                            <strong>Base pronta</strong>
+                            <span>Para conectar ao backend</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <aside class="hero-preview" aria-label="Prévia do agendamento">
+                    <p class="preview-label">Prévia interativa</p>
+                    <div class="preview-card">
+                        <div class="preview-head">
+                            <span class="preview-pill">Disponível hoje</span>
+                            <span class="preview-status">+12 horários</span>
+                        </div>
+                        <h2>Atendimento sem vai e volta no WhatsApp.</h2>
+                        <div class="preview-times">
+                            <span>09:00</span>
+                            <span>10:30</span>
+                            <span>14:00</span>
+                            <span>16:15</span>
+                        </div>
+                        <div class="preview-footer">
+                            <div>
+                                <small>Serviço em destaque</small>
+                                <strong>Consultoria Express</strong>
+                            </div>
+                            <div>
+                                <small>Duração média</small>
+                                <strong>45 min</strong>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </header>
+
+        <main>
+            <section class="panel section" id="fluxo">
+                <div class="section-heading">
+                    <p class="eyebrow">Fluxo inicial</p>
+                    <h2>Primeira entrega do front-end</h2>
+                    <p>
+                        A proposta aqui é validar a experiência antes de ligar
+                        banco, autenticação e painel administrativo.
+                    </p>
+                </div>
+
+                <div class="flow-grid">
+                    <article class="flow-card">
+                        <span>01</span>
+                        <h3>Escolha do serviço</h3>
+                        <p>
+                            O cliente seleciona o tipo de atendimento com duração e valor visíveis.
+                        </p>
+                    </article>
+                    <article class="flow-card">
+                        <span>02</span>
+                        <h3>Data e horário</h3>
+                        <p>
+                            Horários ficam organizados em blocos claros, prontos para vir do backend depois.
+                        </p>
+                    </article>
+                    <article class="flow-card">
+                        <span>03</span>
+                        <h3>Resumo e envio</h3>
+                        <p>
+                            O resumo final reduz erro de agendamento e facilita confirmação automática.
+                        </p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="panel section" id="servicos">
+                <div class="section-heading">
+                    <p class="eyebrow">Serviços</p>
+                    <h2>Blocos prontos para o usuário comparar rápido</h2>
+                </div>
+
+                <div class="service-grid" id="service-list" aria-label="Lista de serviços" aria-live="polite"></div>
+                <p class="section-feedback" id="service-feedback" aria-live="polite"></p>
+            </section>
+
+            <section class="booking-grid" id="agendar">
+                <section class="panel section booking-panel">
+                    <div class="section-heading">
+                        <p class="eyebrow">Agendamento</p>
+                        <h2>Selecione data e horário</h2>
+                        <p>Este bloco já pode ser alimentado por API ou banco assim que o backend entrar.</p>
+                    </div>
+
+                    <div class="picker-block">
+                        <h3>Datas disponíveis</h3>
+                        <div class="chip-grid" id="date-list" aria-label="Datas disponíveis"></div>
+                    </div>
+
+                    <div class="picker-block">
+                        <h3>Horários livres</h3>
+                        <div class="time-grid" id="time-list" aria-label="Horários disponíveis"></div>
+                        <p class="picker-feedback" id="availability-feedback" aria-live="polite"></p>
+                    </div>
+                </section>
+
+                <form class="panel section form-panel" id="booking-form">
+                    <div class="section-heading">
+                        <p class="eyebrow">Dados do cliente</p>
+                        <h2>Envio do pré-agendamento</h2>
+                    </div>
+
+                    <label>
+                        Nome completo
+                        <input type="text" name="name" placeholder="Seu nome" required>
+                    </label>
+
+                    <label>
+                        E-mail
+                        <input type="email" name="email" placeholder="voce@exemplo.com" required>
+                    </label>
+
+                    <label>
+                        WhatsApp
+                        <input type="tel" name="phone" placeholder="(65) 99999-9999" required>
+                    </label>
+
+                    <label>
+                        Observações
+                        <textarea name="notes" rows="4" placeholder="Se houver alguma informação importante, escreva aqui."></textarea>
+                    </label>
+
+                    <button class="btn btn-primary btn-submit" type="submit">
+                        Confirmar pré-agendamento
+                    </button>
+                    <p class="form-feedback" id="form-feedback" aria-live="polite"></p>
+                </form>
+
+                <aside class="panel section summary-panel">
+                    <div class="section-heading">
+                        <p class="eyebrow">Resumo ao vivo</p>
+                        <h2>Reserva selecionada</h2>
+                    </div>
+
+                    <ul class="summary-list">
+                        <li>
+                            <span>Serviço</span>
+                            <strong id="summary-service">Carregando...</strong>
+                        </li>
+                        <li>
+                            <span>Duração</span>
+                            <strong id="summary-duration">-</strong>
+                        </li>
+                        <li>
+                            <span>Valor</span>
+                            <strong id="summary-price">-</strong>
+                        </li>
+                        <li>
+                            <span>Data</span>
+                            <strong id="summary-date">-</strong>
+                        </li>
+                        <li>
+                            <span>Horário</span>
+                            <strong id="summary-time">-</strong>
+                        </li>
+                    </ul>
+
+                    <div class="summary-highlight">
+                        <p>Status atual</p>
+                        <strong>Front-end validado</strong>
+                        <span>
+                            Próxima etapa natural: persistir disponibilidade,
+                            clientes e reservas no backend.
+                        </span>
+                    </div>
+                </aside>
+            </section>
+
+            <section class="panel section roadmap">
+                <div class="section-heading">
+                    <p class="eyebrow">Próximo passo</p>
+                    <h2>Backend recomendado para este projeto</h2>
+                </div>
+
+                <div class="roadmap-grid">
+                    <article>
+                        <h3>Melhor encaixe agora</h3>
+                        <p><strong>PHP + MySQL</strong> pela sua estrutura local com XAMPP e pelo baixo atrito para publicar.</p>
+                    </article>
+                    <article>
+                        <h3>O que o backend vai fazer</h3>
+                        <p>Salvar serviços, horários, clientes, reservas, bloqueios de agenda e status de confirmação.</p>
+                    </article>
+                    <article>
+                        <h3>Depois podemos evoluir</h3>
+                        <p>Painel admin, login, integração com WhatsApp e envio de lembretes automáticos.</p>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

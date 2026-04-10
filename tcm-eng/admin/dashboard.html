@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | TCM Engenharia Elétrica | AGÊNCIA JVV</title>
+    <link rel="stylesheet" href="../assets/css/vendor/bootstrap.css">
+    <link rel="stylesheet" href="../assets/css/plugins/fontawesome.css">
+    <link rel="stylesheet" href="../assets/css/tcm-site.css">
+    <link rel="stylesheet" href="../assets/css/tcm-admin.css">
+</head>
+<body class="admin-body">
+    <div class="admin-shell">
+        <aside class="admin-sidebar">
+            <a class="brand-lockup footer-brand" href="../technician.html">
+                <img class="admin-brand-logo" data-admin-logo src="../assets/images/logo/agencia-jvv-header.png" alt="AGÊNCIA JVV">
+                <span class="brand-copy">
+                    <strong>Painel administrativo</strong>
+                    <small>Projeto criado pela AGÊNCIA JVV</small>
+                </span>
+            </a>
+            <nav class="admin-nav">
+                <a class="admin-nav-link is-active" href="dashboard.html"><i class="fa-light fa-grid-2"></i><span>Dashboard</span></a>
+                <a class="admin-nav-link" href="portfolio-form.html"><i class="fa-light fa-plus"></i><span>Novo projeto</span></a>
+                <a class="admin-nav-link" href="../technician.html" target="_blank" rel="noopener"><i class="fa-light fa-arrow-up-right-from-square"></i><span>Ver site</span></a>
+                <a class="admin-nav-link" href="login.html" data-action="logout"><i class="fa-light fa-right-from-bracket"></i><span>Sair</span></a>
+            </nav>
+        </aside>
+
+        <main class="admin-main">
+            <section class="admin-topbar">
+                <div>
+                    <h1>Painel do portfólio</h1>
+                    <p>Gestão de portfólio, aparência e contatos da TCM Engenharia Elétrica. Autor do projeto: João Victor Vieira · Contato: (65) 99350-0370.</p>
+                </div>
+                <a class="btn-site" href="portfolio-form.html">Novo projeto</a>
+            </section>
+
+            <div id="dashboard-feedback" class="alert-inline" hidden></div>
+            <section id="dashboard-stats" class="admin-stats"></section>
+
+            <section class="admin-grid">
+                <div class="admin-stack">
+                    <div class="admin-surface">
+                        <h2>Projetos cadastrados</h2>
+                        <div id="dashboard-projects" class="project-list"></div>
+                    </div>
+                </div>
+
+                <div class="admin-stack">
+                    <div class="admin-surface">
+                        <h2>Leads recentes</h2>
+                        <div id="dashboard-leads" class="lead-list"></div>
+                    </div>
+
+                    <div class="admin-surface">
+                        <h2>Aparência do site</h2>
+                        <p class="meta-muted">Troque a logo e as imagens da hero sem backend. Tudo fica salvo localmente neste navegador.</p>
+                        <form id="appearance-form" class="appearance-form mt-3">
+                            <div class="appearance-grid">
+                                <div>
+                                    <label class="form-label" for="site-logo-file">Logo do site</label>
+                                    <input class="form-control" id="site-logo-file" type="file" accept=".svg,.png,.jpg,.jpeg,.webp,image/*">
+                                </div>
+                                <div>
+                                    <label class="form-label" for="hero-bg-file">Background da hero</label>
+                                    <input class="form-control" id="hero-bg-file" type="file" accept=".png,.jpg,.jpeg,.webp,image/*">
+                                </div>
+                                <div>
+                                    <label class="form-label" for="site-whatsapp-number">WhatsApp do botão flutuante</label>
+                                    <input class="form-control" id="site-whatsapp-number" type="text" inputmode="numeric" placeholder="Ex: 5565999999999">
+                                </div>
+                                <div class="full-span">
+                                    <label class="form-label" for="hero-panel-bg-file">Imagem do painel da hero</label>
+                                    <input class="form-control" id="hero-panel-bg-file" type="file" accept=".png,.jpg,.jpeg,.webp,image/*">
+                                </div>
+                            </div>
+                            <div class="appearance-preview-grid">
+                                <div class="appearance-preview-card appearance-preview-card--logo">
+                                    <span>Logo</span>
+                                    <div class="appearance-preview appearance-preview--logo"><img id="site-logo-preview" src="../assets/images/logo/logo-technician.svg" alt="Logo do site"></div>
+                                </div>
+                                <div class="appearance-preview-card">
+                                    <span>Background da hero</span>
+                                    <div class="appearance-preview"><img id="hero-bg-preview" src="../assets/images/common/expert-img-two.jpg" alt="Background da hero"></div>
+                                </div>
+                                <div class="appearance-preview-card">
+                                    <span>Painel lateral da hero</span>
+                                    <div class="appearance-preview"><img id="hero-panel-bg-preview" src="../assets/images/technician/work/work-1.jpg" alt="Painel da hero"></div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-wrap gap-3 mt-3">
+                                <button class="btn-site" type="submit">Salvar aparência</button>
+                                <button id="reset-appearance" class="btn-site btn-site-outline" type="button">Restaurar aparência padrão</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="admin-surface">
+                        <h2>Dados locais</h2>
+                        <p class="meta-muted">Como esta versão roda sem backend, os dados ficam neste navegador. Você pode exportar ou importar um JSON para transportar o conteúdo.</p>
+                        <div class="d-grid gap-3 mt-3">
+                            <button id="export-data" class="btn-site btn-site-outline" type="button">Exportar JSON</button>
+                            <label class="btn-site btn-site-outline" for="import-data">Importar JSON</label>
+                            <input id="import-data" type="file" accept=".json" hidden>
+                            <button id="reset-demo" class="btn-action danger" type="button">Restaurar demo</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script defer src="../assets/js/tcm-data.js"></script>
+    <script defer src="../assets/js/tcm-store.js"></script>
+    <script defer src="../assets/js/tcm-admin.js"></script>
+</body>
+</html>

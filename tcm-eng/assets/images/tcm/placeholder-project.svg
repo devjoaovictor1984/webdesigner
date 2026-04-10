@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" rx="40" fill="#091425"/>
+  <path d="M80 140H1120" stroke="#183149" stroke-width="2"/>
+  <path d="M80 260H1120" stroke="#183149" stroke-width="2"/>
+  <path d="M80 380H1120" stroke="#183149" stroke-width="2"/>
+  <path d="M80 500H1120" stroke="#183149" stroke-width="2"/>
+  <path d="M80 620H1120" stroke="#183149" stroke-width="2"/>
+  <path d="M160 80V720" stroke="#183149" stroke-width="2"/>
+  <path d="M360 80V720" stroke="#183149" stroke-width="2"/>
+  <path d="M560 80V720" stroke="#183149" stroke-width="2"/>
+  <path d="M760 80V720" stroke="#183149" stroke-width="2"/>
+  <path d="M960 80V720" stroke="#183149" stroke-width="2"/>
+  <rect x="150" y="136" width="900" height="528" rx="32" fill="url(#paint0_linear_1_16)" stroke="#2A4764" stroke-width="2"/>
+  <path d="M246 246H954" stroke="#FF9A50" stroke-width="8" stroke-linecap="round"/>
+  <path d="M246 314H744" stroke="#79E0FF" stroke-width="8" stroke-linecap="round" opacity=".9"/>
+  <path d="M246 382H868" stroke="#B7C7DE" stroke-width="8" stroke-linecap="round" opacity=".5"/>
+  <path d="M246 450H636" stroke="#B7C7DE" stroke-width="8" stroke-linecap="round" opacity=".35"/>
+  <rect x="246" y="510" width="190" height="62" rx="31" fill="#FF9A50"/>
+  <rect x="460" y="510" width="250" height="62" rx="31" fill="#14324E"/>
+  <circle cx="918" cy="532" r="58" fill="#0F2437" stroke="#2A4764" stroke-width="2"/>
+  <path d="M918 492V572" stroke="#79E0FF" stroke-width="10" stroke-linecap="round"/>
+  <path d="M878 532H958" stroke="#79E0FF" stroke-width="10" stroke-linecap="round"/>
+  <text x="246" y="205" fill="#EDF4FF" font-size="64" font-family="Montserrat, Arial, sans-serif" font-weight="800">TCM</text>
+  <text x="246" y="572" fill="#07111F" font-size="28" font-family="Poppins, Arial, sans-serif" font-weight="700">Projeto em atualização</text>
+  <text x="738" y="551" fill="#9FB0C8" font-size="24" font-family="Poppins, Arial, sans-serif">Adicione uma imagem real no dashboard</text>
+  <defs>
+    <linearGradient id="paint0_linear_1_16" x1="1050" y1="664" x2="146" y2="116" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0E1B30"/>
+      <stop offset="1" stop-color="#10243A"/>
+    </linearGradient>
+  </defs>
+</svg>
