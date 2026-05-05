@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shows For Teens</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --mj-color:    #00e5d1;
+      --jb-color:    #b77dff;
+      --ep-color:    #ff4444;
+      --gold:        #ffd700;
+      --dark:        #0a0a0f;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--dark);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 40px;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-badge {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00e5d1, #b77dff);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+
+    .logo-text {
+      display: flex; flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-text span:first-child {
+      font-size: 10px; font-weight: 600; letter-spacing: 3px;
+      color: rgba(255,255,255,0.6); text-transform: uppercase;
+    }
+
+    .logo-text span:last-child {
+      font-size: 18px; font-weight: 800; letter-spacing: 1px;
+      background: linear-gradient(90deg, #00e5d1, #b77dff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav { display: flex; gap: 32px; }
+
+    nav a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    nav a:hover { color: #fff; }
+
+    .ticket-btn {
+      background: linear-gradient(135deg, #00e5d1, #b77dff);
+      color: #000 !important;
+      padding: 9px 22px;
+      border-radius: 50px;
+      font-weight: 800 !important;
+      letter-spacing: 1px;
+      transition: opacity .2s !important;
+    }
+    .ticket-btn:hover { opacity: .85; }
+
+    /* ── HERO SLIDER ── */
+    #slider {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity .9s ease;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .slide.active { opacity: 1; z-index: 2; }
+    .slide.prev   { opacity: 0; z-index: 1; }
+
+    .slide-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center top;
+      filter: brightness(.45) saturate(1.4);
+      transition: transform 8s ease;
+    }
+    .slide.active .slide-bg { transform: scale(1.06); }
+
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+    }
+
+    #slide-mj .slide-bg      { background-image: url('images/1.jpg'); }
+    #slide-mj .slide-overlay { background: linear-gradient(135deg, rgba(0,50,50,.85) 0%, rgba(0,30,40,.4) 60%, transparent 100%); }
+    #slide-mj                { --accent: var(--mj-color); }
+
+    #slide-jb .slide-bg      { background-image: url('images/2.jpg'); }
+    #slide-jb .slide-overlay { background: linear-gradient(135deg, rgba(20,0,60,.85) 0%, rgba(30,0,80,.4) 60%, transparent 100%); }
+    #slide-jb                { --accent: var(--jb-color); }
+
+    #slide-ep .slide-bg      { background-image: url('images/3.jpg'); }
+    #slide-ep .slide-overlay { background: linear-gradient(135deg, rgba(60,0,0,.88) 0%, rgba(30,0,0,.45) 60%, transparent 100%); }
+    #slide-ep                { --accent: var(--ep-color); }
+
+    .slide-content {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 60px 90px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .slide-info { flex: 1; }
+
+    .event-tag {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 50px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .slide-subtitle {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      color: rgba(255,255,255,.65);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .slide-artist {
+      font-size: clamp(48px, 7vw, 96px);
+      font-weight: 900;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      color: #fff;
+      text-shadow: 0 0 60px var(--accent), 0 4px 30px rgba(0,0,0,.8);
+      margin-bottom: 12px;
+    }
+
+    .slide-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,.7);
+      font-style: italic;
+      letter-spacing: 1px;
+      max-width: 420px;
+      margin-bottom: 22px;
+    }
+
+    .slide-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 20px;
+      margin-bottom: 22px;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: rgba(255,255,255,.8);
+    }
+
+    .meta-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px;
+    }
+
+    .setlist {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 28px;
+    }
+
+    .setlist-item {
+      font-size: 13px;
+      color: rgba(255,255,255,.75);
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    .setlist-item::before {
+      content: '';
+      display: block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .slide-actions { display: flex; align-items: center; gap: 16px; }
+
+    .btn-primary {
+      padding: 12px 32px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      background: var(--accent);
+      color: #000;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 0 20px var(--accent);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 30px var(--accent); }
+
+    .btn-secondary {
+      padding: 12px 32px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: transparent;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,.3);
+      transition: background .2s, border .2s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.6); }
+
+    .slide-ticket-box {
+      background: rgba(0,0,0,.45);
+      border: 1px dashed rgba(255,255,255,.25);
+      border-radius: 16px;
+      padding: 20px 26px;
+      min-width: 180px;
+      text-align: center;
+    }
+
+    .ticket-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,.5);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .ticket-price {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .ticket-site {
+      font-size: 10px;
+      color: rgba(255,255,255,.45);
+      letter-spacing: 1px;
+    }
+
+    .sponsor-box {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      text-align: center;
+    }
+
+    .sponsor-label {
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,.4);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .sponsor-logo {
+      max-height: 36px;
+      max-width: 100px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: .8;
+    }
+
+    .sponsor-text {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      font-style: italic;
+      color: rgba(255,255,255,.8);
+    }
+
+    .artist-png {
+      flex-shrink: 0;
+      width: clamp(180px, 22vw, 320px);
+      position: relative;
+      align-self: flex-end;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .artist-png img {
+      max-height: clamp(280px, 45vh, 520px);
+      max-width: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 40px var(--accent));
+    }
+
+    /* ── SLIDER CONTROLS ── */
+    .slider-controls {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.3);
+      cursor: pointer;
+      transition: all .3s;
+      border: none;
+    }
+    .dot.active {
+      background: #fff;
+      width: 28px;
+      border-radius: 4px;
+    }
+
+    .arrow-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 20;
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.2);
+      color: #fff;
+      font-size: 22px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+      backdrop-filter: blur(6px);
+    }
+    .arrow-btn:hover { background: rgba(255,255,255,.18); }
+    #prev-btn { left: 24px; }
+    #next-btn { right: 24px; }
+
+    .progress-bar {
+      position: absolute;
+      bottom: 0; left: 0;
+      height: 3px;
+      background: var(--mj-color);
+      width: 0%;
+      z-index: 30;
+    }
+
+    /* ── EVENTS SECTION ── */
+    #events {
+      padding: 100px 40px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header { text-align: center; margin-bottom: 60px; }
+
+    .section-badge {
+      display: inline-block;
+      padding: 4px 16px;
+      border-radius: 50px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.6);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      line-height: 1.1;
+    }
+
+    .section-title span {
+      background: linear-gradient(90deg, #00e5d1, #b77dff, #ff4444);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    .event-card {
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .3s, box-shadow .3s;
+      position: relative;
+    }
+    .event-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.6);
+    }
+
+    .event-card img.card-poster {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s;
+    }
+    .event-card:hover img.card-poster { transform: scale(1.04); }
+
+    .card-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 28px 24px 20px;
+      background: linear-gradient(to top, rgba(0,0,0,.95) 0%, rgba(0,0,0,.6) 60%, transparent 100%);
+    }
+
+    .card-genre {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .card-name {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .card-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: rgba(255,255,255,.65);
+    }
+
+    /* ── TICKETS SECTION ── */
+    #tickets {
+      background: rgba(255,255,255,.03);
+      border-top: 1px solid rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      padding: 80px 40px;
+    }
+
+    .tickets-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .tickets-inner > p {
+      font-size: 16px;
+      color: rgba(255,255,255,.6);
+      margin-bottom: 36px;
+    }
+
+    .ticket-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .ticket-card {
+      border-radius: 16px;
+      padding: 28px 20px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      transition: border-color .3s, transform .3s;
+    }
+    .ticket-card:hover { transform: translateY(-4px); }
+
+    .ticket-card.mj  { border-top: 3px solid var(--mj-color); }
+    .ticket-card.jb  { border-top: 3px solid var(--jb-color); }
+    .ticket-card.ep  { border-top: 3px solid var(--ep-color); }
+
+    .tc-artist { font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .tc-date   { font-size: 12px; color: rgba(255,255,255,.5); margin-bottom: 16px; }
+    .tc-price  { font-size: 32px; font-weight: 900; margin-bottom: 6px; }
+    .tc-perks  { font-size: 11px; color: rgba(255,255,255,.5); line-height: 1.8; margin-bottom: 20px; }
+    .tc-btn    { display: block; width: 100%; padding: 10px; border-radius: 50px; font-weight: 800; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border: none; transition: opacity .2s; }
+    .tc-btn:hover { opacity: .85; }
+
+    .mj .tc-price { color: var(--mj-color); }
+    .mj .tc-btn   { background: var(--mj-color); color: #000; }
+    .jb .tc-price { color: var(--jb-color); }
+    .jb .tc-btn   { background: var(--jb-color); color: #000; }
+    .ep .tc-price { color: var(--ep-color); }
+    .ep .tc-btn   { background: var(--ep-color); color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 48px 40px 32px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+
+    .footer-brand {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      background: linear-gradient(90deg, #00e5d1, #b77dff, #ff4444);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    footer p {
+      font-size: 12px;
+      color: rgba(255,255,255,.35);
+      line-height: 1.8;
+    }
+
+    footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide.active .slide-info > * { animation: fadeUp .7s ease both; }
+    .slide.active .event-tag      { animation-delay: .05s; }
+    .slide.active .slide-subtitle { animation-delay: .10s; }
+    .slide.active .slide-artist   { animation-delay: .18s; }
+    .slide.active .slide-desc     { animation-delay: .26s; }
+    .slide.active .slide-meta     { animation-delay: .32s; }
+    .slide.active .setlist        { animation-delay: .38s; }
+    .slide.active .slide-actions  { animation-delay: .44s; }
+    .slide.active .artist-png img { animation: fadeUp .9s .3s ease both; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .slide-content { flex-direction: column; align-items: flex-start; padding: 0 28px 100px; }
+      .artist-png { display: none; }
+      nav { display: none; }
+      header { padding: 12px 24px; }
+      .ticket-cards { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .slide-artist { font-size: 42px; }
+      #events, #tickets { padding: 60px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="logo" href="#">
+    <div class="logo-badge">🎸</div>
+    <div class="logo-text">
+      <span>Official Site</span>
+      <span>Shows For Teens</span>
+    </div>
+  </a>
+  <nav>
+    <a href="#slider">Home</a>
+    <a href="#events">Events</a>
+    <a href="#tickets">Tickets</a>
+    <a href="https://showsforteens.com" class="ticket-btn">Buy Now</a>
+  </nav>
+</header>
+
+
+<!-- HERO SLIDER -->
+<section id="slider">
+
+  <!-- Slide 1: Michael Jackson -->
+  <div class="slide active" id="slide-mj">
+    <div class="slide-bg"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="slide-info">
+        <span class="event-tag">🎸 Rock in Rio</span>
+        <p class="slide-subtitle">Tonight</p>
+        <h1 class="slide-artist">Michael<br>Jackson</h1>
+        <p class="slide-desc">&#9733;&#9733;&#9733;&#9733;&#9733; &nbsp;Get ready for your best night with Michael Jackson.</p>
+        <div class="slide-meta">
+          <div class="meta-item"><div class="meta-icon">📅</div> September 18th</div>
+          <div class="meta-item"><div class="meta-icon">⏰</div> 8 PM</div>
+          <div class="meta-item"><div class="meta-icon">🎵</div> Pop Music</div>
+        </div>
+        <div class="setlist">
+          <div class="setlist-item">Billie Jean</div>
+          <div class="setlist-item">Thriller</div>
+          <div class="setlist-item">Beat It</div>
+        </div>
+        <div class="slide-actions">
+          <a href="https://showsforteens.com" class="btn-primary">Get Tickets</a>
+          <a href="#events" class="btn-secondary">Learn More</a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <div class="artist-png">
+          <img src="images/pngwing.com.png" alt="Michael Jackson" />
+        </div>
+        <div class="slide-ticket-box">
+          <div class="ticket-label">Tickets</div>
+          <div class="ticket-price">FREE</div>
+          <div class="ticket-site">showsforteens.com</div>
+          <div class="sponsor-box">
+            <div class="sponsor-label">Main Sponsor</div>
+            <img src="images/580b57fcd9996e24bc43c4f3.png" alt="Nike" class="sponsor-logo" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2: Justin Bieber -->
+  <div class="slide" id="slide-jb">
+    <div class="slide-bg"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="slide-info">
+        <span class="event-tag">🌟 Show in Moscow</span>
+        <p class="slide-subtitle">Live Concert</p>
+        <h1 class="slide-artist">Justin<br>Bieber</h1>
+        <p class="slide-desc">The biggest pop star of his generation &mdash; live at Red Square!</p>
+        <div class="slide-meta">
+          <div class="meta-item"><div class="meta-icon">📅</div> May 22</div>
+          <div class="meta-item"><div class="meta-icon">⏰</div> Open 8 PM</div>
+          <div class="meta-item"><div class="meta-icon">📍</div> Red Square, Moscow</div>
+        </div>
+        <div class="setlist">
+          <div class="setlist-item">5+ Age Rating</div>
+          <div class="setlist-item">Free Parking &amp; Free Soda</div>
+          <div class="setlist-item">109012 Russia</div>
+        </div>
+        <div class="slide-actions">
+          <a href="https://showsforteens.com" class="btn-primary">Get Tickets</a>
+          <a href="#events" class="btn-secondary">Learn More</a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <div class="artist-png">
+          <img src="images/Justin-Bieber-PNG-Image.png" alt="Justin Bieber" />
+        </div>
+        <div class="slide-ticket-box">
+          <div class="ticket-label">Entry</div>
+          <div class="ticket-price">$1000</div>
+          <div class="ticket-site">showsforteens.com</div>
+          <div class="sponsor-box">
+            <div class="sponsor-label">Main Sponsor</div>
+            <span class="sponsor-text">FUMA</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3: Elvis Presley -->
+  <div class="slide" id="slide-ep">
+    <div class="slide-bg"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="slide-info">
+        <span class="event-tag">&#9889; Rock and Roll</span>
+        <p class="slide-subtitle">In the Moon</p>
+        <h1 class="slide-artist">Elvis<br>Presley</h1>
+        <p class="slide-desc">The King of Rock and Roll returns for one legendary night!</p>
+        <div class="slide-meta">
+          <div class="meta-item"><div class="meta-icon">📅</div> May 21</div>
+          <div class="meta-item"><div class="meta-icon">⏰</div> Open 12 PM</div>
+          <div class="meta-item"><div class="meta-icon">🎸</div> Rock &amp; Roll</div>
+        </div>
+        <div class="setlist">
+          <div class="setlist-item">Hound Dog</div>
+          <div class="setlist-item">Jailhouse Rock</div>
+          <div class="setlist-item">Love Me Tender</div>
+        </div>
+        <div class="slide-actions">
+          <a href="https://showsforteens.com" class="btn-primary">Get Tickets</a>
+          <a href="#events" class="btn-secondary">Learn More</a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <div class="artist-png">
+          <img src="images/pngegg.png" alt="Elvis Presley" />
+        </div>
+        <div class="slide-ticket-box">
+          <div class="ticket-label">It Costs</div>
+          <div class="ticket-price">1&#162;</div>
+          <div class="ticket-site">showsforteens.com</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrow controls -->
+  <button class="arrow-btn" id="prev-btn" aria-label="Previous">&#8592;</button>
+  <button class="arrow-btn" id="next-btn" aria-label="Next">&#8594;</button>
+
+  <!-- Dot controls -->
+  <div class="slider-controls">
+    <button class="dot active" data-index="0" aria-label="Slide 1"></button>
+    <button class="dot"        data-index="1" aria-label="Slide 2"></button>
+    <button class="dot"        data-index="2" aria-label="Slide 3"></button>
+  </div>
+
+  <!-- Auto-play progress bar -->
+  <div class="progress-bar" id="progress-bar"></div>
+</section>
+
+
+<!-- EVENTS GRID -->
+<section id="events">
+  <div class="section-header">
+    <div class="section-badge">Upcoming Shows</div>
+    <h2 class="section-title">The <span>Biggest Shows</span><br>of the Season</h2>
+  </div>
+  <div class="events-grid">
+    <div class="event-card" onclick="goToSlide(0); document.getElementById('slider').scrollIntoView({behavior:'smooth'})">
+      <img class="card-poster" src="images/1.jpg" alt="Michael Jackson" />
+      <div class="card-overlay">
+        <div class="card-genre" style="color:var(--mj-color)">Pop Music &middot; Rock in Rio</div>
+        <div class="card-name">Michael Jackson</div>
+        <div class="card-details">
+          <span>Sep 18 &middot; 8 PM</span>
+          <span style="color:var(--mj-color);font-weight:700">FREE</span>
+        </div>
+      </div>
+    </div>
+    <div class="event-card" onclick="goToSlide(1); document.getElementById('slider').scrollIntoView({behavior:'smooth'})">
+      <img class="card-poster" src="images/2.jpg" alt="Justin Bieber" />
+      <div class="card-overlay">
+        <div class="card-genre" style="color:var(--jb-color)">Pop &middot; Moscow</div>
+        <div class="card-name">Justin Bieber</div>
+        <div class="card-details">
+          <span>May 22 &middot; 8 PM</span>
+          <span style="color:var(--jb-color);font-weight:700">$1,000</span>
+        </div>
+      </div>
+    </div>
+    <div class="event-card" onclick="goToSlide(2); document.getElementById('slider').scrollIntoView({behavior:'smooth'})">
+      <img class="card-poster" src="images/3.jpg" alt="Elvis Presley" />
+      <div class="card-overlay">
+        <div class="card-genre" style="color:var(--ep-color)">Rock &amp; Roll &middot; In the Moon</div>
+        <div class="card-name">Elvis Presley</div>
+        <div class="card-details">
+          <span>May 21 &middot; 12 PM</span>
+          <span style="color:var(--ep-color);font-weight:700">1&#162;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- TICKETS SECTION -->
+<section id="tickets">
+  <div class="tickets-inner">
+    <div class="section-header">
+      <div class="section-badge">Buy Now</div>
+      <h2 class="section-title">Choose <span>Your Show</span></h2>
+    </div>
+    <p>All tickets available at <strong>showsforteens.com</strong></p>
+    <div class="ticket-cards">
+      <div class="ticket-card mj">
+        <div class="tc-artist">Michael Jackson</div>
+        <div class="tc-date">September 18 &middot; 8 PM &middot; Rock in Rio</div>
+        <div class="tc-price">FREE</div>
+        <div class="tc-perks">
+          Pop Music &#127925;<br>
+          Billie Jean &middot; Thriller &middot; Beat It<br>
+          Sponsor: Nike
+        </div>
+        <button class="tc-btn" onclick="window.open('https://showsforteens.com')">Get Ticket</button>
+      </div>
+      <div class="ticket-card jb">
+        <div class="tc-artist">Justin Bieber</div>
+        <div class="tc-date">May 22 &middot; Open 8 PM &middot; Moscow</div>
+        <div class="tc-price">$1000</div>
+        <div class="tc-perks">
+          5+ Age Rating &#127775;<br>
+          Free Parking &amp; Free Soda<br>
+          Red Square, Russia
+        </div>
+        <button class="tc-btn" onclick="window.open('https://showsforteens.com')">Get Ticket</button>
+      </div>
+      <div class="ticket-card ep">
+        <div class="tc-artist">Elvis Presley</div>
+        <div class="tc-date">May 21 &middot; Open 12 PM &middot; In the Moon</div>
+        <div class="tc-price">1&#162;</div>
+        <div class="tc-perks">
+          Rock &amp; Roll &#9889;<br>
+          Hound Dog &middot; Jailhouse Rock<br>
+          showsforteens.com
+        </div>
+        <button class="tc-btn" onclick="window.open('https://showsforteens.com')">Get Ticket</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">SHOWS FOR TEENS</div>
+  <p>
+    Created by Jo&atilde;o Gabriel &nbsp;&middot;&nbsp;
+    <a href="https://showsforteens.com">showsforteens.com</a><br>
+    English Class Project &middot; 2026
+  </p>
+</footer>
+
+
+<!-- JAVASCRIPT -->
+<script>
+  const slides   = document.querySelectorAll('.slide');
+  const dots     = document.querySelectorAll('.dot');
+  const progress = document.getElementById('progress-bar');
+  const sliderEl = document.getElementById('slider');
+
+  const DURATION  = 6000;
+  const COLORS    = ['#00e5d1', '#b77dff', '#ff4444'];
+
+  let current    = 0;
+  let autoTimer  = null;
+  let rafId      = null;
+  let startTime  = null;
+  let paused     = false;
+
+  function goToSlide(index) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+
+    current = ((index % slides.length) + slides.length) % slides.length;
+
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+
+    resetAutoPlay();
+  }
+
+  function next() { goToSlide(current + 1); }
+  function prev() { goToSlide(current - 1); }
+
+  document.getElementById('next-btn').addEventListener('click', next);
+  document.getElementById('prev-btn').addEventListener('click', prev);
+
+  dots.forEach(dot => dot.addEventListener('click', () => goToSlide(+dot.dataset.index)));
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft')  prev();
+  });
+
+  // Touch / swipe
+  let touchX = 0;
+  sliderEl.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+  sliderEl.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) dx < 0 ? next() : prev();
+  });
+
+  // Progress bar
+  function tickProgress(ts) {
+    if (paused) return;
+    if (!startTime) startTime = ts;
+    const pct = Math.min(((ts - startTime) / DURATION) * 100, 100);
+    progress.style.width = pct + '%';
+    if (pct < 100) {
+      rafId = requestAnimationFrame(tickProgress);
+    }
+  }
+
+  function resetAutoPlay() {
+    clearTimeout(autoTimer);
+    cancelAnimationFrame(rafId);
+    startTime = null;
+    progress.style.width = '0%';
+    progress.style.background = COLORS[current];
+
+    if (!paused) {
+      rafId     = requestAnimationFrame(tickProgress);
+      autoTimer = setTimeout(next, DURATION);
+    }
+  }
+
+  sliderEl.addEventListener('mouseenter', () => {
+    paused = true;
+    clearTimeout(autoTimer);
+    cancelAnimationFrame(rafId);
+  });
+
+  sliderEl.addEventListener('mouseleave', () => {
+    paused = false;
+    resetAutoPlay();
+  });
+
+  // Kick off
+  resetAutoPlay();
+</script>
+</body>
+</html>
